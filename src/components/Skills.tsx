@@ -21,12 +21,21 @@ export default function Skills() {
             <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 md:mb-10 font-black">Technical Stack</h3>
             <div className="flex flex-wrap justify-center gap-2 md:gap-4">
               {skills.technical.map((skill, i) => (
-                <span 
+                <motion.span 
                   key={skill}
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: i * 0.05, 
+                    type: "spring", 
+                    stiffness: 260, 
+                    damping: 20 
+                  }}
                   className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-all cursor-default"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>
@@ -35,12 +44,21 @@ export default function Skills() {
             <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 md:mb-10 font-black">Creative Arts</h3>
             <div className="flex flex-wrap justify-center gap-2 md:gap-4">
               {skills.creative.map((skill, i) => (
-                <span 
+                <motion.span 
                   key={skill}
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: i * 0.05 + 0.5, 
+                    type: "spring", 
+                    stiffness: 260, 
+                    damping: 20 
+                  }}
                   className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-all cursor-default"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>

@@ -8,50 +8,91 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: -30, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-6 md:mb-8">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-6 md:mb-8"
+          >
             The Visionary
-          </span>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tighter text-gradient">About Me</h2>
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tighter text-gradient"
+          >
+            About Me
+          </motion.h2>
           <div className="space-y-6 text-white/60 text-base md:text-lg leading-relaxed max-w-xl">
-            <p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
               Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique perspective to technology, 
               combining analytical skills with creativity. My journey from the sciences to tech has strengthened my 
               adaptability and problem-solving abilities, focused entirely on developing practical digital solutions.
-            </p>
-            <p>
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
               I am a continuous learner passionate about emerging tech trends and innovative applications of programming. 
               Whether it's building AI tools, robust web applications, or directing short films, I aim to create 
               impactful digital experiences.
-            </p>
+            </motion.p>
           </div>
           
           <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
+            >
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">Titles</p>
               <p className="text-white text-sm md:text-base font-bold leading-snug">Director & Software Engineer | AI Enthusiast & Filmmaker</p>
-            </div>
-            <div className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
+            >
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">Industry Profiles</p>
               <div className="flex flex-wrap gap-3 md:gap-4 mt-2">
-                <a href="https://www.imdb.com/name/nm18214429" target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 hover:text-white transition-colors">IMDb</a>
-                <a href="https://www.themoviedb.org/person/6018661-aryan-singh" target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 hover:text-white transition-colors">TMDB</a>
-                <a href="https://boxd.it/2VQn1" target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 hover:text-white transition-colors">Letterboxd</a>
-                <a href="https://filmfreeway.com/iamaryannnn07" target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 hover:text-white transition-colors">FilmFreeway</a>
+                {["IMDb", "TMDB", "Letterboxd", "FilmFreeway"].map((label, idx) => (
+                  <motion.a 
+                    key={label}
+                    whileHover={{ scale: 1.1, color: "#fff" }}
+                    href={
+                      label === "IMDb" ? "https://www.imdb.com/name/nm18214429" :
+                      label === "TMDB" ? "https://www.themoviedb.org/person/6018661-aryan-singh" :
+                      label === "Letterboxd" ? "https://boxd.it/2VQn1" :
+                      "https://filmfreeway.com/iamaryannnn07"
+                    }
+                    target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 transition-colors"
+                  >
+                    {label}
+                  </motion.a>
+                ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="relative aspect-[4/5] md:aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden glass border border-white/10 group"
         >
           {/* Profile Image */}
