@@ -104,12 +104,15 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-32 px-6 bg-black relative overflow-hidden">
-      {/* Parallax Background Text */}
+      {/* Refined Parallax Background Text (Outlined Cinematic Style) */}
       <motion.div 
         style={{ y }}
-        className="absolute top-40 left-[-5%] text-[20vw] font-black text-white/[0.03] select-none pointer-events-none whitespace-nowrap z-0 italic tracking-tighter"
+        className="absolute top-20 left-[-10%] text-[18vw] font-black select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter opacity-[0.03] uppercase"
+        shadow-text="FEATURED WORKS"
       >
-        FEATURED WORKS • DIRECTED BY ARYAN • FEATURED WORKS • 
+        <span style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>
+          FEATURED • PROJECTS • CINEMATIC • WORKS • 
+        </span>
       </motion.div>
 
       <div className="max-w-7xl mx-auto relative z-10">

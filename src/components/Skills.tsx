@@ -11,12 +11,14 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 md:py-32 px-6 bg-black relative overflow-hidden">
-      {/* Parallax Background Text */}
+      {/* Refined Parallax Background Text (Outlined Engineering Style) */}
       <motion.div 
         style={{ y }}
-        className="absolute top-20 right-[-10%] text-[25vw] font-black text-white/[0.02] select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter"
+        className="absolute top-0 right-[-5%] text-[20vw] font-black select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter opacity-[0.02]"
       >
-        ENGINEERING • PRECISION • CODE •
+        <span style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>
+          ENGINEERING • PRECISION • CODE •
+        </span>
       </motion.div>
 
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
