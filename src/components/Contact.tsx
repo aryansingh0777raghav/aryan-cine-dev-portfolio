@@ -74,13 +74,26 @@ export default function Contact() {
             className="lg:col-span-7 w-full"
           >
             <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 border border-white/5">
-              <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+              <form 
+                className="space-y-8" 
+                action="https://formsubmit.co/aryansingh979211@gmail.com" 
+                method="POST"
+              >
+                {/* Honeypot to prevent spam */}
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+                {/* Disable Captcha for better UX (Optional, remove if spam becomes an issue) */}
+                <input type="hidden" name="_captcha" value="false" />
+                {/* Success page (Optional) */}
+                <input type="hidden" name="_next" value={window.location.href} />
+
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                   <div className="space-y-3">
                     <label className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-black ml-4">Name</label>
                     <input 
                       type="text" 
+                      name="name"
                       placeholder="Your Name"
+                      required
                       className="w-full px-8 py-5 glass-dark border border-white/5 rounded-2xl focus:outline-none focus:border-white/20 transition-all text-sm font-medium placeholder:text-white/20"
                     />
                   </div>
@@ -88,7 +101,9 @@ export default function Contact() {
                     <label className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-black ml-4">Email</label>
                     <input 
                       type="email" 
+                      name="email"
                       placeholder="Email Address"
+                      required
                       className="w-full px-8 py-5 glass-dark border border-white/5 rounded-2xl focus:outline-none focus:border-white/20 transition-all text-sm font-medium placeholder:text-white/20"
                     />
                   </div>
@@ -97,8 +112,10 @@ export default function Contact() {
                 <div className="space-y-3">
                   <label className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-black ml-4">Message</label>
                   <textarea 
+                    name="message"
                     rows={6}
                     placeholder="Tell me about your project or vision..."
+                    required
                     className="w-full px-8 py-5 glass-dark border border-white/5 rounded-[2rem] focus:outline-none focus:border-white/20 transition-all text-sm font-medium placeholder:text-white/20 resize-none"
                   />
                 </div>
