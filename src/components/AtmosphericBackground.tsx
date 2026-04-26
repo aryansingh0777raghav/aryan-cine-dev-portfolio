@@ -54,7 +54,7 @@ export default function AtmosphericBackground() {
 
     const init = () => {
       particles = [];
-      const particleCount = 50; // Static low count
+      const particleCount = 30; // Further reduced for performance
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -85,20 +85,18 @@ export default function AtmosphericBackground() {
       {/* Optimized Static Glows */}
       <motion.div
         style={{ y: y1 }}
-        className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-white/[0.03] blur-[100px] rounded-full"
+        className="absolute top-[-5%] left-[-5%] w-[60%] h-[60%] bg-white/[0.02] blur-[80px] rounded-full"
       />
       <motion.div
         style={{ y: y2 }}
-        className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] bg-white/[0.01] blur-[100px] rounded-full"
+        className="absolute bottom-[-5%] right-[-5%] w-[60%] h-[60%] bg-white/[0.01] blur-[80px] rounded-full"
       />
       
       {/* Lightweight Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-10 pointer-events-none"
       />
     </div>
   );
 }
-
-

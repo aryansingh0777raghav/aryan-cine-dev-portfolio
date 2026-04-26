@@ -128,10 +128,10 @@ export default function Projects() {
             {projects.filmmaking.map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
                 className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-all hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
               >
                 {/* Background Image with Improved Visibility */}
@@ -191,10 +191,10 @@ export default function Projects() {
               {projects.ai.map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
                   className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px]"
                 >
                   <div 
@@ -213,7 +213,7 @@ export default function Projects() {
                       </a>
                     )}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -230,8 +230,8 @@ export default function Projects() {
               {projects.web.map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                  whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-20px" }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 2) * 0.1 }}
                   className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
@@ -251,7 +251,7 @@ export default function Projects() {
                       </a>
                     )}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

@@ -50,13 +50,13 @@
 
 @layer components {
   .glass {
-    @apply bg-white/[0.05] backdrop-blur-xl border border-white/10 shadow-xl;
-    will-change: transform;
+    @apply bg-white/[0.05] backdrop-blur-md border border-white/10 shadow-xl;
+    will-change: transform, opacity;
   }
 
   .glass-dark {
-    @apply bg-black/40 backdrop-blur-xl border border-white/5 shadow-2xl;
-    will-change: transform;
+    @apply bg-black/40 backdrop-blur-md border border-white/5 shadow-2xl;
+    will-change: transform, opacity;
   }
 
   .text-gradient {
