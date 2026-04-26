@@ -76,16 +76,17 @@ export default function Contact() {
             <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 border border-white/5">
               <form 
                 className="space-y-8" 
-                action="https://formsubmit.co/aryansingh979211@gmail.com" 
-                method="POST"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const name = formData.get('name');
+                  const message = formData.get('message');
+                  const email = formData.get('email');
+                  const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+                  const body = encodeURIComponent(`Hi Aryan,\n\n${message}\n\nFrom: ${name} (${email})`);
+                  window.location.href = `mailto:aryansingh979211@gmail.com?subject=${subject}&body=${body}`;
+                }}
               >
-                {/* Honeypot to prevent spam */}
-                <input type="text" name="_honey" style={{ display: 'none' }} />
-                {/* Disable Captcha for better UX (Optional, remove if spam becomes an issue) */}
-                <input type="hidden" name="_captcha" value="false" />
-                {/* Success page (Optional) */}
-                <input type="hidden" name="_next" value={window.location.href} />
-
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                   <div className="space-y-3">
                     <label className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-black ml-4">Name</label>
