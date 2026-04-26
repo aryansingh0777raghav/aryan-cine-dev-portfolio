@@ -1,0 +1,52 @@
+import { motion } from 'motion/react';
+
+const skills = {
+  technical: ["Python", "Pandas", "JAVA Basic", "C", "C++", "HTML", "Data Structures", "Algorithms", "SQL", "JavaScript", "React"],
+  creative: ["Writer", "Director", "Actor", "Musician", "Editor", "UI/UX Design"]
+};
+
+export default function Skills() {
+  return (
+    <section id="skills" className="py-32 px-6 bg-black relative">
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-5xl mx-auto text-center relative z-10">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-4">
+          Expertise
+        </span>
+        <h2 className="text-4xl md:text-6xl font-black mb-20 tracking-tighter text-gradient">Skills & Capabilities</h2>
+        
+        <div className="grid md:grid-cols-2 gap-16">
+          <div className="glass rounded-[3rem] p-10 border border-white/5">
+            <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-10 font-black">Technical Stack</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {skills.technical.map((skill, i) => (
+                <span 
+                  key={skill}
+                  className="px-6 py-3 bg-white/5 border border-white/5 rounded-2xl text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black hover:scale-110 transition-all cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass rounded-[3rem] p-10 border border-white/5">
+            <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-10 font-black">Creative Arts</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {skills.creative.map((skill, i) => (
+                <span 
+                  key={skill}
+                  className="px-6 py-3 bg-white/5 border border-white/5 rounded-2xl text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black hover:scale-110 transition-all cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
