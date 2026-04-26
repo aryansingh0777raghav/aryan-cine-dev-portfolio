@@ -116,13 +116,13 @@ export default function VoiceAssistant() {
       <motion.div 
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="fixed bottom-32 right-12 z-[100]"
+        className="fixed bottom-24 right-6 md:bottom-32 md:right-12 z-[100]"
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white transition-all shadow-2xl ${isOpen ? 'bg-white text-black' : 'hover:scale-110'}`}
+          className={`w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white transition-all shadow-2xl ${isOpen ? 'bg-white text-black' : 'hover:scale-110'}`}
         >
-          {isOpen ? <X size={24} /> : <Sparkles size={24} className={isSpeaking ? 'animate-pulse text-blue-400' : ''} />}
+          {isOpen ? <X size={20} /> : <Sparkles size={20} className={isSpeaking ? 'animate-pulse text-blue-400' : ''} />}
           {isSpeaking && (
             <div className="absolute inset-0 rounded-full animate-ping bg-blue-500/20" />
           )}
@@ -135,7 +135,7 @@ export default function VoiceAssistant() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-52 right-12 z-[100] w-80 glass rounded-[2.5rem] p-8 border border-white/10 shadow-3xl backdrop-blur-3xl"
+            className="fixed bottom-40 right-6 md:bottom-52 md:right-12 z-[100] w-[calc(100vw-3rem)] md:w-80 glass rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 border border-white/10 shadow-3xl backdrop-blur-3xl"
           >
             <div className="flex flex-col gap-6">
               <div className="flex items-center justify-between">
