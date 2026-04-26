@@ -46,7 +46,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen font-sans selection:bg-white selection:text-black">
+    <div className="bg-black min-h-screen font-sans selection:bg-white selection:text-black overflow-x-hidden">
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>

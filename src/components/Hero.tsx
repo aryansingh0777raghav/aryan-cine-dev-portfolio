@@ -18,7 +18,7 @@ export default function Hero() {
             className="mb-8 md:mb-12 relative"
           >
             <div className="absolute -inset-10 bg-white/5 blur-[100px] rounded-full animate-pulse" />
-            <h1 className="text-[14vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+            <h1 className="text-[12vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
               ARYAN <br /> SINGH
             </h1>
           </motion.div>
