@@ -3,9 +3,21 @@ import { useEffect, useRef } from 'react';
 
 export default function AtmosphericBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -400]);
+
+  const glow1Color = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6, 0.8, 1],
+    ["rgba(37, 99, 235, 0.1)", "rgba(37, 99, 235, 0.15)", "rgba(249, 115, 22, 0.15)", "rgba(34, 197, 94, 0.1)", "rgba(255, 255, 255, 0.05)"]
+  );
+
+  const glow2Color = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.7, 1],
+    ["rgba(37, 99, 235, 0.05)", "rgba(249, 115, 22, 0.1)", "rgba(249, 115, 22, 0.05)", "rgba(255, 255, 255, 0.02)"]
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -84,12 +96,12 @@ export default function AtmosphericBackground() {
     <div className="absolute inset-0 z-0 overflow-hidden bg-black">
       {/* Optimized Static Glows */}
       <motion.div
-        style={{ y: y1 }}
-        className="absolute top-[-5%] left-[-5%] w-[60%] h-[60%] bg-white/[0.02] blur-[80px] rounded-full"
+        style={{ y: y1, backgroundColor: glow1Color }}
+        className="absolute top-[-5%] left-[-5%] w-[60%] h-[60%] blur-[120px] rounded-full transition-colors duration-1000"
       />
       <motion.div
-        style={{ y: y2 }}
-        className="absolute bottom-[-5%] right-[-5%] w-[60%] h-[60%] bg-white/[0.01] blur-[80px] rounded-full"
+        style={{ y: y2, backgroundColor: glow2Color }}
+        className="absolute bottom-[-5%] right-[-5%] w-[60%] h-[60%] blur-[120px] rounded-full transition-colors duration-1000"
       />
       
       {/* Lightweight Canvas */}

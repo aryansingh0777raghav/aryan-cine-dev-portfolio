@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ExternalLink, Film, Database, Globe, Play, Github } from 'lucide-react';
 
 const projects = {
@@ -99,9 +99,20 @@ const projects = {
 };
 
 export default function Projects() {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
+
   return (
-    <section id="projects" className="py-32 px-6 bg-black">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Parallax Background Text */}
+      <motion.div 
+        style={{ y }}
+        className="absolute top-40 left-[-5%] text-[20vw] font-black text-white/[0.03] select-none pointer-events-none whitespace-nowrap z-0 italic tracking-tighter"
+      >
+        FEATURED WORKS • DIRECTED BY ARYAN • FEATURED WORKS • 
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-center mb-24">
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-4">
             Curated Works

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 const skills = {
   technical: ["Python", "Pandas", "JAVA Basic", "C", "C++", "HTML", "Data Structures", "Algorithms", "SQL", "JavaScript", "React"],
@@ -6,8 +6,19 @@ const skills = {
 };
 
 export default function Skills() {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
+
   return (
-    <section id="skills" className="py-20 md:py-32 px-6 bg-black relative">
+    <section id="skills" className="py-20 md:py-32 px-6 bg-black relative overflow-hidden">
+      {/* Parallax Background Text */}
+      <motion.div 
+        style={{ y }}
+        className="absolute top-20 right-[-10%] text-[25vw] font-black text-white/[0.02] select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter"
+      >
+        ENGINEERING • PRECISION • CODE •
+      </motion.div>
+
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-5xl mx-auto text-center relative z-10">
