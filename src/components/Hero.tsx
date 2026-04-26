@@ -8,18 +8,17 @@ export default function Hero() {
       <AtmosphericBackground />
 
       {/* Overlay Content */}
-      <div className="relative z-20 px-6 max-w-7xl mx-auto w-full pt-32 pb-10 flex-grow flex items-center justify-center">
+      <div className="relative z-20 px-4 md:px-6 max-w-7xl mx-auto w-full pt-32 pb-10 flex-grow flex items-center justify-center">
         <div className="flex flex-col items-center text-center">
           
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-12 relative"
+            className="mb-8 md:mb-12 relative"
           >
             <div className="absolute -inset-10 bg-white/5 blur-[100px] rounded-full animate-pulse" />
-
-            <h1 className="text-[12vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+            <h1 className="text-[14vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
               ARYAN <br /> SINGH
             </h1>
           </motion.div>
@@ -30,11 +29,11 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.8 }}
             className="max-w-3xl"
           >
-            <p className="text-xl md:text-3xl text-white/40 font-medium mb-12 leading-tight tracking-tight">
+            <p className="text-lg md:text-3xl text-white/40 font-medium mb-12 leading-tight tracking-tight px-4 md:px-0">
               Director & Software Engineer | AI Enthusiast & Filmmaker <br />
               <span className="text-white">"I build digital experiences."</span> <br />
-              <span className="text-white/60 text-lg md:text-xl block mt-4 font-normal">
-                From fast, minimal web applications to intelligent AI tools. <br />
+              <span className="text-white/60 text-sm md:text-xl block mt-4 font-normal leading-relaxed">
+                From fast, minimal web applications to intelligent AI tools. <br className="hidden md:block" />
                 Bridging design and engineering. A unique blend of logical problem solving and creative storytelling.
               </span>
             </p>

@@ -31,29 +31,29 @@ const education = [
 
 export default function Timeline() {
   return (
-    <section id="experience" className="py-32 px-6 bg-black relative">
+    <section id="experience" className="py-20 md:py-32 px-6 bg-black relative">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
           
           {/* Experience */}
           <div>
-            <div className="flex items-center gap-4 mb-12">
-              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-white/60">
+            <div className="flex items-center gap-4 mb-8 md:mb-12">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl glass flex items-center justify-center text-white/60">
                 <Briefcase size={20} />
               </div>
               <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gradient text-left">Experience</h2>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {experience.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-3xl p-8 border border-white/5 relative group hover:border-white/20 transition-all"
+                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-all"
                 >
                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
-                  <p className="text-sm font-bold text-white/40 mb-4">{item.company}</p>
-                  <p className="text-sm text-white/50 leading-relaxed">{item.details}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
+                  <p className="text-xs md:text-sm font-bold text-white/40 mb-4">{item.company}</p>
+                  <p className="text-xs md:text-sm text-white/50 leading-relaxed">{item.details}</p>
                 </div>
               ))}
             </div>
@@ -61,22 +61,22 @@ export default function Timeline() {
 
           {/* Education */}
           <div>
-            <div className="flex items-center gap-4 mb-12">
-              <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-white/60">
+            <div className="flex items-center gap-4 mb-8 md:mb-12">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl glass flex items-center justify-center text-white/60">
                 <GraduationCap size={20} />
               </div>
               <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gradient text-left">Education</h2>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {education.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-3xl p-8 border border-white/5 relative group hover:border-white/20 transition-all"
+                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-all"
                 >
                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.degree}</h3>
-                  <p className="text-sm font-bold text-white/40">{item.institution}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.degree}</h3>
+                  <p className="text-xs md:text-sm font-bold text-white/40">{item.institution}</p>
                 </div>
               ))}
             </div>

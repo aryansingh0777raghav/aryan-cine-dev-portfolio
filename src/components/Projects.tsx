@@ -117,55 +117,55 @@ export default function Projects() {
         </div>
 
         {/* Filmmaking Section */}
-        <div className="mb-32">
-          <div className="flex items-center gap-4 mb-10">
+        <div className="mb-20 md:mb-32">
+          <div className="flex items-center gap-4 mb-8 md:mb-10">
             <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
               <Film size={18} />
             </div>
             <h3 className="text-xl font-bold tracking-tight text-white/80">Filmmaking</h3>
           </div>
-          <div className="grid gap-10">
+          <div className="grid gap-6 md:gap-10">
             {projects.filmmaking.map((item, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden glass rounded-[3rem] p-8 md:p-12 transition-all hover:border-white/20 min-h-[500px] flex items-center"
+                className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-all hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
               >
                 {/* Background Image with Improved Visibility */}
                 <div 
                   className="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-1000 bg-cover bg-center"
                   style={{ backgroundImage: `url('${item.image}')` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-[1]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-[1] md:bg-gradient-to-r md:from-black md:via-black/40 md:to-transparent bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
                 
-                <div className="relative z-10 grid lg:grid-cols-2 gap-12 w-full">
-                  <div className="bg-black/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/5">
-                    <div className="flex items-center gap-4 mb-6">
-                      <h4 className="text-3xl md:text-6xl font-black tracking-tighter leading-none">{item.title}</h4>
+                <div className="relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 w-full">
+                  <div className="bg-black/60 md:bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-white/5">
+                    <div className="flex items-center gap-4 mb-4 md:mb-6">
+                      <h4 className="text-2xl md:text-6xl font-black tracking-tighter leading-tight md:leading-none">{item.title}</h4>
                     </div>
-                    <p className="text-lg text-white/70 mb-10 leading-relaxed max-w-xl font-medium">{item.desc}</p>
+                    <p className="text-sm md:text-lg text-white/70 mb-6 md:mb-10 leading-relaxed max-w-xl font-medium">{item.desc}</p>
                     
-                    <div className="flex flex-wrap gap-2 mb-10">
+                    <div className="flex flex-wrap gap-2 mb-2 md:mb-10">
                       {item.roles.map(role => (
-                        <span key={role} className="px-4 py-1.5 glass rounded-full text-[10px] font-bold tracking-wider text-white/60 uppercase">{role}</span>
+                        <span key={role} className="px-3 py-1 md:px-4 md:py-1.5 glass rounded-full text-[9px] md:text-[10px] font-bold tracking-wider text-white/60 uppercase">{role}</span>
                       ))}
                     </div>
                   </div>
 
                   <div className="flex flex-col justify-end lg:items-end">
-                    <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
+                    <div className="grid grid-cols-2 gap-2 md:gap-3 w-full max-w-sm">
                       {item.links.map(link => (
                         <a 
                           key={link.label} 
                           href={link.url} 
                           target="_blank" 
                           rel="noreferrer" 
-                          className="glass rounded-2xl p-4 flex flex-col items-start gap-3 hover:bg-white hover:text-black transition-all group/link"
+                          className="glass rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-start gap-2 md:gap-3 hover:bg-white hover:text-black transition-all group/link"
                         >
                           <div className="text-white group-hover/link:text-black transition-colors">{link.icon}</div>
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{link.label}</span>
+                          <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">{link.label}</span>
                         </a>
                       ))}
                     </div>
@@ -177,10 +177,10 @@ export default function Projects() {
         </div>
 
         {/* AI & Web Grid */}
-        <div className="grid lg:grid-cols-2 gap-10 mb-32">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 mb-20 md:mb-32">
           {/* AI & Python */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
                 <Database size={18} />
               </div>
@@ -190,7 +190,7 @@ export default function Projects() {
               {projects.ai.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-[2rem] p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[350px]"
+                  className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px]"
                 >
                   <div 
                     className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700 bg-cover bg-center"
@@ -198,12 +198,12 @@ export default function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
 
-                  <div className="relative z-10 bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/5">
-                    <h4 className="text-2xl font-bold mb-3 tracking-tight">{item.title}</h4>
-                    <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">{item.tech}</p>
-                    <p className="text-white/70 text-sm mb-6 leading-relaxed font-medium">{item.desc}</p>
+                  <div className="relative z-10 bg-black/60 md:bg-black/40 backdrop-blur-md p-5 md:p-6 rounded-2xl border border-white/5">
+                    <h4 className="text-xl md:text-2xl font-bold mb-3 tracking-tight">{item.title}</h4>
+                    <p className="text-[9px] md:text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">{item.tech}</p>
+                    <p className="text-white/70 text-xs md:text-sm mb-6 leading-relaxed font-medium">{item.desc}</p>
                     {item.link !== "#" && (
-                      <a href={item.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">
+                      <a href={item.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">
                         <Github size={14} /> Repository <ExternalLink size={12} />
                       </a>
                     )}
@@ -215,7 +215,7 @@ export default function Projects() {
 
           {/* Web Development */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
                 <Globe size={18} />
               </div>
@@ -225,7 +225,7 @@ export default function Projects() {
               {projects.web.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-2xl p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[250px]"
+                  className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
                 >
                   <div 
                     className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700 bg-cover bg-center"
@@ -233,11 +233,11 @@ export default function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
                   
-                  <div className="relative z-10 bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
-                    <h4 className="font-bold text-sm mb-2 group-hover:text-white transition-colors tracking-tight">{item.title}</h4>
-                    <p className="text-[10px] text-white/50 mb-4 font-medium leading-tight">{item.desc}</p>
+                  <div className="relative z-10 bg-black/70 md:bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+                    <h4 className="font-bold text-xs md:text-sm mb-2 group-hover:text-white transition-colors tracking-tight">{item.title}</h4>
+                    <p className="text-[9px] md:text-[10px] text-white/50 mb-4 font-medium leading-tight line-clamp-2 md:line-clamp-none">{item.desc}</p>
                     {item.link && (
-                      <a href={item.link} target="_blank" rel="noreferrer" className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
+                      <a href={item.link} target="_blank" rel="noreferrer" className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
                         View Project <ExternalLink size={10} />
                       </a>
                     )}
