@@ -7,6 +7,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
 import Skills from './components/Skills';
+import VisitingCard from './components/VisitingCard';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
@@ -68,6 +69,7 @@ export default function App() {
         <Projects />
         <Timeline />
         <Skills />
+        <VisitingCard />
         <Contact />
       </main>
       <VoiceAssistant />
