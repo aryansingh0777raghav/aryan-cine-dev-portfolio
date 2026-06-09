@@ -9,6 +9,12 @@ const experience = [
     details: "Learned core Python concepts (data types, functions, OOP). Hands-on exercises, real-world implementation, and building practical solutions."
   },
   {
+    company: "Samsung Innovation Campus",
+    role: "Big Data Certification",
+    period: "Oct 2025 – Nov 2025",
+    details: "Successfully completed the Big Data course (Certificate ID: SIC08720), specializing in big data tools and techniques for processing, managing, and analyzing large datasets."
+  },
+  {
     company: "CineOn Studio 7",
     role: "Short Film Production",
     period: "2026",
