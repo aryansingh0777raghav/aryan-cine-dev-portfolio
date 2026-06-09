@@ -34,6 +34,8 @@ export default function App() {
       infinite: false,
     });
 
+    (window as any).lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -47,6 +49,7 @@ export default function App() {
     }, 500);
 
     return () => {
+      (window as any).lenis = null;
       lenis.destroy();
       clearTimeout(timer);
     };
