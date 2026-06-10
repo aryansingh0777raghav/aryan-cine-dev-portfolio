@@ -23,7 +23,7 @@ const projects = {
     {
       title: "ArLip (AI Shorts Generator)",
       tech: "React, FastAPI, Groq API, FFmpeg, yt-dlp, Python, AI",
-      image: "/images/arlip.png",
+      image: "/images/ArLip.png",
       desc: "A production-ready, full-stack web application that downloads landscape YouTube videos and automatically transcribes, analyzes, trims, and center-crops them into multiple 9:16 viral vertical Shorts with burned-in subtitles.",
       link: "https://github.com/aryansingh0777raghav/ArLip",
       tagline: "Automated Shorts. Viral Reach.",
