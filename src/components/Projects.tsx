@@ -21,6 +21,53 @@ const projects = {
   ],
   ai: [
     {
+      title: "ArLip (AI Shorts Generator)",
+      tech: "React, FastAPI, Groq API, FFmpeg, yt-dlp, Python, AI",
+      image: "/images/arlip.png",
+      desc: "A production-ready, full-stack web application that downloads landscape YouTube videos and automatically transcribes, analyzes, trims, and center-crops them into multiple 9:16 viral vertical Shorts with burned-in subtitles.",
+      link: "https://github.com/aryansingh0777raghav/ArLip",
+      tagline: "Automated Shorts. Viral Reach.",
+      coreVision: "ArLip is a production-ready, full-stack web application designed for content creators. It automates the entire pipeline of turning long-form landscape YouTube videos into engaging, TikTok-style vertical shorts with styled subtitles and viral metadata.",
+      techStack: [
+        { name: "React (Vite)", desc: "Interactive frontend dashboard and vertical video player UI" },
+        { name: "FastAPI (Python)", desc: "High-performance backend API and background processing worker" },
+        { name: "Groq Cloud API", desc: "Whisper-v3 for ultra-fast transcription and Llama-3.3-70b for viral moment analysis" },
+        { name: "FFmpeg & OpenCV", desc: "Subprocess engine for video trimming, center-cropping, and burning custom animated subtitles" },
+        { name: "yt-dlp", desc: "Robust handler for extracting high-quality video and audio streams" },
+        { name: "SQLAlchemy & SQLite", desc: "Database models for tracking job status and clips metadata" }
+      ],
+      features: [
+        {
+          title: "Automated Download & Stream Extraction",
+          desc: "Extracts combined video and audio streams directly from any landscape YouTube URL via a robust yt-dlp handler."
+        },
+        {
+          title: "Ultra-Fast Transcription",
+          desc: "Converts audio files using the high-performance Groq Whisper API (distil-whisper-large-v3-en) with word-level timestamps."
+        },
+        {
+          title: "AI Moment & Virality Analysis",
+          desc: "Uses Groq Llama-3.3-70b in JSON mode to isolate the most engaging hooks, stories, or takeaways and suggest catching viral metadata."
+        },
+        {
+          title: "Center-Crop 9:16 Vertical formatting",
+          desc: "Recenter-crops horizontal format to portrait aspect ratios using custom FFmpeg filter operations."
+        },
+        {
+          title: "TikTok-Style Burned-in Subtitles",
+          desc: "Automatically creates word-grouped subtitles and burns them onto the video with viral creator styling (bold font, yellow-and-white accents, black outline)."
+        },
+        {
+          title: "Interactive Dashboard",
+          desc: "Track pipeline progress, preview clips in a vertical HTML5 video player, and download finished short MP4 videos."
+        }
+      ],
+      links: [
+        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/ArLip" },
+        { label: "Technical Walkthrough", url: "https://github.com/aryansingh0777raghav/ArLip#readme" }
+      ]
+    },
+    {
       title: "ArCh (Aryan Search Engine)",
       tech: "Electron.js, FastAPI, Groq API, Vosk STT, Piper TTS, Python, AI, Desktop",
       image: "/images/arch.png",
