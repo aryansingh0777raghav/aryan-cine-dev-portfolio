@@ -21,6 +21,94 @@ const projects = {
   ],
   ai: [
     {
+      title: "ArVerse OS",
+      tech: "React, Tailwind CSS, Vite, Framer Motion, Context API, AI",
+      image: "/images/ArVerse.png",
+      desc: "A next-generation virtual OS simulator running entirely in the browser. It features a complete window manager, customizable wallpapers, booting and lock screens, spotlight search, application switcher, and a custom AI assistant brain (ArKon Brain) for intelligent system-wide automation.",
+      link: "https://github.com/aryansingh0777raghav/ArVerse-OS",
+      tagline: "The AI-Powered Virtual Operating System.",
+      coreVision: "ArVerse OS is a next-generation virtual OS simulator running entirely in the browser. It features a complete window manager, customizable wallpapers, booting and lock screens, spotlight search, application switcher, and a custom AI assistant brain (ArKon Brain) for intelligent system-wide automation and focus mode management.",
+      techStack: [
+        { name: "React & Context API", desc: "Handles overall state machine, workspace environments, and theme configurations" },
+        { name: "Tailwind CSS & Framer Motion", desc: "Powers the premium glassmorphism layouts, workspace transitions, and window animations" },
+        { name: "Virtual OS Shell", desc: "Booting sequence, lock screens, and custom desktop control center configurations" },
+        { name: "ArKon Brain", desc: "AI assistant core integration designed for task tracking and voice spotlight automation queries" },
+        { name: "Spotlight Launcher", desc: "Quick keyboard-triggered portal (Ctrl+K) to execute system-wide queries, search apps, and prompt AI" }
+      ],
+      features: [
+        {
+          title: "Virtual OS Desktop Shell",
+          desc: "Simulates a complete desktop environment with an interactive BootScreen, LockScreen, top MenuBar, application Dock, and Control Center."
+        },
+        {
+          title: "Window Management System",
+          desc: "Supports running multiple apps simultaneously in draggable, resizable, and minimizable windows with a custom AppSwitcher."
+        },
+        {
+          title: "ArKon Brain Integration",
+          desc: "Integrated AI logic (ArKon Brain) that processes user requests and assists with focus mode controls, spotlight search, and system settings."
+        },
+        {
+          title: "Spotlight Search Overlay",
+          desc: "Quick launcher triggerable via shortcut (Ctrl+K) to search apps, execute shell queries, or ask the AI assistant."
+        },
+        {
+          title: "Focus Mode Dashboard",
+          desc: "A customized distraction-free workspace that optimizes task tracking, displays time blocks, and silences background alerts."
+        }
+      ],
+      links: [
+        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/ArVerse-OS" },
+        { label: "Technical Walkthrough", url: "https://github.com/aryansingh0777raghav/ArVerse-OS#readme" }
+      ]
+    },
+    {
+      title: "ArFt (Frontend Sandbox)",
+      tech: "React, Vite, Groq API, Monaco Editor, JSZip, IndexedDB, AI",
+      image: "/images/ArFt.png",
+      desc: "A browser-based AI frontend development IDE and playground. It features a virtual file system (VFS), Monaco code editor integration, responsive multi-device preview, local IndexedDB persistence, file directory importing via Native Filesystem APIs, and an integrated AI website builder.",
+      link: "https://github.com/aryansingh0777raghav/ArFt",
+      tagline: "The AI-Powered Frontend Sandbox.",
+      coreVision: "ArFt is a browser-based AI frontend development IDE and playground. It features a virtual file system (VFS), Monaco code editor integration, responsive multi-device preview, local IndexedDB persistence, file directory importing via Native Filesystem APIs, and an integrated AI agent (powered by Groq Llama models) that can generate, improve, explain, or refactor HTML, CSS, and JS components dynamically.",
+      techStack: [
+        { name: "React (Vite)", desc: "Interactive frontend sandbox dashboard and device preview control" },
+        { name: "Monaco Code Editor", desc: "Integrates standard tabbed programming workspace with live syntax highlighting and auto-formatting" },
+        { name: "Groq Cloud API", desc: "Uses Llama-3.3-70b-versatile for code generation, explanation modes, and real-time refactoring" },
+        { name: "Native Filesystem API", desc: "Allows importing entire local folder hierarchies via window.showDirectoryPicker()" },
+        { name: "JSZip & IndexedDB", desc: "Enables exporting files as ZIPs and auto-saving project workspaces locally" }
+      ],
+      features: [
+        {
+          title: "AI Website Builder",
+          desc: "Instantly generates complete frontend landing pages, blogs, and interfaces from natural language prompts using Groq Llama-3.3-70b."
+        },
+        {
+          title: "Interactive Live Preview",
+          desc: "Interactive sandbox that renders changes in real time with desktop, tablet, and mobile viewport controls."
+        },
+        {
+          title: "Monaco Code Editor",
+          desc: "Professional, tabbed code editing experience powered by Monaco Editor with syntax highlighting and auto-formatting."
+        },
+        {
+          title: "Directory Import",
+          desc: "Bypasses browser sandboxing to open, load, and edit entire local folder hierarchies via window Native Filesystem API triggers."
+        },
+        {
+          title: "Learning & Explanation Mode",
+          desc: "Let creators explain specific lines of code, analyze stylesheets, or map component layouts using AI."
+        },
+        {
+          title: "IndexedDB Workspace",
+          desc: "Automatically saves and loads projects locally to allow offline work across browser sessions."
+        }
+      ],
+      links: [
+        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/ArFt" },
+        { label: "Technical Walkthrough", url: "https://github.com/aryansingh0777raghav/ArFt#readme" }
+      ]
+    },
+    {
       title: "ArLip (AI Shorts Generator)",
       tech: "React, FastAPI, Groq API, FFmpeg, yt-dlp, Python, AI",
       image: "/images/ArLip.png",
