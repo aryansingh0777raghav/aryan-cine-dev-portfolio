@@ -15,7 +15,8 @@ const projects = {
         { label: "Trailer", url: "https://youtu.be/R_THbZWmIGs", icon: <Film size={14} /> },
         { label: "IMDb", url: "https://www.imdb.com/title/tt39846631", icon: <ExternalLink size={14} /> },
         { label: "TMDB", url: "https://www.themoviedb.org/movie/1638463-the-night-of-life-before-you-think-about-it", icon: <ExternalLink size={14} /> },
-        { label: "Letterboxd", url: "https://boxd.it/116UE", icon: <ExternalLink size={14} /> }
+        { label: "Letterboxd", url: "https://boxd.it/116UE", icon: <ExternalLink size={14} /> },
+        { label: "FilmFreeway", url: "https://filmfreeway.com/iamaryannnn07", icon: <ExternalLink size={14} /> }
       ]
     }
   ],
