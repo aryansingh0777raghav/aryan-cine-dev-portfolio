@@ -12,9 +12,17 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import VoiceAssistant from './components/VoiceAssistant';
+import ViewSelector from './components/ViewSelector';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<'tech' | 'filmmaking' | 'both' | null>(() => {
+    if (typeof window !== 'undefined') {
+      return (sessionStorage.getItem('portfolio-view-mode') as any) || null;
+    }
+    return null;
+  });
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -36,6 +44,11 @@ export default function App() {
 
     (window as any).lenis = lenis;
 
+    // Disable scroll on initial load if viewMode is not chosen
+    if (!sessionStorage.getItem('portfolio-view-mode')) {
+      lenis.stop();
+    }
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -55,6 +68,17 @@ export default function App() {
     };
   }, []);
 
+  const handleSelectMode = (mode: 'tech' | 'filmmaking' | 'both') => {
+    setViewMode(mode);
+    sessionStorage.setItem('portfolio-view-mode', mode);
+    
+    // Resume scroll once selection is made
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.start();
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen font-sans selection:bg-white selection:text-black overflow-x-hidden">
       <motion.div
@@ -65,17 +89,32 @@ export default function App() {
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
 
-      <Navbar />
+      <AnimatePresence>
+        {viewMode === null && !loading && (
+          <motion.div
+            key="selector"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[9999]"
+          >
+            <ViewSelector onSelectMode={handleSelectMode} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <Navbar viewMode={viewMode} setViewMode={handleSelectMode} />
       <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Timeline />
-        <Skills />
+        <Hero viewMode={viewMode} />
+        <About viewMode={viewMode} />
+        <Projects viewMode={viewMode} />
+        <Timeline viewMode={viewMode} />
+        <Skills viewMode={viewMode} />
         <VisitingCard />
         <Contact />
       </main>
-      <VoiceAssistant />
+      <VoiceAssistant viewMode={viewMode} />
       <Footer />
     </div>
   );

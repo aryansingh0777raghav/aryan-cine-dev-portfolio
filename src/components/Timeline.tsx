@@ -1,23 +1,29 @@
-import { motion } from 'motion/react';
 import { Briefcase, GraduationCap } from 'lucide-react';
+
+interface TimelineProps {
+  viewMode: 'tech' | 'filmmaking' | 'both' | null;
+}
 
 const experience = [
   {
     company: "Data Culture Technology",
     role: "Python Training",
     period: "Jun 2025 – Aug 2025",
+    type: "tech" as const,
     details: "Learned core Python concepts (data types, functions, OOP). Hands-on exercises, real-world implementation, and building practical solutions."
   },
   {
     company: "Samsung Innovation Campus",
     role: "Big Data Certification",
     period: "Oct 2025 – Nov 2025",
+    type: "tech" as const,
     details: "Successfully completed the Big Data course (Certificate ID: SIC08720), specializing in big data tools and techniques for processing, managing, and analyzing large datasets."
   },
   {
     company: "CineOn Studio 7",
     role: "Short Film Production",
     period: "2026",
+    type: "filmmaking" as const,
     details: "Writer, Director, Actor, Musician, Editor for \"The Night of Life\". Handled creative direction, pacing, post-production, and final edit."
   }
 ];
@@ -35,7 +41,14 @@ const education = [
   }
 ];
 
-export default function Timeline() {
+export default function Timeline({ viewMode }: TimelineProps) {
+  // Filter experiences based on selected path
+  const filteredExperience = experience.filter(item => {
+    if (viewMode === 'tech') return item.type === 'tech';
+    if (viewMode === 'filmmaking') return item.type === 'filmmaking';
+    return true;
+  });
+
   return (
     <section id="experience" className="py-20 md:py-32 px-6 bg-black relative">
       <div className="max-w-7xl mx-auto">
@@ -51,7 +64,7 @@ export default function Timeline() {
             </div>
             
             <div className="space-y-4 md:space-y-6">
-              {experience.map((item, i) => (
+              {filteredExperience.map((item, i) => (
                 <div 
                   key={i}
                   className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-all"
@@ -93,4 +106,3 @@ export default function Timeline() {
     </section>
   );
 }
-

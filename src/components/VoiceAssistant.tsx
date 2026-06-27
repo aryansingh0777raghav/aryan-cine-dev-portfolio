@@ -9,6 +9,10 @@ interface Message {
   timestamp: Date;
 }
 
+interface VoiceAssistantProps {
+  viewMode: 'tech' | 'filmmaking' | 'both' | null;
+}
+
 const scrollToSection = (id: string) => {
   const lenis = (window as any).lenis;
   if (lenis) {
@@ -18,12 +22,12 @@ const scrollToSection = (id: string) => {
   }
 };
 
-const getLocalResponse = (command: string): string => {
+const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'both' | null): string => {
   const cmd = command.toLowerCase();
   
   const info = {
     about: "Aryan Singh is a dual-threat Software Engineer and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
-    projects: "Aryan's portfolio features high-end work like the Scrollytelling Portfolio, the Solana-based Solexplain AI, and a specialized Terminal Interface. His filmmaking peak is 'The Night of Life', which he wrote and directed.",
+    projects: "Aryan's portfolio features high-end work like the browser-based virtual OS simulator ArVerse OS, the Web3 transaction parser Solexplain AI, and a Python desktop Voice Assistant.",
     skills: "On the tech side, he's a master of Python, Pandas, Java, C++, SQL, and modern web tech. In the studio, he excels as a Writer, Director, Actor, Musician, and Editor.",
     education: "He is currently pursuing his BCA (Bachelor of Computer Applications) at ITM Gorakhpur (Sep 2024 - Dec 2027), building on a strong foundation from SR International Academy, Nathnagar.",
     experience: "Aryan has a solid professional background:\n1. Python Training Internship at Data Culture Technology (Jun 2025 – Aug 2025)\n2. Samsung Innovation Campus Big Data Certification (Oct 2025 – Nov 2025)\n3. CineOn Studio 7 (2026) - Film Director & Editor.",
@@ -41,15 +45,33 @@ const getLocalResponse = (command: string): string => {
     return info.samsung;
   } else if (has(['project', 'kaam', 'work', 'portfolio', 'dikhao', 'build', 'create', 'made'])) {
     setTimeout(() => scrollToSection('#projects'), 150);
+    if (viewMode === 'tech') {
+      return "Aryan has built some incredible tech experiences like ArVerse OS, ArFt Sandbox, and ArLip AI Shorts Generator. " + info.projects;
+    }
+    if (viewMode === 'filmmaking') {
+      return "Aryan directed the short film 'The Night of Life: Before You Think About It'. " + info.filmmaking;
+    }
     return "Aryan has built some incredible digital experiences. " + info.projects;
   } else if (has(['who', 'about', 'him', 'aryan', 'kaun', 'btao', 'biography', 'identity', 'profile'])) {
     setTimeout(() => scrollToSection('#about'), 150);
     return info.about;
   } else if (has(['skill', 'stack', 'tech', 'kya aata', 'languages', 'expert', 'coding', 'tools', 'know'])) {
     setTimeout(() => scrollToSection('#skills'), 150);
-    return "Technically and creatively, Aryan is a powerhouse. " + info.skills;
+    if (viewMode === 'tech') {
+      return "Technically, Aryan is a powerhouse. He's experienced in Python, React, C++, SQL, Javascript, Algorithms, and Big Data processing.";
+    }
+    if (viewMode === 'filmmaking') {
+      return "Creatively, Aryan is highly capable. He excels in scriptwriting, film direction, acting, music composition, and post-production video editing.";
+    }
+    return "Aryan is highly capable technically and creatively. " + info.skills;
   } else if (has(['experience', 'internship', 'job', 'past', 'history', 'career', 'company', 'office'])) {
     setTimeout(() => scrollToSection('#experience'), 150);
+    if (viewMode === 'tech') {
+      return "Aryan has solid tech experience:\n1. Python Internship at Data Culture Technology\n2. Big Data Certification at Samsung Innovation Campus.";
+    }
+    if (viewMode === 'filmmaking') {
+      return "Aryan has creative film experience:\n1. CineOn Studio 7 (2026) - Film Director & Editor for 'The Night of Life'.";
+    }
     return info.experience;
   } else if (has(['contact', 'baat', 'email', 'touch', 'reach', 'message', 'talk', 'hire', 'call', 'mail'])) {
     setTimeout(() => scrollToSection('#contact'), 150);
@@ -71,20 +93,10 @@ const getLocalResponse = (command: string): string => {
     return "Greetings! I am the digital representative of Aryan Singh. Ask me anything about his engineering or filmmaking career.";
   }
 
-  return "I'm sorry, I couldn't find that in my knowledge base. But I can tell you all about Aryan's technical skills, cinematic vision, projects like Solexplain AI, his Samsung Big Data certification, or his educational background at ITM Gorakhpur.";
+  return "I'm sorry, I couldn't find that in my knowledge base. But I can tell you all about Aryan's technical skills, projects, certifications, or film work.";
 };
 
-const SUGGESTIONS = [
-  { text: "About Aryan 👨‍💻", query: "Who is Aryan?" },
-  { text: "Top Projects 🚀", query: "Show me his projects" },
-  { text: "Skills & Tech 💻", query: "What are his coding skills?" },
-  { text: "Samsung Big Data 📜", query: "Tell me about his Samsung Big Data certificate" },
-  { text: "Short Film 🎬", query: "What film did he direct?" },
-  { text: "Contact details 📧", query: "How can I contact Aryan?" },
-  { text: "Hire Aryan 💼", query: "Is Aryan available for freelance work?" }
-];
-
-export default function VoiceAssistant() {
+export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -103,6 +115,27 @@ export default function VoiceAssistant() {
 
   const recognitionRef = useRef<any>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Update initial greeting when viewMode changes
+  useEffect(() => {
+    setMessages(prev => {
+      if (prev.length === 1 && prev[0].id === 'initial') {
+        let greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his technical skills, projects, film productions, or professional experience. Feel free to type below or click the microphone to speak!";
+        if (viewMode === 'tech') {
+          greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering, AI tools like ArVerse OS or ArCh, coding stack, or Python training experience. Feel free to type below or click the microphone to speak!";
+        } else if (viewMode === 'filmmaking') {
+          greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his filmmaking, screenwriting, short film 'The Night of Life', or CineOn Studio 7. Feel free to type below or click the microphone to speak!";
+        }
+        return [{
+          id: 'initial',
+          sender: 'ai',
+          text: greeting,
+          timestamp: new Date()
+        }];
+      }
+      return prev;
+    });
+  }, [viewMode]);
 
   // Initialize Speech Recognition
   useEffect(() => {
@@ -134,7 +167,6 @@ export default function VoiceAssistant() {
   useEffect(() => {
     const container = messagesContainerRef.current;
     if (container) {
-      // Set scroll immediately to scrollHeight for zero-lag feeling
       container.scrollTo({
         top: container.scrollHeight,
         behavior: 'smooth'
@@ -142,7 +174,7 @@ export default function VoiceAssistant() {
     }
   }, [messages, isLoading]);
 
-  // Clean up speech synthesis when component unmounts or opens/closes
+  // Clean up speech synthesis when component unmounts
   useEffect(() => {
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
@@ -178,9 +210,9 @@ export default function VoiceAssistant() {
     setIsLoading(true);
 
     // Get response directly from local parser
-    const replyText = getLocalResponse(text.trim());
+    const replyText = getLocalResponse(text.trim(), viewMode);
 
-    // Small artificial delay to simulate typing (reduced to 350ms for faster feel)
+    // Small artificial delay to simulate typing
     await new Promise(resolve => setTimeout(resolve, 350));
 
     const aiMessage: Message = {
@@ -194,7 +226,6 @@ export default function VoiceAssistant() {
     setIsLoading(false);
 
     if (isVoiceInput) {
-      // Automatically speak voice input responses
       speak(replyText);
     }
   };
@@ -224,11 +255,19 @@ export default function VoiceAssistant() {
       window.speechSynthesis.cancel();
     }
     setIsSpeaking(false);
+    
+    let greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his technical skills, projects, film productions, or professional experience. Feel free to type below or click the microphone to speak!";
+    if (viewMode === 'tech') {
+      greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering, AI tools like ArVerse OS or ArCh, coding stack, or Python training experience. Feel free to type below or click the microphone to speak!";
+    } else if (viewMode === 'filmmaking') {
+      greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his filmmaking, screenwriting, short film 'The Night of Life', or CineOn Studio 7. Feel free to type below or click the microphone to speak!";
+    }
+
     setMessages([
       {
         id: 'initial',
         sender: 'ai',
-        text: "Chat cleared! Ask me anything about Aryan's portfolio, experience, skills, or projects.",
+        text: greeting,
         timestamp: new Date()
       }
     ]);
@@ -239,6 +278,38 @@ export default function VoiceAssistant() {
     if (inputText.trim()) {
       handleSendMessage(inputText);
     }
+  };
+
+  const getSuggestions = () => {
+    if (viewMode === 'tech') {
+      return [
+        { text: "About Developer 👨‍💻", query: "Who is Aryan?" },
+        { text: "Tech Projects 🚀", query: "Show me his tech projects" },
+        { text: "Coding Stack 💻", query: "What are his coding skills?" },
+        { text: "Samsung Big Data 📜", query: "Tell me about his Samsung Big Data certificate" },
+        { text: "Hire Developer 💼", query: "Is Aryan available for tech freelance work?" },
+        { text: "Contact Details 📧", query: "How can I contact Aryan?" }
+      ];
+    }
+    if (viewMode === 'filmmaking') {
+      return [
+        { text: "About Director 🎬", query: "Tell me about Aryan's filmmaking career" },
+        { text: "Short Film 🎥", query: "What film did he direct?" },
+        { text: "Creative Skills 🎭", query: "What are his filmmaking skills?" },
+        { text: "CineOn Studio 7 🎞️", query: "Tell me about CineOn Studio 7" },
+        { text: "Hire Director 💼", query: "Is Aryan available for film direction work?" },
+        { text: "Contact Details 📧", query: "How can I contact Aryan?" }
+      ];
+    }
+    return [
+      { text: "About Aryan 👨‍💻", query: "Who is Aryan?" },
+      { text: "Top Projects 🚀", query: "Show me his projects" },
+      { text: "Skills & Tech 💻", query: "What are his coding skills?" },
+      { text: "Samsung Big Data 📜", query: "Tell me about his Samsung Big Data certificate" },
+      { text: "Short Film 🎬", query: "What film did he direct?" },
+      { text: "Contact details 📧", query: "How can I contact Aryan?" },
+      { text: "Hire Aryan 💼", query: "Is Aryan available for freelance work?" }
+    ];
   };
 
   return (
@@ -361,7 +432,7 @@ export default function VoiceAssistant() {
             {/* Suggestion Pills */}
             <div className="px-5 pb-2 pt-1">
               <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none snap-x mask-gradient">
-                {SUGGESTIONS.map((sug, i) => (
+                {getSuggestions().map((sug, i) => (
                   <button
                     key={i}
                     onClick={() => handleSendMessage(sug.query)}

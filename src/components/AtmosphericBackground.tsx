@@ -1,23 +1,7 @@
-import { motion, useScroll, useTransform } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 export default function AtmosphericBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -400]);
-
-  const glow1Color = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.6, 0.8, 1],
-    ["rgba(37, 99, 235, 0.1)", "rgba(37, 99, 235, 0.15)", "rgba(249, 115, 22, 0.15)", "rgba(34, 197, 94, 0.1)", "rgba(255, 255, 255, 0.05)"]
-  );
-
-  const glow2Color = useTransform(
-    scrollYProgress,
-    [0, 0.4, 0.7, 1],
-    ["rgba(37, 99, 235, 0.05)", "rgba(249, 115, 22, 0.1)", "rgba(249, 115, 22, 0.05)", "rgba(255, 255, 255, 0.02)"]
-  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,7 +30,7 @@ export default function AtmosphericBackground() {
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 1 + 0.5;
         this.speedY = Math.random() * 0.2 + 0.1;
-        this.opacity = Math.random() * 0.2;
+        this.opacity = Math.random() * 0.15;
       }
 
       update() {
@@ -66,7 +50,7 @@ export default function AtmosphericBackground() {
 
     const init = () => {
       particles = [];
-      const particleCount = 30; // Further reduced for performance
+      const particleCount = 20; // Reduced for optimal performance
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -93,18 +77,24 @@ export default function AtmosphericBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-      {/* Optimized Static Glows */}
-      <motion.div
-        style={{ y: y1, backgroundColor: glow1Color }}
-        className="absolute top-[-5%] left-[-5%] w-[60%] h-[60%] blur-[120px] rounded-full transition-colors duration-1000"
+    <div className="absolute inset-0 z-0 overflow-hidden bg-black pointer-events-none">
+      {/* High-performance static composited glows. No repaint cost on scroll. */}
+      <div 
+        className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] blur-[130px] rounded-full opacity-40 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(0,0,0,0) 70%)',
+          willChange: 'transform'
+        }}
       />
-      <motion.div
-        style={{ y: y2, backgroundColor: glow2Color }}
-        className="absolute bottom-[-5%] right-[-5%] w-[60%] h-[60%] blur-[120px] rounded-full transition-colors duration-1000"
+      <div 
+        className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] blur-[130px] rounded-full opacity-40 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(0,0,0,0) 70%)',
+          willChange: 'transform'
+        }}
       />
       
-      {/* Lightweight Canvas */}
+      {/* Lightweight particle canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 opacity-10 pointer-events-none"

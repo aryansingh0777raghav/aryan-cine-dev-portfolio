@@ -1,6 +1,113 @@
 import { motion } from 'motion/react';
 
-export default function About() {
+interface AboutProps {
+  viewMode: 'tech' | 'filmmaking' | 'both' | null;
+}
+
+export default function About({ viewMode }: AboutProps) {
+  const getSubheading = () => {
+    if (viewMode === 'tech') return 'The Technical Architect';
+    if (viewMode === 'filmmaking') return 'The Cinematic Storyteller';
+    return 'The Visionary';
+  };
+
+  const getParagraphs = () => {
+    if (viewMode === 'tech') {
+      return (
+        <>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique analytical perspective to technology, 
+            combining system-level scientific thinking with clean software engineering. My transition from sciences to tech 
+            has built a strong foundation in adaptability, algorithmic problem solving, and building high-performance systems.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            I am a software engineer dedicated to building practical, developer-friendly solutions. 
+            My technical focus centers on crafting interactive web applications, browser-based sandbox IDEs, 
+            and intelligent AI automation agents that simplify work and enhance productivity.
+          </motion.p>
+        </>
+      );
+    }
+    if (viewMode === 'filmmaking') {
+      return (
+        <>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Hi, I'm Aryan Singh! I am an independent film director, writer, editor, and music composer. 
+            I focus on creating atmospheric, psychological drama short films that explore inner conflict, 
+            moral dilemmas, and character-driven tension.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Through my production channel CineOn Studio 7, I write, direct, score, and edit films, managing the entire creative pipeline. 
+            My goal is to craft compelling narratives with rich visual aesthetics, deep emotional pacing, 
+            and a memorable sonic landscape.
+          </motion.p>
+        </>
+      );
+    }
+    // Default both
+    return (
+      <>
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique perspective to technology, 
+          combining analytical skills with creativity. My journey from the sciences to tech has strengthened my 
+          adaptability and problem-solving abilities, focused entirely on developing practical digital solutions.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          I am a continuous learner passionate about emerging tech trends and innovative applications of programming. 
+          Whether it's building AI tools, robust web applications, or directing short films, I aim to create 
+          impactful digital experiences.
+        </motion.p>
+      </>
+    );
+  };
+
+  const getTitlesText = () => {
+    if (viewMode === 'tech') return 'Software Engineer | AI & Web Developer';
+    if (viewMode === 'filmmaking') return 'Film Director | Screenwriter & Editor';
+    return 'Director & Software Engineer | AI Enthusiast & Filmmaker';
+  };
+
+  const getProfileLinks = () => {
+    const techLinks = [
+      { label: 'GitHub', url: 'https://github.com/aryansingh0777raghav' },
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/iamaryan07' }
+    ];
+    const filmLinks = [
+      { label: 'IMDb', url: 'https://www.imdb.com/name/nm18214429' },
+      { label: 'TMDB', url: 'https://www.themoviedb.org/person/6018661-aryan-singh' },
+      { label: 'Letterboxd', url: 'https://boxd.it/2VQn1' },
+      { label: 'FilmFreeway', url: 'https://filmfreeway.com/iamaryannnn07' }
+    ];
+
+    if (viewMode === 'tech') return techLinks;
+    if (viewMode === 'filmmaking') return filmLinks;
+    return [...techLinks, ...filmLinks];
+  };
+
   return (
     <section id="about" className="py-20 md:py-32 px-6 bg-black relative overflow-hidden">
       {/* Background Glow */}
@@ -19,7 +126,7 @@ export default function About() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-6 md:mb-8"
           >
-            The Visionary
+            {getSubheading()}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
@@ -30,24 +137,7 @@ export default function About() {
             About Me
           </motion.h2>
           <div className="space-y-6 text-white/60 text-base md:text-lg leading-relaxed max-w-xl">
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique perspective to technology, 
-              combining analytical skills with creativity. My journey from the sciences to tech has strengthened my 
-              adaptability and problem-solving abilities, focused entirely on developing practical digital solutions.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              I am a continuous learner passionate about emerging tech trends and innovative applications of programming. 
-              Whether it's building AI tools, robust web applications, or directing short films, I aim to create 
-              impactful digital experiences.
-            </motion.p>
+            {getParagraphs()}
           </div>
           
           <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -58,7 +148,7 @@ export default function About() {
               className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
             >
               <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">Titles</p>
-              <p className="text-white text-sm md:text-base font-bold leading-snug">Director & Software Engineer | AI Enthusiast & Filmmaker</p>
+              <p className="text-white text-sm md:text-base font-bold leading-snug">{getTitlesText()}</p>
             </motion.div>
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
@@ -66,21 +156,20 @@ export default function About() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
             >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">Industry Profiles</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">
+                {viewMode === 'filmmaking' ? 'Industry Profiles' : viewMode === 'tech' ? 'Developer Portals' : 'Profiles & Portals'}
+              </p>
               <div className="flex flex-wrap gap-3 md:gap-4 mt-2">
-                {["IMDb", "TMDB", "Letterboxd", "FilmFreeway"].map((label, idx) => (
+                {getProfileLinks().map((link) => (
                   <motion.a 
-                    key={label}
+                    key={link.label}
                     whileHover={{ scale: 1.1, color: "#fff" }}
-                    href={
-                      label === "IMDb" ? "https://www.imdb.com/name/nm18214429" :
-                      label === "TMDB" ? "https://www.themoviedb.org/person/6018661-aryan-singh" :
-                      label === "Letterboxd" ? "https://boxd.it/2VQn1" :
-                      "https://filmfreeway.com/iamaryannnn07"
-                    }
-                    target="_blank" rel="noreferrer" className="text-[10px] md:text-xs font-bold text-white/60 transition-colors"
+                    href={link.url}
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-[10px] md:text-xs font-bold text-white/60 transition-colors"
                   >
-                    {label}
+                    {link.label}
                   </motion.a>
                 ))}
               </div>
@@ -119,4 +208,3 @@ export default function About() {
     </section>
   );
 }
-

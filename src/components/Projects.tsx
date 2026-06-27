@@ -323,7 +323,11 @@ const projects = {
   ]
 };
 
-export default function Projects() {
+interface ProjectsProps {
+  viewMode: 'tech' | 'filmmaking' | 'both' | null;
+}
+
+export default function Projects({ viewMode }: ProjectsProps) {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
@@ -337,7 +341,9 @@ export default function Projects() {
         shadow-text="FEATURED WORKS"
       >
         <span style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>
-          FEATURED • PROJECTS • CINEMATIC • WORKS • 
+          {viewMode === 'tech' ? 'ENGINEERING • SOFTWARE • CODE • SYSTEMS • ' :
+           viewMode === 'filmmaking' ? 'CINEMATIC • STORIES • DIRECTING • FILMS • ' :
+           'FEATURED • PROJECTS • CINEMATIC • WORKS • '}
         </span>
       </motion.div>
 
@@ -357,173 +363,177 @@ export default function Projects() {
         </div>
 
         {/* Filmmaking Section */}
-        <div className="mb-20 md:mb-32">
-          <div className="flex items-center gap-4 mb-8 md:mb-10">
-            <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
-              <Film size={18} />
-            </div>
-            <h3 className="text-xl font-bold tracking-tight text-white/80">Filmmaking</h3>
-          </div>
-          <div className="grid gap-6 md:gap-10">
-            {projects.filmmaking.map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-all hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
-              >
-                {/* Background Image with Improved Visibility */}
-                <div 
-                  className="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-1000 bg-cover bg-center"
-                  style={{ backgroundImage: `url('${item.image}')` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-[1] md:bg-gradient-to-r md:from-black md:via-black/40 md:to-transparent bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
-                
-                <div className="relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 w-full">
-                  <div className="bg-black/60 md:bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-white/5">
-                    <div className="flex items-center gap-4 mb-4 md:mb-6">
-                      <h4 className="text-2xl md:text-6xl font-black tracking-tighter leading-tight md:leading-none">{item.title}</h4>
-                    </div>
-                    <p className="text-sm md:text-lg text-white/70 mb-6 md:mb-10 leading-relaxed max-w-xl font-medium">{item.desc}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-2 md:mb-10">
-                      {item.roles.map(role => (
-                        <span key={role} className="px-3 py-1 md:px-4 md:py-1.5 glass rounded-full text-[9px] md:text-[10px] font-bold tracking-wider text-white/60 uppercase">{role}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col justify-end lg:items-end">
-                    <div className="grid grid-cols-2 gap-2 md:gap-3 w-full max-w-sm">
-                      {item.links.map(link => (
-                        <a 
-                          key={link.label} 
-                          href={link.url} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="glass rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-start gap-2 md:gap-3 hover:bg-white hover:text-black transition-all group/link"
-                        >
-                          <div className="text-white group-hover/link:text-black transition-colors">{link.icon}</div>
-                          <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">{link.label}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* AI & Web Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 mb-20 md:mb-32">
-          {/* AI & Python */}
-          <div className="flex flex-col">
+        {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && (
+          <div className="mb-20 md:mb-32">
             <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
-                <Database size={18} />
+                <Film size={18} />
               </div>
-              <h3 className="text-xl font-bold tracking-tight text-white/80">AI & Python</h3>
+              <h3 className="text-xl font-bold tracking-tight text-white/80">Filmmaking</h3>
             </div>
-            <div className="grid gap-6 flex-1">
-              {projects.ai.map((item, i) => (
+            <div className="grid gap-6 md:gap-10">
+              {projects.filmmaking.map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                  onClick={() => setSelectedProject(item)}
-                  className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px] cursor-pointer"
+                  className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-all hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
                 >
+                  {/* Background Image with Improved Visibility */}
                   <div 
-                    className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700 bg-cover bg-center"
+                    className="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-[transform,opacity] duration-1000 ease-out bg-cover bg-center"
                     style={{ backgroundImage: `url('${item.image}')` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
-
-                  <div className="relative z-10 bg-black/60 md:bg-black/40 backdrop-blur-md p-5 md:p-6 rounded-2xl border border-white/5">
-                    <h4 className="text-xl md:text-2xl font-bold mb-3 tracking-tight">{item.title}</h4>
-                    
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {item.tech.split(',').map((tag) => (
-                        <span key={tag.trim()} className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[9px] font-bold tracking-wider text-white/60 uppercase">
-                          {tag.trim()}
-                        </span>
-                      ))}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-[1] md:bg-gradient-to-r md:from-black md:via-black/40 md:to-transparent bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
+                  
+                  <div className="relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 w-full">
+                    <div className="bg-black/60 md:bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-white/5">
+                      <div className="flex items-center gap-4 mb-4 md:mb-6">
+                        <h4 className="text-2xl md:text-6xl font-black tracking-tighter leading-tight md:leading-none">{item.title}</h4>
+                      </div>
+                      <p className="text-sm md:text-lg text-white/70 mb-6 md:mb-10 leading-relaxed max-w-xl font-medium">{item.desc}</p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-2 md:mb-10">
+                        {item.roles.map(role => (
+                          <span key={role} className="px-3 py-1 md:px-4 md:py-1.5 glass rounded-full text-[9px] md:text-[10px] font-bold tracking-wider text-white/60 uppercase">{role}</span>
+                        ))}
+                      </div>
                     </div>
 
-                    <p className="text-white/70 text-xs md:text-sm mb-6 leading-relaxed font-medium line-clamp-3 md:line-clamp-none">{item.desc}</p>
-                    
-                    <div className="flex flex-wrap gap-4 items-center mt-2">
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedProject(item);
-                        }}
-                        className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors cursor-pointer"
-                      >
-                        <Info size={14} /> Details
-                      </button>
-                      {item.link !== "#" && (
-                        <a 
-                          href={item.link} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+                    <div className="flex flex-col justify-end lg:items-end">
+                      <div className="grid grid-cols-2 gap-2 md:gap-3 w-full max-w-sm">
+                        {item.links.map(link => (
+                          <a 
+                            key={link.label} 
+                            href={link.url} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="glass rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-start gap-2 md:gap-3 hover:bg-white hover:text-black transition-all group/link"
+                          >
+                            <div className="text-white group-hover/link:text-black transition-colors">{link.icon}</div>
+                            <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">{link.label}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* AI & Web Grid */}
+        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-10 mb-20 md:mb-32">
+            {/* AI & Python */}
+            <div className="flex flex-col">
+              <div className="flex items-center gap-4 mb-8 md:mb-10">
+                <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
+                  <Database size={18} />
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-white/80">AI & Python</h3>
+              </div>
+              <div className="grid gap-6 flex-1">
+                {projects.ai.map((item, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+                    onClick={() => setSelectedProject(item)}
+                    className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px] cursor-pointer"
+                  >
+                    <div 
+                      className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-[transform,opacity] duration-700 ease-out bg-cover bg-center"
+                      style={{ backgroundImage: `url('${item.image}')` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
+
+                    <div className="relative z-10 bg-black/60 md:bg-black/40 backdrop-blur-md p-5 md:p-6 rounded-2xl border border-white/5">
+                      <h4 className="text-xl md:text-2xl font-bold mb-3 tracking-tight">{item.title}</h4>
+                      
+                      {/* Tech Badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {item.tech.split(',').map((tag) => (
+                          <span key={tag.trim()} className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[9px] font-bold tracking-wider text-white/60 uppercase">
+                            {tag.trim()}
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="text-white/70 text-xs md:text-sm mb-6 leading-relaxed font-medium line-clamp-3 md:line-clamp-none">{item.desc}</p>
+                      
+                      <div className="flex flex-wrap gap-4 items-center mt-2">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProject(item);
+                          }}
+                          className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors cursor-pointer"
                         >
-                          <Github size={14} /> Repository <ExternalLink size={10} />
+                          <Info size={14} /> Details
+                        </button>
+                        {item.link !== "#" && (
+                          <a 
+                            href={item.link} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+                          >
+                            <Github size={14} /> Repository <ExternalLink size={10} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Web Development */}
+            <div className="flex flex-col">
+              <div className="flex items-center gap-4 mb-8 md:mb-10">
+                <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
+                  <Globe size={18} />
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-white/80">Web Development</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+                {projects.web.map((item, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 2) * 0.1 }}
+                    className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
+                  >
+                    <div 
+                      className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-[transform,opacity] duration-700 ease-out bg-cover bg-center"
+                      style={{ backgroundImage: `url('${item.image}')` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
+                    
+                    <div className="relative z-10 bg-black/70 md:bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+                      <h4 className="font-bold text-xs md:text-sm mb-2 group-hover:text-white transition-colors tracking-tight">{item.title}</h4>
+                      <p className="text-[9px] md:text-[10px] text-white/50 mb-4 font-medium leading-tight line-clamp-2 md:line-clamp-none">{item.desc}</p>
+                      {item.link && (
+                        <a href={item.link} target="_blank" rel="noreferrer" className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
+                          View Project <ExternalLink size={10} />
                         </a>
                       )}
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Web Development */}
-          <div className="flex flex-col">
-            <div className="flex items-center gap-4 mb-8 md:mb-10">
-              <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60">
-                <Globe size={18} />
+                  </motion.div>
+                ))}
               </div>
-              <h3 className="text-xl font-bold tracking-tight text-white/80">Web Development</h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
-              {projects.web.map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 2) * 0.1 }}
-                  className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
-                >
-                  <div 
-                    className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-[1]" />
-                  
-                  <div className="relative z-10 bg-black/70 md:bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
-                    <h4 className="font-bold text-xs md:text-sm mb-2 group-hover:text-white transition-colors tracking-tight">{item.title}</h4>
-                    <p className="text-[9px] md:text-[10px] text-white/50 mb-4 font-medium leading-tight line-clamp-2 md:line-clamp-none">{item.desc}</p>
-                    {item.link && (
-                      <a href={item.link} target="_blank" rel="noreferrer" className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
-                        View Project <ExternalLink size={10} />
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Details Modal */}
