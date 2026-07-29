@@ -67,7 +67,7 @@ export default function Timeline({ viewMode }: TimelineProps) {
               {filteredExperience.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-all"
+                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-colors duration-300"
                 >
                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
@@ -91,7 +91,7 @@ export default function Timeline({ viewMode }: TimelineProps) {
               {education.map((item, i) => (
                 <div 
                   key={i}
-                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-all"
+                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-colors duration-300"
                 >
                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.degree}</h3>

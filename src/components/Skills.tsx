@@ -59,7 +59,7 @@ export default function Skills({ viewMode }: SkillsProps) {
                       stiffness: 260, 
                       damping: 20 
                     }}
-                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-all cursor-default"
+                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-colors duration-200 cursor-default"
                   >
                     {skill}
                   </motion.span>
@@ -85,7 +85,7 @@ export default function Skills({ viewMode }: SkillsProps) {
                       stiffness: 260, 
                       damping: 20 
                     }}
-                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-all cursor-default"
+                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-colors duration-200 cursor-default"
                   >
                     {skill}
                   </motion.span>

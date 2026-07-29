@@ -70,27 +70,27 @@ export default function Hero({ viewMode }: HeroProps) {
         <div className="flex flex-col items-center text-center">
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ 
-              duration: 1.5, 
-              ease: [0.16, 1, 0.3, 1], // Apple-style expo easing
-              delay: 0.2 
+              duration: 1.2, 
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.1 
             }}
             className="mb-8 md:mb-12 relative"
           >
-            <div className="absolute -inset-10 bg-white/5 blur-[100px] rounded-full animate-pulse" />
-            <h1 className="text-[12vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8 drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+            <div className="absolute -inset-10 bg-white/[0.02] blur-3xl rounded-full pointer-events-none" />
+            <h1 className="text-[12vw] md:text-[10rem] font-black text-white leading-[0.8] tracking-[-0.05em] text-gradient mb-8">
               ARYAN <br /> SINGH
             </h1>
           </motion.div>
           
           <motion.div
-            key={viewMode} // Re-animate text when viewMode changes for a premium feel
-            initial={{ opacity: 0, y: 20 }}
+            key={viewMode}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.8, 
+              duration: 0.6, 
               ease: [0.16, 1, 0.3, 1]
             }}
             className="max-w-3xl"
@@ -100,7 +100,7 @@ export default function Hero({ viewMode }: HeroProps) {
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-white"
               >
                 {getQuote()}
@@ -108,7 +108,7 @@ export default function Hero({ viewMode }: HeroProps) {
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
                 className="text-white/60 text-sm md:text-xl block mt-4 font-normal leading-relaxed"
               >
                 {getDescription()}
@@ -116,42 +116,37 @@ export default function Hero({ viewMode }: HeroProps) {
             </p>
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
               className="flex flex-wrap justify-center gap-6"
             >
-              <motion.a 
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
+              <a 
                 href="#projects"
-                className="px-12 py-6 bg-white text-black font-black rounded-3xl flex items-center gap-4 transition-all hover:shadow-[0_20px_80px_rgba(255,255,255,0.4)] text-sm uppercase tracking-[0.2em]"
+                className="px-12 py-6 bg-white text-black font-black rounded-3xl flex items-center gap-4 hover:scale-105 hover:bg-gray-100 transition-transform duration-300 text-sm uppercase tracking-[0.2em]"
               >
                 {getButtonText()} <ArrowRight size={20} />
-              </motion.a>
+              </a>
               
               <div className="flex flex-wrap justify-center gap-3">
                 {[
-                  { href: "https://github.com/aryansingh0777raghav", icon: <Github size={24} />, delay: 1.0 },
-                  { href: "https://www.linkedin.com/in/iamaryan07", icon: <Linkedin size={24} />, delay: 1.1 },
+                  { href: "https://github.com/aryansingh0777raghav", icon: <Github size={24} /> },
+                  { href: "https://www.linkedin.com/in/iamaryan07", icon: <Linkedin size={24} /> },
                   { href: "https://www.instagram.com/iam_aryannnn07", icon: (
                     <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
-                  ), delay: 1.2 }
+                  ) }
                 ].map((social, index) => (
-                  <motion.a 
+                  <a 
                     key={index}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: social.delay, type: "spring", stiffness: 200 }}
                     href={social.href} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="w-16 h-16 md:w-20 md:h-20 glass rounded-3xl flex items-center justify-center text-white/40 hover:text-white hover:scale-110 hover:border-white/20 transition-all group"
+                    className="w-16 h-16 md:w-20 md:h-20 glass rounded-3xl flex items-center justify-center text-white/40 hover:text-white hover:scale-105 hover:border-white/20 transition-transform duration-300 group"
                   >
                     <div className="group-hover:rotate-6 transition-transform">{social.icon}</div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </motion.div>
@@ -159,29 +154,25 @@ export default function Hero({ viewMode }: HeroProps) {
         </div>
       </div>
 
-      {/* Availability Ticker */}
-      <div className="relative w-full py-10 bg-white/5 border-y border-white/5 overflow-hidden z-10">
-        <motion.div 
-          animate={{ x: [0, -1000] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          className="whitespace-nowrap flex gap-20 items-center"
-        >
-          {[1, 2, 3, 4, 5].map((i) => (
-            <span key={i} className="text-4xl md:text-6xl font-black text-white/10 uppercase tracking-tighter">
+      {/* Hardware-Accelerated Pure CSS Availability Ticker */}
+      <div className="relative w-full py-8 bg-white/5 border-y border-white/5 overflow-hidden z-10">
+        <div className="animate-marquee whitespace-nowrap flex items-center">
+          {[1, 2, 3, 4].map((i) => (
+            <span key={i} className="text-3xl md:text-5xl font-black text-white/10 uppercase tracking-tighter pr-16 inline-block">
               {getTickerText()}
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Floating Status Card */}
       <motion.div 
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 right-12 hidden xl:block z-30"
+        transition={{ delay: 0.8, duration: 0.8 }}
+        className="absolute bottom-12 right-12 hidden xl:block z-30 pointer-events-none"
       >
-        <div className="glass rounded-[2rem] p-6 border border-white/5 backdrop-blur-3xl max-w-[280px]">
+        <div className="glass rounded-[2rem] p-6 border border-white/5 backdrop-blur-sm max-w-[280px]">
           <div className="flex items-center gap-4 mb-4">
             <div className="relative">
               <img 
@@ -203,20 +194,12 @@ export default function Hero({ viewMode }: HeroProps) {
       </motion.div>
 
       {/* Scroll Hint */}
-      <motion.div 
-        animate={{ y: [0, 15, 0] }}
-        transition={{ repeat: Infinity, duration: 3 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-20 opacity-30"
-      >
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-20 opacity-30 animate-pulse pointer-events-none">
         <span className="text-[9px] uppercase tracking-[0.25em] font-black">Scroll to Explore</span>
-        <div className="w-1 h-8 rounded-full bg-white/20 relative overflow-hidden">
-          <motion.div 
-            animate={{ y: [-32, 32] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="absolute top-0 left-0 w-full h-1/2 bg-white"
-          />
+        <div className="w-1 h-6 rounded-full bg-white/20 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-white rounded-full" />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

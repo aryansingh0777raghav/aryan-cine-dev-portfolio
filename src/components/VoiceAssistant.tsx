@@ -323,7 +323,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
         >
           <button
             onClick={() => setIsOpen(true)}
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white hover:scale-110 transition-all shadow-2xl hover:border-white/20 bg-black/40 hover:bg-black/60 relative group"
+            className="w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white hover:scale-110 transition-[transform,background-color] duration-300 shadow-2xl hover:border-white/20 bg-black/40 hover:bg-black/60 relative group"
             title="Ask AI Assistant"
           >
             <Sparkles size={22} className={isSpeaking ? 'animate-pulse text-blue-400' : 'group-hover:rotate-12 transition-transform'} />
@@ -342,7 +342,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] w-[calc(100vw-2rem)] sm:w-[480px] h-[550px] md:h-[650px] max-h-[calc(100vh-4rem)] glass rounded-[2rem] border border-white/10 shadow-3xl backdrop-blur-3xl flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] w-[calc(100vw-2rem)] sm:w-[480px] h-[550px] md:h-[650px] max-h-[calc(100vh-4rem)] glass rounded-[2rem] border border-white/10 shadow-3xl backdrop-blur-md flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
@@ -368,7 +368,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                 {/* Voice mute/unmute */}
                 <button
                   onClick={toggleMute}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   title={isMuted ? "Unmute Voice Output" : "Mute Voice Output"}
                 >
                   {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -377,7 +377,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                 {/* Clear Chat */}
                 <button
                   onClick={clearChat}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   title="Clear Chat"
                 >
                   <Trash2 size={16} />
@@ -386,7 +386,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                 {/* Close */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   title="Close Assistant"
                 >
                   <X size={16} />
@@ -436,7 +436,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                   <button
                     key={i}
                     onClick={() => handleSendMessage(sug.query)}
-                    className="flex-shrink-0 snap-center px-3.5 py-1.5 bg-white/[0.04] border border-white/5 rounded-full text-[10px] font-bold text-white/50 hover:bg-white/[0.08] hover:text-white transition-all duration-200"
+                    className="flex-shrink-0 snap-center px-3.5 py-1.5 bg-white/[0.04] border border-white/5 rounded-full text-[10px] font-bold text-white/50 hover:bg-white/[0.08] hover:text-white transition-colors duration-200"
                   >
                     {sug.text}
                   </button>
@@ -450,7 +450,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
               <button
                 type="button"
                 onClick={toggleListening}
-                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
+                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors duration-200 ${
                   isListening
                     ? 'bg-red-500/10 text-red-500 border border-red-500/20 shadow-lg shadow-red-500/10'
                     : 'bg-white/5 hover:bg-white/10 text-white/60 hover:text-white border border-white/5'
@@ -467,14 +467,14 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder={isListening ? "Listening..." : "Ask me anything about Aryan..."}
                 disabled={isListening}
-                className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-xs md:text-sm text-white focus:outline-none focus:border-white/20 transition-all placeholder-white/30 disabled:opacity-50"
+                className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-xs md:text-sm text-white focus:outline-none focus:border-white/20 transition-colors duration-200 placeholder-white/30 disabled:opacity-50"
               />
 
               {/* Send Button */}
               <button
                 type="submit"
                 disabled={!inputText.trim() || isLoading || isListening}
-                className="w-11 h-11 rounded-xl bg-white text-black hover:bg-gray-200 flex items-center justify-center transition-all disabled:opacity-40 disabled:hover:bg-white"
+                className="w-11 h-11 rounded-xl bg-white text-black hover:bg-gray-200 flex items-center justify-center transition-colors duration-200 disabled:opacity-40 disabled:hover:bg-white"
                 title="Send Message"
               >
                 <Send size={16} />

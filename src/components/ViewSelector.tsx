@@ -68,7 +68,7 @@ export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
               whileHover={{ y: -6 }}
               onClick={() => onSelectMode(opt.id)}
-              className="group relative overflow-hidden glass rounded-2xl md:rounded-[2rem] p-5 md:p-10 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[140px] md:min-h-[320px]"
+              className="group relative overflow-hidden glass rounded-2xl md:rounded-[2rem] p-5 md:p-10 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-[border-color,background-color] duration-300 cursor-pointer flex flex-col justify-between min-h-[140px] md:min-h-[320px]"
             >
               {/* Radial gradient spotlight on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-radial-gradient from-white/[0.02] to-transparent pointer-events-none" />
@@ -76,7 +76,7 @@ export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
               {/* Mobile layout: flex-row, Desktop layout: flex-col */}
               <div className="flex md:flex-col gap-4 md:gap-0">
                 {/* Icon Circle */}
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center border transition-all duration-500 md:mb-8 flex-shrink-0 bg-white/5 border-white/10 group-hover:bg-white group-hover:border-white">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center border transition-colors duration-300 md:mb-8 flex-shrink-0 bg-white/5 border-white/10 group-hover:bg-white group-hover:border-white">
                   {opt.icon}
                 </div>
 

@@ -188,12 +188,12 @@ export default function About({ viewMode }: AboutProps) {
           <img 
             src="/images/profile.png" 
             alt="Aryan Singh" 
-            className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+            className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-[transform,filter] duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           
           <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10">
-            <div className="glass-dark rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5 backdrop-blur-3xl">
+            <div className="glass-dark rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-[9px] md:text-[10px] font-black text-white/40 uppercase tracking-widest">CineOn Studio 7</p>
                 <a href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1" target="_blank" rel="noreferrer" className="text-[9px] md:text-[10px] font-bold text-white bg-red-600 px-2 py-0.5 rounded">SUBSCRIBE</a>

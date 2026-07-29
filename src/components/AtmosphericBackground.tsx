@@ -50,7 +50,7 @@ export default function AtmosphericBackground() {
 
     const init = () => {
       particles = [];
-      const particleCount = 20; // Reduced for optimal performance
+      const particleCount = 20;
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -77,23 +77,15 @@ export default function AtmosphericBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-black pointer-events-none">
-      {/* High-performance static composited glows. No repaint cost on scroll. */}
-      <div 
-        className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] blur-[130px] rounded-full opacity-40 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(0,0,0,0) 70%)',
-          willChange: 'transform'
-        }}
-      />
-      <div 
-        className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] blur-[130px] rounded-full opacity-40 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(0,0,0,0) 70%)',
-          willChange: 'transform'
-        }}
-      />
-      
+    <div 
+      className="absolute inset-0 z-0 overflow-hidden bg-black pointer-events-none"
+      style={{
+        backgroundImage: `
+          radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.10) 0%, transparent 45%),
+          radial-gradient(circle at 85% 85%, rgba(249, 115, 22, 0.07) 0%, transparent 45%)
+        `
+      }}
+    >
       {/* Lightweight particle canvas */}
       <canvas
         ref={canvasRef}

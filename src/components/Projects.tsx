@@ -425,7 +425,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                  className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-all hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
+                  className="group relative overflow-hidden glass rounded-3xl md:rounded-[3rem] p-6 md:p-12 transition-[border-color] duration-300 hover:border-white/20 min-h-[400px] md:min-h-[500px] flex items-center"
                 >
                   {/* Background Image with Improved Visibility */}
                   <div 
@@ -456,7 +456,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                             href={link.url} 
                             target="_blank" 
                             rel="noreferrer" 
-                            className="glass rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-start gap-2 md:gap-3 hover:bg-white hover:text-black transition-all group/link"
+                            className="glass rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col items-start gap-2 md:gap-3 hover:bg-white hover:text-black transition-colors duration-300 group/link"
                           >
                             <div className="text-white group-hover/link:text-black transition-colors">{link.icon}</div>
                             <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">{link.label}</span>
@@ -491,7 +491,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
                     onClick={() => setSelectedProject(item)}
-                    className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px] cursor-pointer"
+                    className="glass rounded-[2rem] p-6 md:p-8 hover:border-white/20 transition-[border-color] duration-300 group relative overflow-hidden flex flex-col justify-end min-h-[300px] md:min-h-[350px] cursor-pointer"
                   >
                     <div 
                       className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-[transform,opacity] duration-700 ease-out bg-cover bg-center"
@@ -557,7 +557,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-20px" }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (i % 2) * 0.1 }}
-                    className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-all group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
+                    className="glass rounded-2xl p-5 md:p-6 hover:bg-white/5 transition-colors duration-300 group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px]"
                   >
                     <div 
                       className="absolute inset-0 z-0 opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-[transform,opacity] duration-700 ease-out bg-cover bg-center"
@@ -649,7 +649,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         href={selectedProject.link} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="glass rounded-xl p-3 flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-all font-bold text-[10px] md:text-xs uppercase tracking-widest text-white/80"
+                        className="glass rounded-xl p-3 flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors duration-300 font-bold text-[10px] md:text-xs uppercase tracking-widest text-white/80"
                       >
                         <Github size={14} /> Repository <ExternalLink size={10} />
                       </a>
@@ -662,7 +662,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                           href={lnk.url} 
                           target="_blank" 
                           rel="noreferrer" 
-                          className="glass rounded-xl p-3 flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-all font-bold text-[10px] md:text-xs uppercase tracking-widest text-white/80"
+                          className="glass rounded-xl p-3 flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors duration-300 font-bold text-[10px] md:text-xs uppercase tracking-widest text-white/80"
                         >
                           <BookOpen size={14} /> {lnk.label} <ExternalLink size={10} />
                         </a>

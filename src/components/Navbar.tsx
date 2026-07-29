@@ -22,6 +22,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Certifications', href: '#certifications' },
     { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -30,7 +31,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     <nav 
       className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-[60] transition-all duration-500 rounded-2xl ${
         scrolled 
-          ? 'bg-black/40 backdrop-blur-xl border border-white/10 py-3 shadow-2xl' 
+          ? 'bg-black/60 backdrop-blur-md border border-white/10 py-3 shadow-2xl' 
           : 'bg-transparent py-6'
       }`}
     >

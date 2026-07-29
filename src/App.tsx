@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
+import Certifications from './components/Certifications';
 import Skills from './components/Skills';
 import VisitingCard from './components/VisitingCard';
 import Contact from './components/Contact';
@@ -32,7 +33,7 @@ export default function App() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -81,10 +82,6 @@ export default function App() {
 
   return (
     <div className="bg-black min-h-screen font-sans selection:bg-white selection:text-black overflow-x-hidden">
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-white to-orange-600 z-[9999] origin-left"
-        style={{ scaleX }}
-      />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
@@ -104,19 +101,27 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <Navbar viewMode={viewMode} setViewMode={handleSelectMode} />
-      <main>
-        <Hero viewMode={viewMode} />
-        <About viewMode={viewMode} />
-        <Projects viewMode={viewMode} />
-        <Timeline viewMode={viewMode} />
-        <Skills viewMode={viewMode} />
-        <VisitingCard />
-        <Contact />
-      </main>
-      <VoiceAssistant viewMode={viewMode} />
-      <Footer />
+      {viewMode !== null && (
+        <>
+          <motion.div
+            className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-white to-orange-600 z-[9999] origin-left"
+            style={{ scaleX }}
+          />
+          <Navbar viewMode={viewMode} setViewMode={handleSelectMode} />
+          <main>
+            <Hero viewMode={viewMode} />
+            <About viewMode={viewMode} />
+            <Projects viewMode={viewMode} />
+            <Timeline viewMode={viewMode} />
+            <Certifications viewMode={viewMode} />
+            <Skills viewMode={viewMode} />
+            <VisitingCard />
+            <Contact />
+          </main>
+          <VoiceAssistant viewMode={viewMode} />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
-
