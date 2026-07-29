@@ -22,6 +22,52 @@ const projects = {
   ],
   ai: [
     {
+      title: "ArType",
+      tech: "Kotlin, Jetpack Compose, Material 3, Groq API, Android Accessibility Service",
+      image: "/images/artype.png",
+      desc: "A lightweight AI-powered Android writing assistant that works alongside any existing keyboard instead of replacing it. Using Android Accessibility Services, a floating overlay, and Groq AI, ArType enables multilingual voice typing, AI-powered text improvement, smart replies, and text rewriting across any Android application while keeping user data private through Bring Your Own API Keys.",
+      link: "https://github.com/aryansingh0777raghav/ArType",
+      tagline: "AI Writing Assistant for Every Keyboard",
+      coreVision: "ArType is a privacy-first Android application built with Kotlin and Jetpack Compose. Instead of replacing the user's keyboard, it acts as an intelligent AI layer over existing keyboards such as Gboard, Samsung Keyboard, and SwiftKey. It combines Android Accessibility Services, multilingual speech recognition, and Groq AI to deliver fast, secure, and context-aware writing assistance across all apps.",
+      techStack: [
+        { name: "Kotlin 2.0 & Jetpack Compose", desc: "Powers the premium Material 3 user interface with responsive layouts, fluid animations, and a modern custom theme." },
+        { name: "Android Accessibility Service", desc: "Integrates deep system-level overlays and text detection to inject and rewrite text in active text fields seamlessly." },
+        { name: "Groq Cloud API", desc: "Leverages fast LLM inference to provide instant voice typing transcribing, context-aware rewriting, and smart replies." },
+        { name: "SpeechRecognizer", desc: "Handles bilingual/multilingual voice input for English, Hindi, and Hinglish with automatic speech-to-text conversion." },
+        { name: "EncryptedSharedPreferences", desc: "Secures user-provided Groq API keys locally using Android Keystore hardware-backed encryption." }
+      ],
+      features: [
+        {
+          title: "Floating AI Bubble Overlay",
+          desc: "Displays an intuitive, non-obtrusive floating shortcut bubble when text input fields gain focus, providing instant access to writing actions."
+        },
+        {
+          title: "Multilingual Voice Typing",
+          desc: "Dictate naturally in English, Hindi, or Hinglish. Features automatic language detection and AI-driven punctuation formatting."
+        },
+        {
+          title: "Smart Contextual Replies",
+          desc: "Generates three relevant, situation-specific reply suggestions based on the text context with a single tap."
+        },
+        {
+          title: "Seven Versatile Rewrite Modes",
+          desc: "Supports quick tone and style adjustments: Fix Grammar, Professional, Friendly, Formal, Casual, Shorter, and Longer rewriting formats."
+        },
+        {
+          title: "Bring Your Own API Key (BYOK)",
+          desc: "Allows direct client-to-API communication with Groq without intermediate servers, keeping your writing data completely private."
+        },
+        {
+          title: "System-Wide Keyboard Integration",
+          desc: "Integrates smoothly over Gboard, Samsung Keyboard, SwiftKey, and any other system keyboards without requiring replacement."
+        }
+      ],
+      links: [
+        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/ArType" },
+        { label: "Download APK", url: "https://github.com/aryansingh0777raghav/ArType/releases" }
+      ]
+    },
+    {
       title: "ArVerse OS",
       tech: "React, Tailwind CSS, Vite, Framer Motion, Context API, AI",
       image: "/images/ArVerse.png",
