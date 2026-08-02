@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { ExternalLink, Film, Database, Globe, Play, Github, Info, X, Sparkles, Cpu, Mic, Volume2, Search, Code, BookOpen, Layers } from 'lucide-react';
+import { ExternalLink, Film, Database, Globe, Play, Github, Info, X, Sparkles, Cpu, Mic, Volume2, Search, Code, BookOpen, Layers, Newspaper } from 'lucide-react';
 
 const projects = {
   filmmaking: [
@@ -13,6 +13,7 @@ const projects = {
       links: [
         { label: "Full Movie", url: "https://youtu.be/tEvYeAHmCHg", icon: <Play size={14} /> },
         { label: "Trailer", url: "https://youtu.be/R_THbZWmIGs", icon: <Film size={14} /> },
+        { label: "Press Feature", url: "https://indianblog.co.in/aryan-singh-filmmaker/", icon: <Newspaper size={14} /> },
         { label: "IMDb", url: "https://www.imdb.com/title/tt39846631", icon: <ExternalLink size={14} /> },
         { label: "TMDB", url: "https://www.themoviedb.org/movie/1638463-the-night-of-life-before-you-think-about-it", icon: <ExternalLink size={14} /> },
         { label: "Letterboxd", url: "https://boxd.it/116UE", icon: <ExternalLink size={14} /> },

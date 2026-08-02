@@ -97,6 +97,7 @@ export default function About({ viewMode }: AboutProps) {
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/iamaryan07' }
     ];
     const filmLinks = [
+      { label: 'Press Feature', url: 'https://indianblog.co.in/aryan-singh-filmmaker/' },
       { label: 'IMDb', url: 'https://www.imdb.com/name/nm18214429' },
       { label: 'TMDB', url: 'https://www.themoviedb.org/person/6018661-aryan-singh' },
       { label: 'Letterboxd', url: 'https://boxd.it/2VQn1' },

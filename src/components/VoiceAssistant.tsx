@@ -87,13 +87,16 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
     if (cmd.includes('linkedin')) setTimeout(() => window.open('https://www.linkedin.com/in/iamaryan07', '_blank'), 500);
     if (cmd.includes('instagram')) setTimeout(() => window.open('https://www.instagram.com/iam_aryannnn07', '_blank'), 500);
     return info.social + " " + info.links;
+  } else if (has(['press', 'news', 'blog', 'article', 'indianblog', 'achievement', 'award', 'feature', 'media', 'recognition'])) {
+    setTimeout(() => scrollToSection('#certifications'), 150);
+    return "Aryan Singh was featured on The Indian Blog in an exclusive press article titled 'Aryan Singh: The Young Filmmaker Redefining Independent Storytelling' (July 2026). The article spotlights his directorial debut 'The Night of Life' and his psychological storytelling style.";
   } else if (has(['available', 'freelance', 'work', 'job', 'hire'])) {
     return info.availability;
   } else if (has(['hello', 'hi', 'namaste', 'hey', 'greetings', 'up'])) {
     return "Greetings! I am the digital representative of Aryan Singh. Ask me anything about his engineering or filmmaking career.";
   }
 
-  return "I'm sorry, I couldn't find that in my knowledge base. But I can tell you all about Aryan's technical skills, projects, certifications, or film work.";
+  return "I'm sorry, I couldn't find that in my knowledge base. But I can tell you all about Aryan's technical skills, projects, certifications, press features, or film work.";
 };
 
 export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
