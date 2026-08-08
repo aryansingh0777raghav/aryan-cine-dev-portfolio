@@ -325,6 +325,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100]"
         >
           <button
+            aria-label="Open AI Voice Assistant"
             onClick={() => setIsOpen(true)}
             className="w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white hover:scale-110 transition-[transform,background-color] duration-300 shadow-2xl hover:border-white/20 bg-black/40 hover:bg-black/60 relative group"
             title="Ask AI Assistant"
@@ -370,6 +371,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
               <div className="flex items-center gap-2">
                 {/* Voice mute/unmute */}
                 <button
+                  aria-label={isMuted ? "Unmute Voice Output" : "Mute Voice Output"}
                   onClick={toggleMute}
                   className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   title={isMuted ? "Unmute Voice Output" : "Mute Voice Output"}
@@ -379,6 +381,7 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
 
                 {/* Clear Chat */}
                 <button
+                  aria-label="Clear Chat History"
                   onClick={clearChat}
                   className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   title="Clear Chat"

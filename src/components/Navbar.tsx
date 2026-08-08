@@ -81,7 +81,8 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
+          aria-label="Toggle navigation menu"
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}

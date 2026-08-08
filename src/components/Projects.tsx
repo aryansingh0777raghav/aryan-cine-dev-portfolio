@@ -347,7 +347,7 @@ const projects = {
       title: "ArTool YouTube Extension", 
       desc: "Download YouTube videos, audio, and thumbnails.", 
       image: "/images/ArTool.png",
-      link: "https://github.com/aryansingh0777raghav/ArTools-Chrome-Youtube-Extension" 
+      link: "https://github.com/aryansingh0777raghav/ArTool" 
     },
     { 
       title: "MySites", 
