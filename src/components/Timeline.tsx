@@ -24,7 +24,7 @@ const experience = [
     role: "Short Film Production",
     period: "2026",
     type: "filmmaking" as const,
-    details: "Writer, Director, Actor, Musician, Editor for \"The Night of Life\". Handled creative direction, pacing, post-production, and final edit."
+    details: "Writer, Director, Actor, Musician, Editor for \"The Night of Life\". Featured on The Indian Blog for redefining independent storytelling. Handled creative direction, pacing, post-production, and final edit."
   }
 ];
 
