@@ -32,14 +32,16 @@ export default function App() {
   });
 
   useEffect(() => {
+    let rafId: number;
+
     const lenis = new Lenis({
-      duration: 0.7,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.2,
       infinite: false,
     });
 
@@ -52,10 +54,10 @@ export default function App() {
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Simulate loading time for 3D assets
     const timer = setTimeout(() => {
@@ -64,6 +66,7 @@ export default function App() {
 
     return () => {
       (window as any).lenis = null;
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       clearTimeout(timer);
     };
