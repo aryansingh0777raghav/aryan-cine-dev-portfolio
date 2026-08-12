@@ -452,6 +452,104 @@ export default function Projects({ viewMode }: ProjectsProps) {
           </motion.h2>
         </div>
 
+        {/* Flagship Tech Application Spotlight: ArkTest */}
+        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-20 md:mb-32 relative group"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <span className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-black tracking-widest uppercase">
+                <Sparkles size={14} className="text-amber-400" /> Flagship Platform • Crowdsourced Beta Testing
+              </span>
+              <span className="hidden sm:inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] font-bold tracking-widest uppercase">
+                Vercel Deployed
+              </span>
+            </div>
+
+            <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 border border-white/10 bg-white/[0.015] hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden relative">
+              <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative z-10">
+                {/* Left Thumbnail Showcase */}
+                <div className="lg:col-span-6 relative group/img">
+                  <div 
+                    onClick={() => setSelectedProject(projects.ai[0])}
+                    className="relative aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer"
+                  >
+                    <img 
+                      src="/images/arktest.png" 
+                      alt="ArkTest Beta Testing Platform Dashboard" 
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-all duration-700 transform-gpu"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                      <span className="text-[10px] font-black text-white/80 uppercase tracking-widest bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10">
+                        Interactive Dashboard Preview
+                      </span>
+                      <span className="text-xs font-bold text-black bg-white px-3 py-1.5 rounded-xl flex items-center gap-1 shadow-lg">
+                        View Details <Info size={14} />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Information & Links */}
+                <div className="lg:col-span-6 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-3 leading-none">
+                      ArkTest
+                    </h3>
+                    <p className="text-sm md:text-base font-bold text-amber-300/90 mb-4 tracking-tight">
+                      Fast. Affordable. Trusted Beta Testing.
+                    </p>
+                    <p className="text-xs md:text-sm text-white/70 leading-relaxed font-medium mb-6">
+                      An application review kit and crowdsourced beta testing platform connecting indie developers and startups with genuine testers. Validate UI/UX, catch software bugs early, launch testing campaigns, and earn gamified ArK Points for quality feedback.
+                    </p>
+
+                    {/* Features checklist */}
+                    <div className="grid sm:grid-cols-2 gap-2.5 mb-8">
+                      {[
+                        "Multi-Category Campaign Browser",
+                        "Developer Creator Studio",
+                        "Gamified ArK Points & Leaderboard",
+                        "Real-Time Bug Verification"
+                      ].map((feat, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <Cpu size={14} className="text-amber-400 flex-shrink-0" />
+                          <span className="text-xs text-white/80 font-medium">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-4">
+                    <a
+                      href="https://arktest-mauve.vercel.app/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-6 py-3.5 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
+                    >
+                      <Globe size={15} /> Launch Live Platform <ExternalLink size={14} />
+                    </a>
+
+                    <button
+                      onClick={() => setSelectedProject(projects.ai[0])}
+                      className="px-6 py-3.5 bg-white/5 border border-white/10 text-white font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-white/10 transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                      <Info size={15} /> Architecture Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Filmmaking Section */}
         {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && (
           <div className="mb-20 md:mb-32">
