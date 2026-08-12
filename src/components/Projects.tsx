@@ -23,6 +23,43 @@ const projects = {
   ],
   ai: [
     {
+      title: "ArkTest (Beta Testing Platform)",
+      tech: "React, Vite, Tailwind CSS, Vercel, Gamified UX",
+      image: "/images/arktest.png",
+      desc: "An application review kit and crowdsourced beta testing platform connecting indie developers and startups with genuine testers. Validate UI/UX, catch software bugs early, launch testing campaigns, and earn gamified ArK Points for quality feedback.",
+      link: "https://arktest-mauve.vercel.app/",
+      tagline: "Fast. Affordable. Trusted Beta Testing.",
+      coreVision: "ArkTest bridges the gap between independent software creators and real-world beta testers. It empowers developers to launch targeted testing campaigns for web apps, mobile apps, extensions, and games while enabling testers to discover new products, submit verified bug reports, and climb the gamified leaderboard.",
+      techStack: [
+        { name: "React & Vite", desc: "Powers the ultra-fast dashboard UI with dynamic category filtering and campaign browsing." },
+        { name: "Tailwind CSS", desc: "Delivers a clean, warm aesthetic design with custom card layouts and status badges." },
+        { name: "Creator Studio Engine", desc: "Enables developers to configure campaign tasks, specify application types, and define target tester criteria." },
+        { name: "Gamified ArK Rewards", desc: "Tracks tester tier progress (Silver/Gold), awards ArK points for valid bug reports, and manages live leaderboards." },
+        { name: "Vercel Cloud Platform", desc: "Deploys high-availability frontend instances for instant globally distributed access." }
+      ],
+      features: [
+        {
+          title: "Multi-Category Campaign Browser",
+          desc: "Filter active testing tasks by Web App, Mobile, Extension, or Game categories with real-time stats."
+        },
+        {
+          title: "Developer Creator Studio",
+          desc: "Seamless workflow for indie creators to launch beta testing campaigns, define testing parameters, and review bug submissions."
+        },
+        {
+          title: "Gamified ArK Points & Leaderboard",
+          desc: "Rewards quality tester contributions with ArK Points, tier badges (Silver/Gold), and public leaderboard rankings."
+        },
+        {
+          title: "Real-Time Bug Verification",
+          desc: "Streamlined dashboard tracking active campaigns, verified bug counts, and total reward distributions."
+        }
+      ],
+      links: [
+        { label: "Live Application", url: "https://arktest-mauve.vercel.app/" }
+      ]
+    },
+    {
       title: "ArType",
       tech: "Kotlin, Jetpack Compose, Material 3, Groq API, Android Accessibility Service",
       image: "/images/artype.png",
@@ -307,6 +344,12 @@ const projects = {
     }
   ],
   web: [
+    { 
+      title: "ArkTest Beta Testing Platform", 
+      desc: "Crowdsourced application review kit & beta testing platform connecting indie developers with real testers.", 
+      image: "/images/arktest.png",
+      link: "https://arktest-mauve.vercel.app/" 
+    },
     { 
       title: "Scrollytelling Portfolio", 
       desc: "Premium cinematic portfolio with smooth scrolling and high-end animations.", 
