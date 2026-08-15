@@ -1,10 +1,19 @@
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { Briefcase, GraduationCap, ExternalLink, Linkedin } from 'lucide-react';
 
 interface TimelineProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
 const experience = [
+  {
+    company: "ArkTest (Application Review Kit)",
+    role: "Founder & Lead Creator",
+    period: "2026 – Present",
+    type: "tech" as const,
+    details: "Founded and architected ArkTest, a crowdsourced application review kit and beta testing platform connecting indie developers with real testers. Built the platform architecture, gamified ArK points system, and Creator Studio.",
+    link: "https://arktest-beta.vercel.app/",
+    linkedin: "https://www.linkedin.com/company/arktest-beta/"
+  },
   {
     company: "Data Culture Technology",
     role: "Python Training",
@@ -72,7 +81,31 @@ export default function Timeline({ viewMode }: TimelineProps) {
                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
                   <p className="text-xs md:text-sm font-bold text-white/40 mb-4">{item.company}</p>
-                  <p className="text-xs md:text-sm text-white/50 leading-relaxed">{item.details}</p>
+                  <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-4">{item.details}</p>
+                  {(item.link || item.linkedin) && (
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-white/5">
+                      {item.link && (
+                        <a 
+                          href={item.link} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition-colors"
+                        >
+                          <ExternalLink size={12} /> Live Platform
+                        </a>
+                      )}
+                      {item.linkedin && (
+                        <a 
+                          href={item.linkedin} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 flex items-center gap-1.5 transition-colors"
+                        >
+                          <Linkedin size={12} /> LinkedIn Page
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

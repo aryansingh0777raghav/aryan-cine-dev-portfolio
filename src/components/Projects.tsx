@@ -56,7 +56,8 @@ const projects = {
         }
       ],
       links: [
-        { label: "Live Application", url: "https://arktest-beta.vercel.app/" }
+        { label: "Live Application", url: "https://arktest-beta.vercel.app/" },
+        { label: "LinkedIn Company", url: "https://www.linkedin.com/company/arktest-beta/" }
       ]
     },
     {

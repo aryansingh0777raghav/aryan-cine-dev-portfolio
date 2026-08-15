@@ -26,12 +26,12 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
   const cmd = command.toLowerCase();
   
   const info = {
-    about: "Aryan Singh is a dual-threat Software Engineer and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
+    about: "Aryan Singh is a dual-threat Software Engineer, Founder of ArkTest, and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
     projects: "Aryan's portfolio features high-end work like ArkTest (Beta Testing Platform), ArVerse OS (Virtual OS Simulator), ArType (AI Android Assistant), ArLip (AI Shorts Generator), and ArCh (Perplexity-style Search Engine).",
-    arktest: "ArkTest (https://arktest-beta.vercel.app/) is a crowdsourced application review kit and beta testing platform built by Aryan Singh. It connects indie developers with genuine testers, enabling UI/UX validation, bug verification, and gamified ArK point rewards.",
+    arktest: "Aryan Singh is the Founder & Lead Creator of ArkTest (https://arktest-beta.vercel.app/), a crowdsourced application review kit & beta testing platform connecting indie developers with real testers. Official LinkedIn page: https://www.linkedin.com/company/arktest-beta/",
     skills: "On the tech side, he's a master of Python, Pandas, Java, C++, SQL, and modern web tech. In the studio, he excels as a Writer, Director, Actor, Musician, and Editor.",
     education: "He is currently pursuing his BCA (Bachelor of Computer Applications) at ITM Gorakhpur (Sep 2024 - Dec 2027), building on a strong foundation from SR International Academy, Nathnagar.",
-    experience: "Aryan has a solid professional background:\n1. Python Training Internship at Data Culture Technology (Jun 2025 – Aug 2025)\n2. Samsung Innovation Campus Big Data Certification (Oct 2025 – Nov 2025)\n3. CineOn Studio 7 (2026) - Film Director & Editor.",
+    experience: "Aryan has a solid professional background:\n1. Founder & Lead Creator at ArkTest (2026 – Present)\n2. Python Training Internship at Data Culture Technology (Jun 2025 – Aug 2025)\n3. Samsung Innovation Campus Big Data Certification (Oct 2025 – Nov 2025)\n4. CineOn Studio 7 (2026) - Film Director & Editor.",
     samsung: "Aryan completed the Big Data Certification course of the Samsung Innovation Campus (9/10/2025 to 15/11/2025). The certificate number is SIC08720. This training focused on data manipulation, analysis, and processing large datasets.",
     availability: "Aryan is currently AVAILABLE for freelance work! You can hire him for web development, AI tool building, or professional film production.",
     contact: "You can reach out to Aryan directly at aryansingh979211@gmail.com. He is currently open for freelance opportunities.",
