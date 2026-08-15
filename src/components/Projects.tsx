@@ -27,7 +27,7 @@ const projects = {
       tech: "React, Vite, Tailwind CSS, Vercel, Gamified UX",
       image: "/images/arktest.png",
       desc: "An application review kit and crowdsourced beta testing platform connecting indie developers and startups with genuine testers. Validate UI/UX, catch software bugs early, launch testing campaigns, and earn gamified ArK Points for quality feedback.",
-      link: "https://arktest-mauve.vercel.app/",
+      link: "https://arktest-beta.vercel.app/",
       tagline: "Fast. Affordable. Trusted Beta Testing.",
       coreVision: "ArkTest bridges the gap between independent software creators and real-world beta testers. It empowers developers to launch targeted testing campaigns for web apps, mobile apps, extensions, and games while enabling testers to discover new products, submit verified bug reports, and climb the gamified leaderboard.",
       techStack: [
@@ -56,7 +56,7 @@ const projects = {
         }
       ],
       links: [
-        { label: "Live Application", url: "https://arktest-mauve.vercel.app/" }
+        { label: "Live Application", url: "https://arktest-beta.vercel.app/" }
       ]
     },
     {
@@ -348,7 +348,7 @@ const projects = {
       title: "ArkTest Beta Testing Platform", 
       desc: "Crowdsourced application review kit & beta testing platform connecting indie developers with real testers.", 
       image: "/images/arktest.png",
-      link: "https://arktest-mauve.vercel.app/" 
+      link: "https://arktest-beta.vercel.app/" 
     },
     { 
       title: "Scrollytelling Portfolio", 
@@ -529,7 +529,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   {/* Actions */}
                   <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-4">
                     <a
-                      href="https://arktest-mauve.vercel.app/"
+                      href="https://arktest-beta.vercel.app/"
                       target="_blank"
                       rel="noreferrer"
                       className="px-6 py-3.5 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
