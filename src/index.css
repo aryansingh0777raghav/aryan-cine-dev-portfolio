@@ -126,6 +126,10 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+.lenis.lenis-scrolling {
+  user-select: none;
+}
+
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
