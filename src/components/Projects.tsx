@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { ExternalLink, Film, Database, Globe, Play, Github, Info, X, Sparkles, Cpu, Mic, Volume2, Search, Code, BookOpen, Layers, Newspaper } from 'lucide-react';
+import { ExternalLink, Film, Database, Globe, Play, Github, Linkedin, Info, X, Sparkles, Cpu, Mic, Volume2, Search, Code, BookOpen, Layers, Newspaper } from 'lucide-react';
 
 const projects = {
   filmmaking: [
