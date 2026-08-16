@@ -23,41 +23,60 @@ const projects = {
   ],
   ai: [
     {
-      title: "ArkTest (Beta Testing Platform)",
-      tech: "React, Vite, Tailwind CSS, Vercel, Gamified UX",
+      title: "ArKTest Beta (Application Review Kit)",
+      tech: "FastAPI (Python 3.14), PostgreSQL / SQLAlchemy, Vanilla JS, Bootstrap 5, PWA, Vercel",
       image: "/images/arktest.png",
-      desc: "An application review kit and crowdsourced beta testing platform connecting indie developers and startups with genuine testers. Validate UI/UX, catch software bugs early, launch testing campaigns, and earn gamified ArK Points for quality feedback.",
-      link: "https://arktest-beta.vercel.app/",
-      tagline: "Fast. Affordable. Trusted Beta Testing.",
-      coreVision: "ArkTest bridges the gap between independent software creators and real-world beta testers. It empowers developers to launch targeted testing campaigns for web apps, mobile apps, extensions, and games while enabling testers to discover new products, submit verified bug reports, and climb the gamified leaderboard.",
+      desc: "ArKTest Beta is a full-stack web application designed to solve the $100/mo barrier of traditional QA testing for indie developers. Built with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript, it features an automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
+      link: "https://arktest-beta.vercel.app",
+      github: "https://github.com/aryansingh0777raghav/ArKTest",
+      linkedin: "https://www.linkedin.com/company/arktest-beta/",
+      role: "Founder & Lead Full-Stack Architect (Founded by Aryan Singh, Co-Founded by Vijay Laxmi Singh)",
+      tagline: "A Full-Stack Crowd Testing & QA Innovation Platform Connecting Indie Developers with Verified QA Testers",
+      coreVision: "ArKTest Beta is a full-stack web application designed to solve the $100/mo barrier of traditional QA testing for indie developers. Built with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript, it features an automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
+      metrics: [
+        { label: "0% Race Condition Risk", desc: "Pessimistic database locking protects financial ledger operations from concurrent payout conflicts." },
+        { label: "100% Automated Escrow Refunds", desc: "Unused campaign escrow points are automatically returned to creators." },
+        { label: "PWA Ready", desc: "Native home-screen installable experience for supported iOS and Android workflows." },
+        { label: "100% Pytest API Suite Passing", desc: "Automated API test suite currently passing." }
+      ],
       techStack: [
-        { name: "React & Vite", desc: "Powers the ultra-fast dashboard UI with dynamic category filtering and campaign browsing." },
-        { name: "Tailwind CSS", desc: "Delivers a clean, warm aesthetic design with custom card layouts and status badges." },
-        { name: "Creator Studio Engine", desc: "Enables developers to configure campaign tasks, specify application types, and define target tester criteria." },
-        { name: "Gamified ArK Rewards", desc: "Tracks tester tier progress (Silver/Gold), awards ArK points for valid bug reports, and manages live leaderboards." },
-        { name: "Vercel Cloud Platform", desc: "Deploys high-availability frontend instances for instant globally distributed access." }
+        { name: "FastAPI (Python 3.14)", desc: "High-performance backend API framework handling endpoints, routing, and live telemetry." },
+        { name: "PostgreSQL & SQLite (SQLAlchemy ORM)", desc: "Enterprise database schema with pessimistic row-level locking (with_for_update()) for zero-race-condition ledger transactions." },
+        { name: "Security & Auth (OWASP)", desc: "JWT Tokens, PBKDF2 SHA-256 hashing, rate-limited OTP dispatches (3 attempts / 5 mins), Pydantic URL sanitization, and CORS whitelist." },
+        { name: "JavaScript ES6+ & Bootstrap 5", desc: "Native ES6+ frontend engine with custom glassmorphism design system, responsive layouts, and zero framework overhead." },
+        { name: "Services & Testing", desc: "Multi-account Gmail SMTP pool with automatic fallback and 100% Pytest automated suite coverage." },
+        { name: "PWA & Vercel Deployment", desc: "Native mobile installability, service worker caching, public aggregate telemetry, and Vercel cloud deployment." }
       ],
       features: [
         {
-          title: "Multi-Category Campaign Browser",
-          desc: "Filter active testing tasks by Web App, Mobile, Extension, or Game categories with real-time stats."
+          title: "1. Automated Escrow-Backed Reward Economy",
+          desc: "Engineered an atomic escrow lock system (Reward Points × Max Testers). Points are locked when a campaign launches and automatically refunded to creators when campaigns end or are cancelled."
         },
         {
-          title: "Developer Creator Studio",
-          desc: "Seamless workflow for indie creators to launch beta testing campaigns, define testing parameters, and review bug submissions."
+          title: "2. Full-Stack OWASP Security Remediation",
+          desc: "Implemented pessimistic row-level locking using with_for_update(), race-condition protection during point payouts, PBKDF2 SHA-256 password hashing, JWT authorization, rate-limited OTP dispatches (3 attempts / 5 mins), Pydantic URL sanitization, and production CORS whitelist."
         },
         {
-          title: "Gamified ArK Points & Leaderboard",
-          desc: "Rewards quality tester contributions with ArK Points, tier badges (Silver/Gold), and public leaderboard rankings."
+          title: "3. Interactive Financial Ledgers & CSV Exports",
+          desc: "Built transaction-management functionality allowing administrators to inspect any user's complete point ledger, inspect individual transactions, track point movements, generate single-user CSV financial reports, and export reports with one click."
         },
         {
-          title: "Real-Time Bug Verification",
-          desc: "Streamlined dashboard tracking active campaigns, verified bug counts, and total reward distributions."
+          title: "4. Multi-Tier Reputation & Badge Engine",
+          desc: "Automatic reputation progression (Bronze → Silver → Gold → Platinum), paired with administrative Early Tester (first 25 onboarding users) and Verified Tester credentials."
+        },
+        {
+          title: "5. Multi-Account SMTP Auto-Failover Engine",
+          desc: "Developed a multi-account Gmail SMTP pool with automatic fallback for account verification OTPs, password reset OTPs, SMTP failure recovery, and reliable email delivery."
+        },
+        {
+          title: "6. Progressive Web App & Public Telemetry",
+          desc: "Includes PWA support, native mobile installation, service worker caching, responsive mobile experience, and an unauthenticated aggregate homepage statistics endpoint."
         }
       ],
       links: [
-        { label: "Live Application", url: "https://arktest-beta.vercel.app/" },
-        { label: "LinkedIn Company", url: "https://www.linkedin.com/company/arktest-beta/" }
+        { label: "Live Demo", url: "https://arktest-beta.vercel.app" },
+        { label: "GitHub Repo", url: "https://github.com/aryansingh0777raghav/ArKTest" },
+        { label: "LinkedIn Page", url: "https://www.linkedin.com/company/arktest-beta/" }
       ]
     },
     {
@@ -453,7 +472,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
           </motion.h2>
         </div>
 
-        {/* Flagship Tech Application Spotlight: ArkTest */}
+        {/* Flagship Tech Application Spotlight: ArKTest Beta */}
         {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -462,9 +481,12 @@ export default function Projects({ viewMode }: ProjectsProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-20 md:mb-32 relative group"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex flex-wrap items-center gap-3 mb-6">
               <span className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-black tracking-widest uppercase">
-                <Sparkles size={14} className="text-amber-400" /> Flagship Platform • Crowdsourced Beta Testing
+                <Sparkles size={14} className="text-amber-400" /> Flagship Platform • QA Innovation
+              </span>
+              <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[10px] font-bold tracking-widest uppercase">
+                Founder & Lead Full-Stack Architect
               </span>
               <span className="hidden sm:inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] font-bold tracking-widest uppercase">
                 Vercel Deployed
@@ -473,20 +495,20 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
             <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 border border-white/10 bg-white/[0.015] hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden relative">
               <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center relative z-10">
-                {/* Left Thumbnail Showcase */}
-                <div className="lg:col-span-6 relative group/img">
+                {/* Left Thumbnail & Impact Metrics Showcase */}
+                <div className="lg:col-span-6 relative group/img space-y-4">
                   <div 
                     onClick={() => setSelectedProject(projects.ai[0])}
                     className="relative aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-neutral-950 shadow-2xl cursor-pointer"
                   >
                     <img 
                       src="/images/arktest.png" 
-                      alt="ArkTest Beta Testing Platform Dashboard" 
+                      alt="ArKTest Beta Application Review Kit Dashboard" 
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover/img:scale-105 transition-all duration-700 transform-gpu"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                       <span className="text-[10px] font-black text-white/80 uppercase tracking-widest bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10">
                         Interactive Dashboard Preview
@@ -496,53 +518,97 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       </span>
                     </div>
                   </div>
+
+                  {/* 4 Key Metrics Pills */}
+                  <div className="grid grid-cols-2 gap-2.5 pt-2">
+                    <div className="glass rounded-xl p-3 border border-white/5 bg-white/[0.02]">
+                      <p className="text-[10px] font-black text-amber-400 uppercase tracking-wider mb-0.5">0% Race Condition Risk</p>
+                      <p className="text-[10px] text-white/60 font-medium leading-tight">Pessimistic database locking protects ledger</p>
+                    </div>
+                    <div className="glass rounded-xl p-3 border border-white/5 bg-white/[0.02]">
+                      <p className="text-[10px] font-black text-emerald-400 uppercase tracking-wider mb-0.5">100% Escrow Refunds</p>
+                      <p className="text-[10px] text-white/60 font-medium leading-tight">Unused points returned to creators</p>
+                    </div>
+                    <div className="glass rounded-xl p-3 border border-white/5 bg-white/[0.02]">
+                      <p className="text-[10px] font-black text-blue-400 uppercase tracking-wider mb-0.5">PWA Ready</p>
+                      <p className="text-[10px] text-white/60 font-medium leading-tight">Native iOS & Android installable</p>
+                    </div>
+                    <div className="glass rounded-xl p-3 border border-white/5 bg-white/[0.02]">
+                      <p className="text-[10px] font-black text-purple-400 uppercase tracking-wider mb-0.5">100% Pytest API Suite</p>
+                      <p className="text-[10px] text-white/60 font-medium leading-tight">Automated API test coverage passing</p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Right Information & Links */}
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-3 leading-none">
-                      ArkTest
+                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-2 leading-none">
+                      ArKTest Beta
                     </h3>
-                    <p className="text-sm md:text-base font-bold text-amber-300/90 mb-4 tracking-tight">
-                      Fast. Affordable. Trusted Beta Testing.
+                    <p className="text-xs md:text-sm font-bold text-amber-300/90 mb-2 tracking-tight">
+                      A Full-Stack Crowd Testing & QA Innovation Platform Connecting Indie Developers with Verified QA Testers
                     </p>
+                    <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-4">
+                      Founded by Aryan Singh | Co-Founded by Vijay Laxmi Singh
+                    </p>
+
                     <p className="text-xs md:text-sm text-white/70 leading-relaxed font-medium mb-6">
-                      An application review kit and crowdsourced beta testing platform connecting indie developers and startups with genuine testers. Validate UI/UX, catch software bugs early, launch testing campaigns, and earn gamified ArK Points for quality feedback.
+                      ArKTest Beta is a full-stack web application designed to solve the $100/mo barrier of traditional QA testing for indie developers. Built with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript, it features an automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.
                     </p>
 
                     {/* Features checklist */}
                     <div className="grid sm:grid-cols-2 gap-2.5 mb-8">
                       {[
-                        "Multi-Category Campaign Browser",
-                        "Developer Creator Studio",
-                        "Gamified ArK Points & Leaderboard",
-                        "Real-Time Bug Verification"
+                        "Automated Escrow-Backed Reward Economy",
+                        "Full-Stack OWASP Security Remediation",
+                        "Financial Ledgers & CSV Exports",
+                        "Multi-Tier Reputation & Badges",
+                        "SMTP Auto-Failover Engine",
+                        "Progressive Web App & Public Telemetry"
                       ].map((feat, idx) => (
                         <div key={idx} className="flex items-center gap-2">
                           <Cpu size={14} className="text-amber-400 flex-shrink-0" />
-                          <span className="text-xs text-white/80 font-medium">{feat}</span>
+                          <span className="text-[11px] text-white/80 font-medium leading-tight">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-4">
+                  <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-3">
                     <a
-                      href="https://arktest-beta.vercel.app/"
+                      href="https://arktest-beta.vercel.app"
                       target="_blank"
                       rel="noreferrer"
-                      className="px-6 py-3.5 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
+                      className="px-5 py-3 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
                     >
-                      <Globe size={15} /> Launch Live Platform <ExternalLink size={14} />
+                      <Globe size={14} /> Live Demo <ExternalLink size={13} />
+                    </a>
+
+                    <a
+                      href="https://github.com/aryansingh0777raghav/ArKTest"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-5 py-3 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                      <Github size={14} /> GitHub Repo
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/company/arktest-beta/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-5 py-3 bg-blue-600/20 border border-blue-500/30 text-blue-300 font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                      <Linkedin size={14} /> LinkedIn Page
                     </a>
 
                     <button
                       onClick={() => setSelectedProject(projects.ai[0])}
-                      className="px-6 py-3.5 bg-white/5 border border-white/10 text-white font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-white/10 transition-colors flex items-center gap-2 cursor-pointer"
+                      className="px-5 py-3 bg-amber-500/10 border border-amber-500/20 text-amber-300 font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-amber-500/20 transition-colors flex items-center gap-2 cursor-pointer"
                     >
-                      <Info size={15} /> Architecture Details
+                      <Info size={14} /> Full Details
                     </button>
                   </div>
                 </div>

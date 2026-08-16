@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, ExternalLink, Linkedin } from 'lucide-react';
+import { Briefcase, GraduationCap, ExternalLink, Linkedin, Github } from 'lucide-react';
 
 interface TimelineProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -6,12 +6,13 @@ interface TimelineProps {
 
 const experience = [
   {
-    company: "ArkTest (Application Review Kit)",
-    role: "Founder & Lead Creator",
+    company: "ArKTest Beta (Application Review Kit)",
+    role: "Founder & Lead Full-Stack Architect",
     period: "2026 – Present",
     type: "tech" as const,
-    details: "Founded and architected ArkTest, a crowdsourced application review kit and beta testing platform connecting indie developers with real testers. Built the platform architecture, gamified ArK points system, and Creator Studio.",
-    link: "https://arktest-beta.vercel.app/",
+    details: "Founded by Aryan Singh, Co-Founded by Vijay Laxmi Singh. Built a full-stack crowd testing & QA innovation platform with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript featuring automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
+    link: "https://arktest-beta.vercel.app",
+    github: "https://github.com/aryansingh0777raghav/ArKTest",
     linkedin: "https://www.linkedin.com/company/arktest-beta/"
   },
   {
@@ -82,7 +83,7 @@ export default function Timeline({ viewMode }: TimelineProps) {
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
                   <p className="text-xs md:text-sm font-bold text-white/40 mb-4">{item.company}</p>
                   <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-4">{item.details}</p>
-                  {(item.link || item.linkedin) && (
+                  {(item.link || item.github || item.linkedin) && (
                     <div className="flex flex-wrap gap-2 pt-3 border-t border-white/5">
                       {item.link && (
                         <a 
@@ -91,7 +92,17 @@ export default function Timeline({ viewMode }: TimelineProps) {
                           rel="noreferrer" 
                           className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition-colors"
                         >
-                          <ExternalLink size={12} /> Live Platform
+                          <ExternalLink size={12} /> Live Demo
+                        </a>
+                      )}
+                      {item.github && (
+                        <a 
+                          href={item.github} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition-colors"
+                        >
+                          <Github size={12} /> GitHub Repo
                         </a>
                       )}
                       {item.linkedin && (
