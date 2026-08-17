@@ -578,9 +578,9 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   {/* Actions */}
                   <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-3">
                     <a
-                      href="https://arktest-beta.vercel.app"
+                      href="https://arktest-beta.vercel.app/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="px-5 py-3 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
                     >
                       <Globe size={14} /> Live Demo <ExternalLink size={13} />
