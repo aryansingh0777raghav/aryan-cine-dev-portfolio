@@ -28,7 +28,6 @@ const projects = {
       image: "/images/arktest.png",
       desc: "ArKTest Beta is a full-stack web application designed to solve the $100/mo barrier of traditional QA testing for indie developers. Built with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript, it features an automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
       link: "https://arktest-beta.vercel.app",
-      github: "https://github.com/aryansingh0777raghav/ArKTest",
       linkedin: "https://www.linkedin.com/company/arktest-beta/",
       role: "Founder & Lead Full-Stack Architect (Founded by Aryan Singh, Co-Founded by Vijay Laxmi Singh)",
       tagline: "A Full-Stack Crowd Testing & QA Innovation Platform Connecting Indie Developers with Verified QA Testers",
@@ -75,7 +74,6 @@ const projects = {
       ],
       links: [
         { label: "Live Demo", url: "https://arktest-beta.vercel.app" },
-        { label: "GitHub Repo", url: "https://github.com/aryansingh0777raghav/ArKTest" },
         { label: "LinkedIn Page", url: "https://www.linkedin.com/company/arktest-beta/" }
       ]
     },
@@ -584,15 +582,6 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       className="px-5 py-3 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-widest hover:bg-gray-200 transition-all flex items-center gap-2 cursor-pointer shadow-lg hover:scale-[1.02]"
                     >
                       <Globe size={14} /> Live Demo <ExternalLink size={13} />
-                    </a>
-
-                    <a
-                      href="https://github.com/aryansingh0777raghav/ArKTest"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-5 py-3 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center gap-2 cursor-pointer"
-                    >
-                      <Github size={14} /> GitHub Repo
                     </a>
 
                     <a

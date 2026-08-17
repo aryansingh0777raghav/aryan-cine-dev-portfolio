@@ -12,7 +12,6 @@ const experience = [
     type: "tech" as const,
     details: "Founded by Aryan Singh, Co-Founded by Vijay Laxmi Singh. Built a full-stack crowd testing & QA innovation platform with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript featuring automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
     link: "https://arktest-beta.vercel.app",
-    github: "https://github.com/aryansingh0777raghav/ArKTest",
     linkedin: "https://www.linkedin.com/company/arktest-beta/"
   },
   {
