@@ -52,18 +52,23 @@
   /* Optimized glass cards with GPU layer hardware acceleration */
   .glass {
     @apply bg-white/[0.04] backdrop-blur-sm border border-white/10 shadow-xl transform-gpu;
-    will-change: transform, opacity;
   }
 
   .glass-dark {
     @apply bg-black/60 backdrop-blur-sm border border-white/5 shadow-2xl transform-gpu;
-    will-change: transform, opacity;
   }
 
   .gpu-layer {
     transform: translateZ(0);
-    will-change: transform;
     backface-visibility: hidden;
+  }
+
+  /* Mobile Performance & Fluidity Optimization */
+  @media (max-width: 768px) {
+    .glass, .glass-dark {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
   }
 
   .text-gradient {

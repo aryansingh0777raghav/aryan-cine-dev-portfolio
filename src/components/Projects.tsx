@@ -447,7 +447,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
       {/* Refined Parallax Background Text (Outlined Cinematic Style) */}
       <motion.div 
         style={{ y }}
-        className="absolute top-20 left-[-10%] text-[18vw] font-black select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter opacity-[0.03] uppercase transform-gpu will-change-transform"
+        className="hidden md:block absolute top-20 left-[-10%] text-[18vw] font-black select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter opacity-[0.03] uppercase transform-gpu"
         shadow-text="FEATURED WORKS"
       >
         <span style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>

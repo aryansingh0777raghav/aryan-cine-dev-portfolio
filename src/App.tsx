@@ -34,14 +34,16 @@ export default function App() {
   useEffect(() => {
     let rafId: number;
 
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window));
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isMobile ? 0.7 : 1.2,
       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.0,
+      touchMultiplier: isMobile ? 1.4 : 1.0,
       syncTouch: true,
       infinite: false,
     });
