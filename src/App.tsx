@@ -36,33 +36,43 @@ export default function App() {
   useEffect(() => {
     let rafId: number;
 
-    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window));
+    const isTouchDevice = typeof window !== 'undefined' && (
+      'ontouchstart' in window || 
+      navigator.maxTouchPoints > 0 ||
+      window.innerWidth < 1024
+    );
 
-    const lenis = new Lenis({
-      duration: isMobile ? 0.7 : 1.2,
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: isMobile ? 1.4 : 1.0,
-      syncTouch: true,
-      infinite: false,
-    });
+    let lenis: any = null;
 
-    (window as any).lenis = lenis;
+    if (!isTouchDevice) {
+      // Desktop: Smooth Lenis mousewheel momentum
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 0,
+        syncTouch: false,
+        infinite: false,
+      });
 
-    // Disable scroll on initial load if viewMode is not chosen
-    if (!sessionStorage.getItem('portfolio-view-mode')) {
-      lenis.stop();
-    }
+      (window as any).lenis = lenis;
 
-    function raf(time: number) {
-      lenis.raf(time);
+      if (!sessionStorage.getItem('portfolio-view-mode')) {
+        lenis.stop();
+      }
+
+      function raf(time: number) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+
       rafId = requestAnimationFrame(raf);
+    } else {
+      // Mobile / Touch: 100% Native 120 FPS GPU compositor touch scroll (zero main-thread lag)
+      (window as any).lenis = null;
     }
-
-    rafId = requestAnimationFrame(raf);
 
     const timer = setTimeout(() => {
       setLoading(false);

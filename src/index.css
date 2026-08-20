@@ -15,9 +15,11 @@
 
 @layer base {
   html {
-    scroll-behavior: auto !important; /* Lenis handles smooth scrolling */
+    scroll-behavior: auto !important;
     background-color: #FFFFFF;
     color: #0A0A0A;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 
   body {
@@ -29,6 +31,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   ::selection {
