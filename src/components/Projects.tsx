@@ -16,8 +16,10 @@ import {
   Film,
   Newspaper,
   BookOpen,
-  Award
+  Award,
+  Search
 } from 'lucide-react';
+import { soundFX } from '../utils/audio';
 
 interface Project {
   title: string;
@@ -52,6 +54,8 @@ interface ProjectsProps {
 
 export default function Projects({ viewMode }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'ai' | 'web' | 'film'>('all');
 
   const flagshipProject: Project = {
     title: "ArKTest Beta (Application Review Kit)",
@@ -407,6 +411,26 @@ export default function Projects({ viewMode }: ProjectsProps) {
     }
   ];
 
+  const matchesSearch = (p: Project) => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      p.title.toLowerCase().includes(query) ||
+      p.tech.toLowerCase().includes(query) ||
+      (p.category && p.category.toLowerCase().includes(query)) ||
+      p.desc.toLowerCase().includes(query)
+    );
+  };
+
+  const filteredAI = aiProjects.filter(matchesSearch);
+  const filteredWeb = webProjects.filter(matchesSearch);
+  const filteredFilm = filmProjects.filter(matchesSearch);
+  const showFlagship = (activeCategory === 'all' || activeCategory === 'ai') && matchesSearch(flagshipProject);
+  const totalCount = (showFlagship ? 1 : 0) +
+    ((activeCategory === 'all' || activeCategory === 'ai') ? filteredAI.length : 0) +
+    ((activeCategory === 'all' || activeCategory === 'web') ? filteredWeb.length : 0) +
+    ((activeCategory === 'all' || activeCategory === 'film') ? filteredFilm.length : 0);
+
   return (
     <section id="projects" className="py-24 md:py-36 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-6">
@@ -417,7 +441,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
         </div>
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
               Selected Works.<br />
@@ -429,8 +453,74 @@ export default function Projects({ viewMode }: ProjectsProps) {
           </div>
         </div>
 
+        {/* Instant Search & Quick Category Filters */}
+        <div className="mb-14 p-4 rounded-2xl bg-[#FAFAFB] border border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Search Input */}
+          <div className="relative w-full sm:w-80">
+            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by keyword, tech (e.g. React, Python)..."
+              className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-white border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-950 font-medium"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-950 p-1 text-xs cursor-pointer"
+              >
+                <X size={12} />
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
+            {[
+              { id: 'all' as const, label: `All (${aiProjects.length + webProjects.length + filmProjects.length + 1})` },
+              { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
+              { id: 'web' as const, label: `Web Apps (${webProjects.length})` },
+              { id: 'film' as const, label: `Cinema (${filmProjects.length})` }
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  soundFX.playClick();
+                  setActiveCategory(cat.id);
+                }}
+                className={`text-[11px] font-mono px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
+                  activeCategory === cat.id
+                    ? 'bg-neutral-950 text-white font-bold shadow-xs'
+                    : 'bg-white border border-neutral-200 text-neutral-600 hover:text-neutral-950 hover:border-neutral-400'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Empty Search State */}
+        {totalCount === 0 && (
+          <div className="py-16 text-center rounded-3xl border border-dashed border-neutral-300 bg-neutral-50 mb-16">
+            <Search size={32} className="text-neutral-400 mx-auto mb-3" />
+            <h4 className="text-base font-bold text-neutral-950 mb-1">No matching projects found</h4>
+            <p className="text-xs text-neutral-500 mb-4">No results matched "{searchQuery}". Try searching for another keyword or clear search.</p>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setActiveCategory('all');
+              }}
+              className="px-4 py-2 rounded-full bg-neutral-950 text-white text-xs font-semibold cursor-pointer"
+            >
+              Clear Search Filter
+            </button>
+          </div>
+        )}
+
         {/* 🌟 Flagship Spotlight: ArKTest Beta */}
-        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+        {showFlagship && (viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
           <div className="mb-24">
             <div className="flex items-center gap-2 mb-4">
               <span className="swiss-pill-tag-active flex items-center gap-1.5">
@@ -544,11 +634,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
         )}
 
         {/* 💻 Cluster 1: AI Systems & Developer Tooling */}
-        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && 
+         (activeCategory === 'all' || activeCategory === 'ai') && 
+         filteredAI.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                Cluster 01 // AI Systems
+                Cluster 01 // AI Systems ({filteredAI.length})
               </span>
               <div className="h-px bg-neutral-200 flex-1" />
             </div>
@@ -558,7 +650,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {aiProjects.map((item, idx) => (
+              {filteredAI.map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -584,7 +676,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     </div>
 
                     <div 
-                      onClick={() => setSelectedProject(item)}
+                      onClick={() => {
+                        soundFX.playModalOpen();
+                        setSelectedProject(item);
+                      }}
                       className="aspect-video rounded-xl overflow-hidden border border-neutral-200 mb-5 bg-neutral-50 cursor-pointer"
                     >
                       <img 
@@ -612,7 +707,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
                   <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
                     <button
-                      onClick={() => setSelectedProject(item)}
+                      onClick={() => {
+                        soundFX.playModalOpen();
+                        setSelectedProject(item);
+                      }}
                       className="text-xs font-mono font-medium text-neutral-800 hover:text-neutral-950 flex items-center gap-1 cursor-pointer"
                     >
                       <Info size={12} /> View Architecture
@@ -635,11 +733,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
         )}
 
         {/* 🌐 Cluster 2: Web Applications & Interfaces */}
-        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && 
+         (activeCategory === 'all' || activeCategory === 'web') && 
+         filteredWeb.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                Cluster 02 // Web Projects
+                Cluster 02 // Web Projects ({filteredWeb.length})
               </span>
               <div className="h-px bg-neutral-200 flex-1" />
             </div>
@@ -649,7 +749,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {webProjects.map((item, idx) => (
+              {filteredWeb.map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -684,7 +784,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       ) : null}
                     </div>
 
-                    <div className="aspect-video rounded-xl overflow-hidden border border-neutral-200 mb-5 bg-neutral-50">
+                    <div 
+                      onClick={() => {
+                        soundFX.playModalOpen();
+                        setSelectedProject(item);
+                      }}
+                      className="aspect-video rounded-xl overflow-hidden border border-neutral-200 mb-5 bg-neutral-50 cursor-pointer"
+                    >
                       <img 
                         src={item.image} 
                         alt={item.title} 
@@ -732,7 +838,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     )}
 
                     <button
-                      onClick={() => setSelectedProject(item)}
+                      onClick={() => {
+                        soundFX.playModalOpen();
+                        setSelectedProject(item);
+                      }}
                       className="text-xs font-mono font-medium text-neutral-800 hover:text-neutral-950 flex items-center gap-1 cursor-pointer"
                     >
                       <Info size={12} /> Specs
@@ -745,11 +854,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
         )}
 
         {/* 🎬 Cluster 3: Filmmaking & Cinema Showcase */}
-        {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && (
+        {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && 
+         (activeCategory === 'all' || activeCategory === 'film') && 
+         filteredFilm.length > 0 && (
           <div>
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                Cluster 03 // Cinema
+                Cluster 03 // Cinema ({filteredFilm.length})
               </span>
               <div className="h-px bg-neutral-200 flex-1" />
             </div>
@@ -759,7 +870,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </h3>
 
             <div className="space-y-8">
-              {filmProjects.map((film, idx) => (
+              {filteredFilm.map((film, idx) => (
                 <div key={idx} className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-6 sm:p-10 md:p-12">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div className="lg:col-span-6">

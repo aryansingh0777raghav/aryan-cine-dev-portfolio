@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowDown, Sparkles, Code2, Film, Terminal } from 'lucide-react';
+import { ArrowDown, Sparkles, Code2, Film, Terminal, FileText } from 'lucide-react';
 
 interface HeroProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -83,12 +83,12 @@ export default function Hero({ viewMode }: HeroProps) {
             ))}
           </motion.div>
 
-          {/* Action CTA Button */}
+          {/* Action CTA Buttons */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center gap-3 sm:gap-4"
           >
             <a 
               href="#statement" 
@@ -106,6 +106,16 @@ export default function Hero({ viewMode }: HeroProps) {
             >
               <Sparkles size={13} />
               <span>Flagship: ArKTest Beta</span>
+            </a>
+
+            <a
+              href="mailto:aryansingh979211@gmail.com?subject=Resume%20Request%20for%20Aryan%20Singh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-neutral-300 bg-white hover:border-neutral-950 text-neutral-800 hover:text-neutral-950 text-xs font-semibold tracking-wide transition-all shadow-2xs"
+            >
+              <FileText size={13} />
+              <span>Request Resume / CV ↗</span>
             </a>
           </motion.div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Volume2, VolumeX } from 'lucide-react';
+import { soundFX } from '../utils/audio';
 
 interface NavbarProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -112,7 +113,10 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
           <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-800">
             <button
               type="button"
-              onClick={() => setViewMode('tech')}
+              onClick={() => {
+                soundFX.playClick();
+                setViewMode('tech');
+              }}
               className={`text-[12px] font-mono cursor-pointer transition-colors ${
                 viewMode === 'tech' ? 'text-neutral-950 font-bold' : 'text-neutral-500 hover:text-neutral-950'
               }`}
@@ -126,6 +130,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
               role="switch"
               aria-checked={viewMode === 'filmmaking'}
               onClick={() => {
+                soundFX.playToggle();
                 if (viewMode === 'tech') setViewMode('both');
                 else if (viewMode === 'both') setViewMode('filmmaking');
                 else setViewMode('tech');
@@ -144,7 +149,10 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
 
             <button
               type="button"
-              onClick={() => setViewMode('filmmaking')}
+              onClick={() => {
+                soundFX.playClick();
+                setViewMode('filmmaking');
+              }}
               className={`text-[12px] font-mono cursor-pointer transition-colors ${
                 viewMode === 'filmmaking' ? 'text-neutral-950 font-bold' : 'text-neutral-500 hover:text-neutral-950'
               }`}
