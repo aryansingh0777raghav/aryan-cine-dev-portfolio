@@ -31,8 +31,8 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
 
   return (
     <header className="fixed top-3.5 md:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transform-gpu">
-      {/* Floating MobilityLab Exact Frosted Glassmorphism Pill Container with Vertically Expanded Height */}
-      <div className="bg-white/45 backdrop-blur-md md:backdrop-blur-xl border border-white/70 rounded-2xl md:rounded-full py-3 md:py-3.5 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] flex items-center justify-between transition-all duration-300 transform-gpu">
+      {/* Floating Beveled Glassmorphism Pill with Specular Highlight and Layered Ambient Depth */}
+      <div className="bg-white/55 backdrop-blur-md md:backdrop-blur-2xl border border-black/[0.08] ring-1 ring-white/90 rounded-2xl md:rounded-full py-3 md:py-3.5 px-5 sm:px-8 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,1)] flex items-center justify-between transition-all duration-300 transform-gpu">
         
         {/* Left: Modern Geometric 'A' Monogram Logo + AryanVerse brand */}
         <a href="#home" className="flex items-center gap-2.5 group shrink-0">
