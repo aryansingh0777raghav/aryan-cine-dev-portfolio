@@ -8,29 +8,29 @@ interface ViewSelectorProps {
 export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
   const options = [
     {
-      id: 'tech' as const,
+      id: 'both' as const,
       index: '01',
+      title: 'Unified Vision',
+      subtitle: 'Complete Dual Showcase',
+      desc: 'The complete portfolio bridging software engineering architecture rigor with emotional cinematic storytelling.',
+      icon: Sparkles,
+      recommended: true
+    },
+    {
+      id: 'tech' as const,
+      index: '02',
       title: 'Tech & Systems',
       subtitle: 'Software Engineering',
-      desc: 'Explore crowdsourced QA platforms, browser OS simulators, and AI developer tools.',
+      desc: 'Explore crowdsourced QA platforms, browser OS simulators, AI developer tools, and scalable APIs.',
       icon: Cpu,
     },
     {
       id: 'filmmaking' as const,
-      index: '02',
+      index: '03',
       title: 'Cinema & Stories',
       subtitle: 'Creative Direction',
-      desc: 'Discover short films, psychological screenplays, and atmospheric cinematography.',
+      desc: 'Discover short films, psychological drama screenplays, atmospheric cinematography, and editorial.',
       icon: Film,
-    },
-    {
-      id: 'both' as const,
-      index: '03',
-      title: 'Unified Vision',
-      subtitle: 'Complete Showcase',
-      desc: 'The complete portfolio bridging engineering rigor with cinematic storytelling.',
-      icon: Sparkles,
-      recommended: true
     }
   ];
 
@@ -56,7 +56,7 @@ export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
           </p>
         </motion.div>
 
-        {/* Responsive Options Grid - Fits comfortably on mobile */}
+        {/* Responsive Options Grid - Unified Vision at TOP / Position 1 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6 w-full max-w-4xl">
           {options.map((opt, i) => (
             <motion.div
@@ -65,20 +65,30 @@ export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               onClick={() => onSelectMode(opt.id)}
-              className="group rounded-2xl border border-neutral-200 bg-[#FAFAFB] hover:bg-white hover:border-neutral-950 hover:shadow-md transition-all duration-200 p-4 sm:p-6 cursor-pointer flex flex-col justify-between relative"
+              className={`group rounded-2xl border transition-all duration-200 p-4 sm:p-6 cursor-pointer flex flex-col justify-between relative ${
+                opt.recommended 
+                  ? 'border-neutral-950 bg-white shadow-md ring-1 ring-neutral-950/10' 
+                  : 'border-neutral-200 bg-[#FAFAFB] hover:bg-white hover:border-neutral-950 hover:shadow-md'
+              }`}
             >
               {opt.recommended && (
-                <div className="absolute -top-2.5 right-4 px-2.5 py-0.5 rounded-full bg-neutral-950 text-white text-[9px] font-mono font-bold tracking-wider uppercase">
-                  Full Experience
+                <div className="absolute -top-2.5 right-4 px-2.5 py-0.5 rounded-full bg-neutral-950 text-white text-[9px] font-mono font-bold tracking-wider uppercase shadow-xs">
+                  ★ Recommended
                 </div>
               )}
 
               <div>
                 <div className="flex items-center justify-between mb-3 sm:mb-6">
-                  <span className="font-mono text-xs sm:text-sm font-bold text-neutral-400 group-hover:text-neutral-950 transition-colors">
+                  <span className={`font-mono text-xs sm:text-sm font-bold transition-colors ${
+                    opt.recommended ? 'text-neutral-950' : 'text-neutral-400 group-hover:text-neutral-950'
+                  }`}>
                     {opt.index}
                   </span>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-800 group-hover:bg-neutral-950 group-hover:text-white transition-all shadow-xs">
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all shadow-xs ${
+                    opt.recommended 
+                      ? 'bg-neutral-950 text-white border-neutral-950' 
+                      : 'bg-white border-neutral-200 text-neutral-800 group-hover:bg-neutral-950 group-hover:text-white'
+                  }`}>
                     <opt.icon size={16} />
                   </div>
                 </div>
@@ -109,7 +119,7 @@ export default function ViewSelector({ onSelectMode }: ViewSelectorProps) {
           onClick={() => onSelectMode('both')}
           className="mt-6 text-xs font-mono text-neutral-400 hover:text-neutral-950 transition-colors underline cursor-pointer"
         >
-          Skip & View All (Unified Vision) →
+          Direct Enter (Unified Vision) →
         </button>
       </div>
     </div>
