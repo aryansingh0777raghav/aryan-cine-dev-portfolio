@@ -177,30 +177,30 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
         </button>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation with Frosted Glassmorphism */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            className="lg:hidden mt-2 rounded-2xl bg-white/95 backdrop-blur-2xl border border-neutral-200 p-5 shadow-xl space-y-4"
+            className="lg:hidden mt-2.5 rounded-3xl bg-white/70 backdrop-blur-2xl border border-black/[0.08] ring-1 ring-white/90 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,1)] space-y-4"
           >
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1.5">
               {navLinks.map((link) => (
                 <a 
                   key={link.name} 
                   href={link.href} 
                   onClick={() => setIsOpen(false)}
-                  className="text-xs font-semibold text-neutral-800 hover:text-neutral-950 py-1"
+                  className="text-xs font-semibold text-neutral-800 hover:text-neutral-950 px-3 py-2 rounded-xl hover:bg-white/60 transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
 
-              <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+              <div className="pt-3 border-t border-neutral-200/60 flex items-center justify-between">
                 <span className="text-xs font-mono text-neutral-500">Curation:</span>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1 bg-neutral-900/[0.04] p-1 rounded-full border border-neutral-900/[0.06] backdrop-blur-sm">
                   {(['tech', 'both', 'filmmaking'] as const).map((m) => (
                     <button
                       key={m}
@@ -208,8 +208,10 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
                         setViewMode(m);
                         setIsOpen(false);
                       }}
-                      className={`text-[10px] font-mono px-2.5 py-1 rounded-full ${
-                        viewMode === m ? 'bg-neutral-950 text-white font-bold' : 'bg-neutral-100 text-neutral-700'
+                      className={`text-[10px] font-mono px-3 py-1 rounded-full transition-all ${
+                        viewMode === m 
+                          ? 'bg-neutral-950 text-white font-bold shadow-xs' 
+                          : 'text-neutral-600 hover:text-neutral-950'
                       }`}
                     >
                       {m === 'tech' ? 'Tech' : m === 'both' ? 'Both' : 'Film'}
@@ -221,7 +223,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 text-center w-full py-2.5 rounded-xl bg-neutral-950 text-white text-xs font-bold uppercase tracking-wider"
+                className="mt-2 text-center w-full py-2.5 rounded-xl bg-neutral-950 text-white text-xs font-bold uppercase tracking-wider shadow-xs"
               >
                 Contact ↗
               </a>
