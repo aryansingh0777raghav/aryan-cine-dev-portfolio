@@ -116,7 +116,7 @@ export default function Contact() {
                         type="text" 
                         name="name" 
                         required 
-                        placeholder="e.g. Jane Doe"
+                        placeholder="e.g. Aryan Singh"
                         className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-900 text-xs focus:outline-none focus:border-neutral-950 focus:bg-white transition-all font-medium"
                       />
                     </div>
@@ -129,7 +129,7 @@ export default function Contact() {
                         type="email" 
                         name="email" 
                         required 
-                        placeholder="jane@example.com"
+                        placeholder="yourname@example.com"
                         className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-900 text-xs focus:outline-none focus:border-neutral-950 focus:bg-white transition-all font-medium"
                       />
                     </div>
