@@ -1,37 +1,36 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 export default function VisitingCard() {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <section className="py-20 px-6 bg-black relative flex justify-center items-center overflow-hidden">
-      {/* Background ambient glow - optimized for performance */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/[0.05] blur-[80px] rounded-full pointer-events-none" style={{ willChange: 'transform' }} />
+    <section className="py-24 md:py-36 bg-white border-b border-neutral-200 flex justify-center items-center overflow-hidden">
+      <div className="max-w-7xl w-full mx-auto px-6 flex flex-col items-center">
+        {/* Monospaced Section Indexer */}
+        <div className="w-full flex items-center gap-3 mb-12">
+          <span className="section-index">008 // Digital Identity</span>
+          <div className="h-px bg-neutral-200 flex-1" />
+        </div>
 
-      <div className="max-w-7xl w-full flex flex-col items-center relative z-10" style={{ willChange: 'transform' }}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 max-w-lg"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-4">
-            Digital Identity
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gradient">
-            My Visiting Card
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-neutral-950 mb-3">
+            Digital Identity Card
           </h2>
-          <p className="text-white/40 mt-4 text-sm max-w-md mx-auto">
-            Hover or tap to flip the card and see the details.
+          <p className="text-xs sm:text-sm text-neutral-500 font-normal">
+            Hover or tap to flip the card and view direct contact details.
           </p>
         </motion.div>
 
-        <div className="perspective-1000 w-full max-w-[340px] aspect-[1/1.75] mx-auto group">
+        <div className="perspective-1000 w-full max-w-[320px] aspect-[1/1.75] mx-auto">
           <motion.div
             className="w-full h-full relative preserve-3d cursor-pointer"
-            style={{ willChange: 'transform' }}
             initial={false}
             animate={{ rotateY: isFlipped ? 180 : 0 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
@@ -40,7 +39,10 @@ export default function VisitingCard() {
             onHoverEnd={() => setIsFlipped(false)}
           >
             {/* Front Card */}
-            <div className="absolute inset-0 backface-hidden w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10" style={{ willChange: 'transform' }}>
+            <div 
+              className="absolute inset-0 backface-hidden w-full h-full rounded-2xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-900"
+              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
+            >
               <img 
                 src="/images/front_card.png" 
                 alt="Visiting Card Front" 
@@ -51,8 +53,8 @@ export default function VisitingCard() {
 
             {/* Back Card */}
             <div 
-              className="absolute inset-0 backface-hidden w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10"
-              style={{ transform: "rotateY(180deg)" }}
+              className="absolute inset-0 backface-hidden w-full h-full rounded-2xl overflow-hidden shadow-md border border-neutral-200 bg-neutral-900"
+              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
             >
               <img 
                 src="/images/back_card.png" 

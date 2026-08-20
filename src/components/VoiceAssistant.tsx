@@ -49,209 +49,142 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
     return info.samsung;
   } else if (has(['project', 'kaam', 'work', 'portfolio', 'dikhao', 'build', 'create', 'made'])) {
     setTimeout(() => scrollToSection('#projects'), 150);
-    if (viewMode === 'tech') {
-      return "Aryan has built some incredible tech experiences like ArVerse OS, ArFt Sandbox, and ArLip AI Shorts Generator. " + info.projects;
-    }
-    if (viewMode === 'filmmaking') {
-      return "Aryan directed the short film 'The Night of Life: Before You Think About It'. " + info.filmmaking;
-    }
-    return "Aryan has built some incredible digital experiences. " + info.projects;
-  } else if (has(['who', 'about', 'him', 'aryan', 'kaun', 'btao', 'biography', 'identity', 'profile'])) {
-    setTimeout(() => scrollToSection('#about'), 150);
-    return info.about;
-  } else if (has(['skill', 'stack', 'tech', 'kya aata', 'languages', 'expert', 'coding', 'tools', 'know'])) {
+    return info.projects;
+  } else if (has(['skill', 'tech', 'language', 'stack', 'coding', 'framework', 'tools', 'jaanta'])) {
     setTimeout(() => scrollToSection('#skills'), 150);
-    if (viewMode === 'tech') {
-      return "Technically, Aryan is a powerhouse. He's experienced in Python, React, C++, SQL, Javascript, Algorithms, and Big Data processing.";
-    }
-    if (viewMode === 'filmmaking') {
-      return "Creatively, Aryan is highly capable. He excels in scriptwriting, film direction, acting, music composition, and post-production video editing.";
-    }
-    return "Aryan is highly capable technically and creatively. " + info.skills;
-  } else if (has(['experience', 'internship', 'job', 'past', 'history', 'career', 'company', 'office'])) {
-    setTimeout(() => scrollToSection('#experience'), 150);
-    if (viewMode === 'tech') {
-      return "Aryan has solid tech experience:\n1. Python Internship at Data Culture Technology\n2. Big Data Certification at Samsung Innovation Campus.";
-    }
-    if (viewMode === 'filmmaking') {
-      return "Aryan has creative film experience:\n1. CineOn Studio 7 (2026) - Film Director & Editor for 'The Night of Life'.";
-    }
+    return info.skills;
+  } else if (has(['film', 'movie', 'cinema', 'the night of life', 'director', 'directing', 'cineon'])) {
+    setTimeout(() => scrollToSection('#about'), 150);
+    return info.filmmaking;
+  } else if (has(['experience', 'intern', 'training', 'job', 'journey', 'timeline'])) {
+    setTimeout(() => scrollToSection('#timeline'), 150);
     return info.experience;
-  } else if (has(['contact', 'baat', 'email', 'touch', 'reach', 'message', 'talk', 'hire', 'call', 'mail'])) {
+  } else if (has(['contact', 'email', 'phone', 'hire', 'reach', 'baat', 'message'])) {
     setTimeout(() => scrollToSection('#contact'), 150);
     return info.contact;
-  } else if (has(['education', 'padhai', 'study', 'college', 'school', 'university', 'degree', 'qualification'])) {
-    setTimeout(() => scrollToSection('#experience'), 150);
-    return info.education;
-  } else if (has(['film', 'movie', 'picture', 'direct', 'night of life', 'cinema', 'video', 'youtube'])) {
-    setTimeout(() => scrollToSection('#projects'), 150);
-    return info.filmmaking;
-  } else if (has(['social', 'link', 'github', 'linkedin', 'instagram', 'imdb', 'tmdb'])) {
-    if (cmd.includes('github')) setTimeout(() => window.open('https://github.com/aryansingh0777raghav', '_blank'), 500);
-    if (cmd.includes('linkedin')) setTimeout(() => window.open('https://www.linkedin.com/in/iamaryan07', '_blank'), 500);
-    if (cmd.includes('instagram')) setTimeout(() => window.open('https://www.instagram.com/iam_aryannnn07', '_blank'), 500);
-    return info.social + " " + info.links;
-  } else if (has(['press', 'news', 'blog', 'article', 'indianblog', 'achievement', 'award', 'feature', 'media', 'recognition'])) {
-    setTimeout(() => scrollToSection('#certifications'), 150);
-    return "Aryan Singh was featured on The Indian Blog in an exclusive press article titled 'Aryan Singh: The Young Filmmaker Redefining Independent Storytelling' (July 2026). The article spotlights his directorial debut 'The Night of Life' and his psychological storytelling style.";
-  } else if (has(['available', 'freelance', 'work', 'job', 'hire'])) {
-    return info.availability;
-  } else if (has(['hello', 'hi', 'namaste', 'hey', 'greetings', 'up'])) {
-    return "Greetings! I am the digital representative of Aryan Singh. Ask me anything about his engineering or filmmaking career.";
+  } else if (has(['about', 'who is', 'kon hai', 'aryan', 'background', 'intro'])) {
+    setTimeout(() => scrollToSection('#about'), 150);
+    return info.about;
   }
 
-  return "I'm sorry, I couldn't find that in my knowledge base. But I can tell you all about Aryan's technical skills, projects, certifications, press features, or film work.";
+  return `Aryan Singh is a dual-threat Software Engineer & Filmmaker. Founder of ArKTest Beta and director of 'The Night of Life'. How can I help you explore his portfolio?`;
 };
 
 export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const [inputText, setInputText] = useState('');
-  const [isMuted, setIsMuted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'initial',
       sender: 'ai',
-      text: "Hello! I am Aryan's AI assistant. Ask me anything about his technical skills, projects, film productions, or professional experience. Feel free to type below or click the microphone to speak!",
+      text: "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering projects, ArKTest Beta, or film productions.",
       timestamp: new Date()
     }
   ]);
-
+  const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
   const recognitionRef = useRef<any>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Update initial greeting when viewMode changes
   useEffect(() => {
-    setMessages(prev => {
-      if (prev.length === 1 && prev[0].id === 'initial') {
-        let greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his technical skills, projects, film productions, or professional experience. Feel free to type below or click the microphone to speak!";
-        if (viewMode === 'tech') {
-          greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering, AI tools like ArVerse OS or ArCh, coding stack, or Python training experience. Feel free to type below or click the microphone to speak!";
-        } else if (viewMode === 'filmmaking') {
-          greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his filmmaking, screenwriting, short film 'The Night of Life', or CineOn Studio 7. Feel free to type below or click the microphone to speak!";
-        }
-        return [{
-          id: 'initial',
-          sender: 'ai',
-          text: greeting,
-          timestamp: new Date()
-        }];
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => setIsListening(true);
+        recognition.onend = () => setIsListening(false);
+        recognition.onerror = () => setIsListening(false);
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0].transcript;
+          handleSendMessage(transcript);
+        };
+
+        recognitionRef.current = recognition;
       }
-      return prev;
-    });
-  }, [viewMode]);
-
-  // Initialize Speech Recognition
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).webkitSpeechRecognition) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'en-US';
-
-      recognitionRef.current.onresult = (event: any) => {
-        const text = event.results[0][0].transcript;
-        setTranscript(text);
-        handleSendMessage(text, true);
-        setIsListening(false);
-      };
-
-      recognitionRef.current.onerror = () => {
-        setIsListening(false);
-      };
-
-      recognitionRef.current.onend = () => {
-        setIsListening(false);
-      };
     }
   }, []);
 
-  // Scroll to bottom of chat area dynamically and cleanly
   useEffect(() => {
-    const container = messagesContainerRef.current;
-    if (container) {
-      container.scrollTo({
-        top: container.scrollHeight,
-        behavior: 'smooth'
-      });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
 
-  // Clean up speech synthesis when component unmounts
-  useEffect(() => {
-    return () => {
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, [isOpen]);
+  const speakText = (text: string) => {
+    if (isMuted || typeof window === 'undefined' || !window.speechSynthesis) return;
 
-  const speak = (text: string) => {
-    if (isMuted) return;
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      window.speechSynthesis.speak(utterance);
-    }
+    window.speechSynthesis.cancel();
+    const cleanText = text.replace(/https?:\/\/\S+/g, '').replace(/[*_#]/g, '');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    window.speechSynthesis.speak(utterance);
   };
 
-  const handleSendMessage = async (text: string, isVoiceInput = false) => {
+  const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
 
     const userMessage: Message = {
-      id: `user-${Date.now()}`,
+      id: Date.now().toString(),
       sender: 'user',
-      text: text.trim(),
+      text,
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInputText('');
-    setTranscript('');
     setIsLoading(true);
 
-    // Get response directly from local parser
-    const replyText = getLocalResponse(text.trim(), viewMode);
-
-    // Small artificial delay to simulate typing
-    await new Promise(resolve => setTimeout(resolve, 350));
-
-    const aiMessage: Message = {
-      id: `ai-${Date.now()}`,
-      sender: 'ai',
-      text: replyText,
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, aiMessage]);
-    setIsLoading(false);
-
-    if (isVoiceInput) {
-      speak(replyText);
-    }
+    setTimeout(() => {
+      const reply = getLocalResponse(text, viewMode);
+      const aiMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'ai',
+        text: reply,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, aiMessage]);
+      setIsLoading(false);
+      speakText(reply);
+    }, 300);
   };
 
   const toggleListening = () => {
+    if (!recognitionRef.current) {
+      alert("Speech recognition is not supported in this browser. Please type your message.");
+      return;
+    }
+
     if (isListening) {
-      recognitionRef.current?.stop();
+      recognitionRef.current.stop();
     } else {
-      setIsListening(true);
-      setTranscript('');
-      recognitionRef.current?.start();
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+      setIsSpeaking(false);
+      try {
+        recognitionRef.current.start();
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
   const toggleMute = () => {
-    if (!isMuted) {
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
+    if (!isMuted && typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
       setIsSpeaking(false);
     }
     setIsMuted(!isMuted);
@@ -262,19 +195,11 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
       window.speechSynthesis.cancel();
     }
     setIsSpeaking(false);
-    
-    let greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his technical skills, projects, film productions, or professional experience. Feel free to type below or click the microphone to speak!";
-    if (viewMode === 'tech') {
-      greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering, AI tools like ArVerse OS or ArCh, coding stack, or Python training experience. Feel free to type below or click the microphone to speak!";
-    } else if (viewMode === 'filmmaking') {
-      greeting = "Hello! I am Aryan's AI assistant. Ask me anything about his filmmaking, screenwriting, short film 'The Night of Life', or CineOn Studio 7. Feel free to type below or click the microphone to speak!";
-    }
-
     setMessages([
       {
         id: 'initial',
         sender: 'ai',
-        text: greeting,
+        text: "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering projects, ArKTest Beta, or film productions.",
         timestamp: new Date()
       }
     ]);
@@ -287,37 +212,13 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
     }
   };
 
-  const getSuggestions = () => {
-    if (viewMode === 'tech') {
-      return [
-        { text: "About Developer 👨‍💻", query: "Who is Aryan?" },
-        { text: "Tech Projects 🚀", query: "Show me his tech projects" },
-        { text: "Coding Stack 💻", query: "What are his coding skills?" },
-        { text: "Samsung Big Data 📜", query: "Tell me about his Samsung Big Data certificate" },
-        { text: "Hire Developer 💼", query: "Is Aryan available for tech freelance work?" },
-        { text: "Contact Details 📧", query: "How can I contact Aryan?" }
-      ];
-    }
-    if (viewMode === 'filmmaking') {
-      return [
-        { text: "About Director 🎬", query: "Tell me about Aryan's filmmaking career" },
-        { text: "Short Film 🎥", query: "What film did he direct?" },
-        { text: "Creative Skills 🎭", query: "What are his filmmaking skills?" },
-        { text: "CineOn Studio 7 🎞️", query: "Tell me about CineOn Studio 7" },
-        { text: "Hire Director 💼", query: "Is Aryan available for film direction work?" },
-        { text: "Contact Details 📧", query: "How can I contact Aryan?" }
-      ];
-    }
-    return [
-      { text: "About Aryan 👨‍💻", query: "Who is Aryan?" },
-      { text: "Top Projects 🚀", query: "Show me his projects" },
-      { text: "Skills & Tech 💻", query: "What are his coding skills?" },
-      { text: "Samsung Big Data 📜", query: "Tell me about his Samsung Big Data certificate" },
-      { text: "Short Film 🎬", query: "What film did he direct?" },
-      { text: "Contact details 📧", query: "How can I contact Aryan?" },
-      { text: "Hire Aryan 💼", query: "Is Aryan available for freelance work?" }
-    ];
-  };
+  const getSuggestions = () => [
+    { text: "About Aryan 👨‍💻", query: "Who is Aryan?" },
+    { text: "Flagship ArKTest 🚀", query: "Tell me about ArKTest Beta" },
+    { text: "Tech Stack 💻", query: "What are his coding skills?" },
+    { text: "Short Film 🎬", query: "What film did he direct?" },
+    { text: "Contact Details 📧", query: "How can I contact Aryan?" }
+  ];
 
   return (
     <>
@@ -326,88 +227,76 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
         <motion.div 
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100]"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50"
         >
           <button
             aria-label="Open AI Voice Assistant"
             onClick={() => setIsOpen(true)}
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white hover:scale-110 transition-[transform,background-color] duration-300 shadow-2xl hover:border-white/20 bg-black/40 hover:bg-black/60 relative group"
+            className="w-13 h-13 md:w-14 md:h-14 rounded-full bg-neutral-950 text-white flex items-center justify-center hover:scale-105 transition-all shadow-xl relative group cursor-pointer"
             title="Ask AI Assistant"
           >
-            <Sparkles size={22} className={isSpeaking ? 'animate-pulse text-blue-400' : 'group-hover:rotate-12 transition-transform'} />
+            <Sparkles size={20} className={isSpeaking ? 'animate-pulse text-amber-400' : ''} />
             {isSpeaking && (
-              <div className="absolute inset-0 rounded-full animate-ping bg-blue-500/20" />
+              <div className="absolute inset-0 rounded-full animate-ping bg-neutral-950/20" />
             )}
           </button>
         </motion.div>
       )}
 
-      {/* Expanded Wide Chat Box */}
+      {/* Swiss Clean Assistant Drawer / Dialog with Frosted Glassmorphism */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] w-[calc(100vw-2rem)] sm:w-[480px] h-[550px] md:h-[650px] max-h-[calc(100vh-4rem)] glass rounded-[2rem] border border-white/10 shadow-3xl backdrop-blur-md flex flex-col overflow-hidden"
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[520px] max-h-[calc(100vh-4rem)] rounded-3xl bg-white/70 backdrop-blur-2xl border border-white/80 shadow-[0_20px_60px_rgba(0,0,0,0.12)] flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="p-5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white relative shadow-inner">
-                  <Sparkles size={16} className={isSpeaking ? 'animate-pulse' : ''} />
-                  {isListening && (
-                    <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-red-500 border-2 border-black rounded-full animate-pulse" />
-                  )}
-                  {!isListening && (
-                    <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-black rounded-full" />
-                  )}
+            <div className="p-4 border-b border-white/60 flex items-center justify-between bg-white/40 backdrop-blur-md">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-neutral-950 flex items-center justify-center text-white font-mono text-xs font-bold">
+                  AI
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white tracking-tight">Aryan's AI Representative</h4>
-                  <p className="text-[10px] text-white/40 font-medium">
+                  <h4 className="text-xs font-bold text-neutral-950">Aryan's AI Assistant</h4>
+                  <p className="text-[10px] text-neutral-500 font-mono">
                     {isListening ? 'Listening...' : 'Online & Ready'}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                {/* Voice mute/unmute */}
+              <div className="flex items-center gap-1">
                 <button
-                  aria-label={isMuted ? "Unmute Voice Output" : "Mute Voice Output"}
+                  aria-label={isMuted ? "Unmute Voice" : "Mute Voice"}
                   onClick={toggleMute}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                  title={isMuted ? "Unmute Voice Output" : "Mute Voice Output"}
+                  className="p-2 rounded-lg text-neutral-500 hover:text-neutral-950 hover:bg-white/60 transition-colors"
                 >
-                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
                 </button>
 
-                {/* Clear Chat */}
                 <button
-                  aria-label="Clear Chat History"
+                  aria-label="Clear Chat"
                   onClick={clearChat}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                  title="Clear Chat"
+                  className="p-2 rounded-lg text-neutral-500 hover:text-neutral-950 hover:bg-white/60 transition-colors"
                 >
-                  <Trash2 size={16} />
+                  <Trash2 size={15} />
                 </button>
 
-                {/* Close */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2.5 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                  title="Close Assistant"
+                  className="p-2 rounded-lg text-neutral-500 hover:text-neutral-950 hover:bg-white/60 transition-colors"
                 >
-                  <X size={16} />
+                  <X size={15} />
                 </button>
               </div>
             </div>
 
-            {/* Scrollable Messages Area */}
+            {/* Messages */}
             <div 
               ref={messagesContainerRef}
-              className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-thin scroll-smooth"
+              className="flex-1 overflow-y-auto p-4 space-y-3"
             >
               {messages.map((msg) => (
                 <div
@@ -415,14 +304,14 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs md:text-sm leading-relaxed shadow-sm transition-all ${
+                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-xs leading-relaxed ${
                       msg.sender === 'user'
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-tr-none'
-                        : 'bg-white/5 border border-white/5 text-white/90 rounded-tl-none'
+                        ? 'bg-neutral-950 text-white rounded-tr-none shadow-xs'
+                        : 'bg-white/80 backdrop-blur-md text-neutral-900 border border-white/80 rounded-tl-none font-normal shadow-xs'
                     }`}
                   >
                     <p className="whitespace-pre-line">{msg.text}</p>
-                    <span className="text-[8px] opacity-30 mt-1.5 block text-right">
+                    <span className="text-[9px] opacity-40 mt-1 block text-right font-mono">
                       {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
@@ -431,22 +320,22 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
 
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/5 border border-white/5 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-2">
-                    <Loader2 size={14} className="animate-spin text-white/40" />
-                    <span className="text-xs text-white/40 font-medium">Assistant is thinking...</span>
+                  <div className="bg-white/80 backdrop-blur-md border border-white/80 rounded-2xl rounded-tl-none px-3.5 py-2 flex items-center gap-2 shadow-xs">
+                    <Loader2 size={13} className="animate-spin text-neutral-500" />
+                    <span className="text-xs text-neutral-500 font-mono">Processing...</span>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Suggestion Pills */}
-            <div className="px-5 pb-2 pt-1">
-              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none snap-x mask-gradient">
+            {/* Suggestions */}
+            <div className="px-4 pb-2">
+              <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
                 {getSuggestions().map((sug, i) => (
                   <button
                     key={i}
                     onClick={() => handleSendMessage(sug.query)}
-                    className="flex-shrink-0 snap-center px-3.5 py-1.5 bg-white/[0.04] border border-white/5 rounded-full text-[10px] font-bold text-white/50 hover:bg-white/[0.08] hover:text-white transition-colors duration-200"
+                    className="flex-shrink-0 px-3 py-1 bg-white/60 backdrop-blur-sm border border-white/70 rounded-full text-[10px] font-mono text-neutral-700 hover:bg-neutral-950 hover:text-white transition-colors shadow-xs"
                   >
                     {sug.text}
                   </button>
@@ -454,40 +343,35 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
               </div>
             </div>
 
-            {/* Footer Input Form */}
-            <form onSubmit={handleSubmit} className="p-5 pt-2 border-t border-white/5 bg-black/30 flex items-center gap-3">
-              {/* Mic Speech Button */}
+            {/* Input Footer */}
+            <form onSubmit={handleSubmit} className="p-3 border-t border-white/60 bg-white/40 backdrop-blur-md flex items-center gap-2">
               <button
                 type="button"
                 onClick={toggleListening}
-                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors duration-200 ${
+                className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
                   isListening
-                    ? 'bg-red-500/10 text-red-500 border border-red-500/20 shadow-lg shadow-red-500/10'
-                    : 'bg-white/5 hover:bg-white/10 text-white/60 hover:text-white border border-white/5'
+                    ? 'bg-red-500 text-white shadow-xs'
+                    : 'bg-white/80 hover:bg-white text-neutral-700 border border-white/80 shadow-xs'
                 }`}
-                title={isListening ? "Stop Listening" : "Start Voice Input"}
               >
-                {isListening ? <MicOff size={18} className="animate-pulse" /> : <Mic size={18} />}
+                {isListening ? <MicOff size={15} className="animate-pulse" /> : <Mic size={15} />}
               </button>
 
-              {/* TextInput */}
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                placeholder={isListening ? "Listening..." : "Ask me anything about Aryan..."}
+                placeholder="Ask about Aryan's projects..."
                 disabled={isListening}
-                className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-xs md:text-sm text-white focus:outline-none focus:border-white/20 transition-colors duration-200 placeholder-white/30 disabled:opacity-50"
+                className="flex-1 bg-white/60 backdrop-blur-sm border border-white/70 rounded-xl px-3.5 py-2 text-xs text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:border-neutral-950 focus:bg-white/80 transition-colors"
               />
 
-              {/* Send Button */}
               <button
                 type="submit"
                 disabled={!inputText.trim() || isLoading || isListening}
-                className="w-11 h-11 rounded-xl bg-white text-black hover:bg-gray-200 flex items-center justify-center transition-colors duration-200 disabled:opacity-40 disabled:hover:bg-white"
-                title="Send Message"
+                className="w-9 h-9 rounded-xl bg-neutral-950 text-white flex items-center justify-center disabled:opacity-40 shadow-xs"
               >
-                <Send size={16} />
+                <Send size={14} />
               </button>
             </form>
           </motion.div>

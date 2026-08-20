@@ -1,4 +1,5 @@
-import { Briefcase, GraduationCap, ExternalLink, Linkedin, Github } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Briefcase, GraduationCap, ArrowUpRight, Linkedin, Globe } from 'lucide-react';
 
 interface TimelineProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -6,144 +7,136 @@ interface TimelineProps {
 
 const experience = [
   {
+    year: "2026",
+    marker: "// 2026 – Present",
     company: "ArKTest Beta (Application Review Kit)",
     role: "Founder & Lead Full-Stack Architect",
-    period: "2026 – Present",
     type: "tech" as const,
-    details: "Founded by Aryan Singh, Co-Founded by Vijay Laxmi Singh. Built a full-stack crowd testing & QA innovation platform with FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript featuring automated ArK Points escrow economy, real-time public telemetry, dispute arbitration, multi-tier reputation ranks, and individual CSV transaction exports.",
-    link: "https://arktest-beta.vercel.app",
+    details: "Founded by Aryan Singh (Co-Founded by Vijay Laxmi Singh). Engineered a full-stack crowd testing and QA marketplace using FastAPI, PostgreSQL/SQLAlchemy, and Vanilla JavaScript. Implemented automated escrow point locking, pessimistic database concurrency, PWA capabilities, and single-user CSV exports.",
+    link: "https://arktest-beta.vercel.app/",
     linkedin: "https://www.linkedin.com/company/arktest-beta/"
   },
   {
-    company: "Data Culture Technology",
-    role: "Python Training",
-    period: "Jun 2025 – Aug 2025",
-    type: "tech" as const,
-    details: "Learned core Python concepts (data types, functions, OOP). Hands-on exercises, real-world implementation, and building practical solutions."
-  },
-  {
-    company: "Samsung Innovation Campus",
-    role: "Big Data Certification",
-    period: "Oct 2025 – Nov 2025",
-    type: "tech" as const,
-    details: "Successfully completed the Big Data course (Certificate ID: SIC08720), specializing in big data tools and techniques for processing, managing, and analyzing large datasets."
-  },
-  {
+    year: "2026",
+    marker: "// 2026",
     company: "CineOn Studio 7",
-    role: "Short Film Production",
-    period: "2026",
+    role: "Film Director, Screenwriter & Editor",
     type: "filmmaking" as const,
-    details: "Writer, Director, Actor, Musician, Editor for \"The Night of Life\". Featured on The Indian Blog for redefining independent storytelling. Handled creative direction, pacing, post-production, and final edit."
-  }
-];
-
-const education = [
-  {
-    institution: "Institute of Technology and Management, Gorakhpur",
-    degree: "Bachelor of Computer Applications (BCA)",
-    period: "Sep 2024 - Dec 2027"
+    details: "Written and directed 'The Night of Life: Before You Think About It' — a psychological narrative short film addressing student mental health, academic isolation, and inner psychological resilience. Handled entire post-production, editing, and distribution across IMDb and film festival circuits.",
+    link: "https://www.youtube.com/@cineonstudio7"
   },
   {
-    institution: "SR International Academy, Nathnagar",
-    degree: "Intermediate",
-    period: "2022 - 2023"
+    year: "2025",
+    marker: "// 2025 (Nov)",
+    company: "Samsung Innovation Campus",
+    role: "Big Data Certification (SIC08720)",
+    type: "tech" as const,
+    details: "Completed intensive Big Data & Data Analytics training program (SIC08720) covering large-scale dataset manipulation, data cleaning, Python analytics, and predictive data modeling pipelines."
+  },
+  {
+    year: "2025",
+    marker: "// 2025 (Jun – Aug)",
+    company: "Data Culture Technology",
+    role: "Python Training Internship",
+    type: "tech" as const,
+    details: "Completed industry training in Python core engineering, OOP architectures, database normalization, and automated script testing.",
+  },
+  {
+    year: "2024",
+    marker: "// 2024 – 2027",
+    company: "Institute of Technology & Management (ITM)",
+    role: "Bachelor of Computer Applications (BCA)",
+    type: "tech" as const,
+    details: "Pursuing degree in Computer Applications at ITM Gorakhpur. Deep coursework in Data Structures & Algorithms, Database Management Systems (DBMS), Operating Systems, and Modern Software Engineering.",
   }
 ];
 
 export default function Timeline({ viewMode }: TimelineProps) {
-  // Filter experiences based on selected path
-  const filteredExperience = experience.filter(item => {
-    if (viewMode === 'tech') return item.type === 'tech';
-    if (viewMode === 'filmmaking') return item.type === 'filmmaking';
-    return true;
+  const filteredExp = experience.filter(item => {
+    if (viewMode === 'both' || viewMode === null) return true;
+    return item.type === viewMode;
   });
 
   return (
-    <section id="experience" className="py-20 md:py-32 px-6 bg-black relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
-          
-          {/* Experience */}
-          <div>
-            <div className="flex items-center gap-4 mb-8 md:mb-12">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl glass flex items-center justify-center text-white/60">
-                <Briefcase size={20} />
+    <section id="timeline" className="py-24 md:py-36 bg-[#FAFAFB] border-b border-neutral-200">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Monospaced Section Indexer */}
+        <div className="flex items-center gap-3 mb-12">
+          <span className="section-index">005 // Milestones & Journey</span>
+          <div className="h-px bg-neutral-200 flex-1" />
+        </div>
+
+        {/* Section Header */}
+        <div className="max-w-2xl mb-16">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
+            Trajectory & Milestones.<br />
+            <span className="text-neutral-500 font-semibold">Chronological progression.</span>
+          </h2>
+          <p className="text-sm sm:text-base text-neutral-600 font-normal">
+            A chronological timeline of startup founding, technical internships, certifications, and creative productions.
+          </p>
+        </div>
+
+        {/* Columnar Swiss Timeline Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredExp.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="rounded-2xl border border-neutral-200 bg-white p-7 hover:border-neutral-400 hover:shadow-xs transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="font-mono text-xs font-bold text-neutral-950">
+                    {item.marker}
+                  </span>
+                  <span className="swiss-pill-tag">
+                    {item.type === 'tech' ? 'Engineering' : 'Cinema'}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-bold text-neutral-950 tracking-tight mb-1">
+                  {item.company}
+                </h3>
+
+                <p className="text-xs font-semibold text-neutral-700 mb-4">
+                  {item.role}
+                </p>
+
+                <p className="text-xs text-neutral-600 leading-relaxed font-normal mb-6">
+                  {item.details}
+                </p>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gradient text-left">Experience</h2>
-            </div>
-            
-            <div className="space-y-4 md:space-y-6">
-              {filteredExperience.map((item, i) => (
-                <div 
-                  key={i}
-                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-colors duration-300"
-                >
-                  <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.role}</h3>
-                  <p className="text-xs md:text-sm font-bold text-white/40 mb-4">{item.company}</p>
-                  <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-4">{item.details}</p>
-                  {(item.link || item.github || item.linkedin) && (
-                    <div className="flex flex-wrap gap-2 pt-3 border-t border-white/5">
-                      {item.link && (
-                        <a 
-                          href={item.link} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition-colors"
-                        >
-                          <ExternalLink size={12} /> Live Demo
-                        </a>
-                      )}
-                      {item.github && (
-                        <a 
-                          href={item.github} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition-colors"
-                        >
-                          <Github size={12} /> GitHub Repo
-                        </a>
-                      )}
-                      {item.linkedin && (
-                        <a 
-                          href={item.linkedin} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="px-3 py-1.5 glass rounded-lg text-[10px] font-bold uppercase tracking-wider text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 flex items-center gap-1.5 transition-colors"
-                        >
-                          <Linkedin size={12} /> LinkedIn Page
-                        </a>
-                      )}
-                    </div>
+
+              {(item.link || item.linkedin) && (
+                <div className="pt-4 border-t border-neutral-100 flex flex-wrap items-center gap-2">
+                  {item.link && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-neutral-900 hover:underline flex items-center gap-1"
+                    >
+                      <Globe size={12} /> Visit Link <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {item.linkedin && (
+                    <a
+                      href={item.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
+                    >
+                      <Linkedin size={12} /> LinkedIn <ArrowUpRight size={12} />
+                    </a>
                   )}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Education */}
-          <div>
-            <div className="flex items-center gap-4 mb-8 md:mb-12">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl glass flex items-center justify-center text-white/60">
-                <GraduationCap size={20} />
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gradient text-left">Education</h2>
-            </div>
-            
-            <div className="space-y-4 md:space-y-6">
-              {education.map((item, i) => (
-                <div 
-                  key={i}
-                  className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 relative group hover:border-white/20 transition-colors duration-300"
-                >
-                  <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4 block">{item.period}</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.degree}</h3>
-                  <p className="text-xs md:text-sm font-bold text-white/40">{item.institution}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

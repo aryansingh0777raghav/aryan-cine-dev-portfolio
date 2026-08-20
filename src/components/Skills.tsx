@@ -1,97 +1,114 @@
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion } from 'motion/react';
+import { Terminal, Film, Sparkles, Check } from 'lucide-react';
 
 interface SkillsProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
 const skills = {
-  technical: ["Python", "Pandas", "JAVA Basic", "C", "C++", "HTML", "Data Structures", "Algorithms", "SQL", "JavaScript", "React"],
-  creative: ["Writer", "Director", "Actor", "Musician", "Editor", "UI/UX Design"]
+  technical: [
+    "Python 3.14 & FastAPI",
+    "PostgreSQL & SQLAlchemy",
+    "Pessimistic Concurrency (with_for_update)",
+    "React 19 & TypeScript",
+    "Tailwind CSS",
+    "Kotlin & Jetpack Compose",
+    "Data Structures & Algorithms",
+    "OWASP API Security",
+    "Automated Escrow Architectures",
+    "Pytest Test Automation",
+    "Progressive Web Apps (PWA)",
+    "Groq & LLM APIs"
+  ],
+  creative: [
+    "Screenwriting & Directing",
+    "Psychological Realism",
+    "Atmospheric Cinematography",
+    "DaVinci Resolve Color Grading",
+    "Premiere Pro Editorial",
+    "Actor Direction & Dialogue",
+    "Sound Design & Audio Ducking"
+  ]
 };
 
 export default function Skills({ viewMode }: SkillsProps) {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
-
-  const getBackgroundText = () => {
-    if (viewMode === 'tech') return 'ENGINEERING • PRECISION • CODE • DEVELOPMENT • ';
-    if (viewMode === 'filmmaking') return 'CINEMATOGRAPHY • DIRECTION • STORIES • CREATIVE • ';
-    return 'ENGINEERING • PRECISION • CODE • CREATION • STORIES • ';
-  };
-
   return (
-    <section id="skills" className="py-20 md:py-32 px-6 bg-black relative overflow-hidden">
-      {/* Refined Parallax Background Text (Outlined Engineering Style) */}
-      <motion.div 
-        style={{ y }}
-        className="absolute top-0 right-[-5%] text-[20vw] font-black select-none pointer-events-none whitespace-nowrap z-0 tracking-tighter opacity-[0.02]"
-      >
-        <span style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>
-          {getBackgroundText()}
-        </span>
-      </motion.div>
+    <section id="skills" className="py-24 md:py-36 bg-[#FAFAFB] border-b border-neutral-200">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Monospaced Section Indexer */}
+        <div className="flex items-center gap-3 mb-12">
+          <span className="section-index">007 // Technical & Creative Matrix</span>
+          <div className="h-px bg-neutral-200 flex-1" />
+        </div>
 
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="max-w-5xl mx-auto text-center relative z-10">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-4">
-          Expertise
-        </span>
-        <h2 className="text-4xl md:text-6xl font-black mb-12 md:mb-20 tracking-tighter text-gradient">Skills & Capabilities</h2>
-        
-        <div className={`grid gap-8 md:gap-16 ${
-          viewMode === 'tech' || viewMode === 'filmmaking' ? 'max-w-2xl mx-auto grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
-        }`}>
-          {/* Tech stack column */}
+        {/* Section Header */}
+        <div className="max-w-2xl mb-16">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
+            Capabilities Matrix.<br />
+            <span className="text-neutral-500 font-semibold">Engineering & storytelling toolset.</span>
+          </h2>
+          <p className="text-sm sm:text-base text-neutral-600 font-normal">
+            Specialized competencies across full-stack software development, systems security, and narrative filmmaking.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Tech Matrix */}
           {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
-            <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-10 border border-white/5">
-              <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 md:mb-10 font-black">Technical Stack</h3>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                {skills.technical.map((skill, i) => (
-                  <motion.span 
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      delay: i * 0.05, 
-                      type: "spring", 
-                      stiffness: 260, 
-                      damping: 20 
-                    }}
-                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-colors duration-200 cursor-default"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-neutral-200 bg-white p-8 hover:border-neutral-400 transition-all"
+            >
+              <div className="flex items-center gap-2 mb-6">
+                <Terminal size={18} className="text-neutral-950" />
+                <h3 className="text-lg font-bold text-neutral-950 tracking-tight">
+                  Software Engineering & Architecture
+                </h3>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {skills.technical.map((item, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-medium text-neutral-800 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
                   >
-                    {skill}
-                  </motion.span>
+                    <Check size={11} className="text-neutral-400" />
+                    {item}
+                  </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )}
 
-          {/* Creative column */}
+          {/* Creative Matrix */}
           {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && (
-            <div className="glass rounded-3xl md:rounded-[3rem] p-8 md:p-10 border border-white/5">
-              <h3 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 md:mb-10 font-black">Creative Arts</h3>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                {skills.creative.map((skill, i) => (
-                  <motion.span 
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      delay: i * 0.05 + 0.3, 
-                      type: "spring", 
-                      stiffness: 260, 
-                      damping: 20 
-                    }}
-                    className="px-4 py-2 md:px-6 md:py-3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold tracking-wider text-white/70 hover:bg-white hover:text-black transition-colors duration-200 cursor-default"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-neutral-200 bg-white p-8 hover:border-neutral-400 transition-all"
+            >
+              <div className="flex items-center gap-2 mb-6">
+                <Film size={18} className="text-neutral-950" />
+                <h3 className="text-lg font-bold text-neutral-950 tracking-tight">
+                  Cinema, Direction & Post-Production
+                </h3>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {skills.creative.map((item, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-medium text-neutral-800 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
                   >
-                    {skill}
-                  </motion.span>
+                    <Sparkles size={11} className="text-neutral-400" />
+                    {item}
+                  </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

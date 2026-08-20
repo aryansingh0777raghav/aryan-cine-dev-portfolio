@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface NavbarProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -8,141 +8,227 @@ interface NavbarProps {
 }
 
 export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Overview', href: '#home' },
+    { name: 'Pillars', href: '#pillars' },
+    { 
+      name: 'Projects', 
+      href: '#projects',
+      hasDropdown: true,
+      subItems: [
+        { name: 'ArKTest Beta (Flagship)', href: '#projects' },
+        { name: 'ArVerse OS', href: '#projects' },
+        { name: 'Certilink (Verification)', href: '#projects' },
+        { name: 'The Night of Life (Film)', href: '#projects' }
+      ]
+    },
+    { name: 'Timeline', href: '#timeline' },
+    { name: 'News', href: '#certifications' },
   ];
 
   return (
-    <nav 
-      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-[60] transition-all duration-500 rounded-2xl ${
-        scrolled 
-          ? 'bg-black/60 backdrop-blur-md border border-white/10 py-3 shadow-2xl' 
-          : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="px-6 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-black tracking-tighter text-white hover:opacity-70 transition-opacity">
-          AS<span className="text-white/40">.</span>
+    <header className="fixed top-3.5 md:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50">
+      {/* Floating MobilityLab Exact Frosted Glassmorphism Pill Container with Vertically Expanded Height */}
+      <div className="bg-white/40 backdrop-blur-xl border border-white/70 rounded-2xl md:rounded-full py-3 md:py-3.5 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.04)] flex items-center justify-between transition-all duration-300">
+        
+        {/* Left: Modern Geometric 'A' Monogram Logo + AryanVerse brand */}
+        <a href="#home" className="flex items-center gap-2.5 group shrink-0">
+          <div className="w-6 h-6 flex items-center justify-center relative">
+            <svg className="w-5.5 h-5.5 shrink-0" viewBox="0 0 24 24" fill="none">
+              {/* Outer Geometric 'A' Silhouette */}
+              <path 
+                d="M12 2.5L2.5 21H7.2L12 11.2L16.8 21H21.5L12 2.5Z" 
+                fill="#0A0A0A" 
+              />
+              {/* Inner Triangle Negative Space */}
+              <polygon points="9.5,15.5 14.5,15.5 12,10.2" fill="#FFFFFF" />
+              {/* Swiss Red Precision Focal Dot */}
+              <circle cx="12" cy="18.2" r="1.1" fill="#E63946" />
+            </svg>
+          </div>
+          <span className="font-extrabold tracking-tight text-neutral-950 text-sm sm:text-base leading-none">
+            AryanVerse
+          </span>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="text-[10px] uppercase tracking-[0.2em] text-white/50 hover:text-white transition-all duration-300 font-bold"
-              >
-                {link.name}
-              </a>
-            ))}
+        {/* Center: Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7">
+          {navLinks.map((link) => (
+            <div key={link.name} className="relative">
+              {link.hasDropdown ? (
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsProjectsDropdownOpen(true)}
+                  onMouseLeave={() => setIsProjectsDropdownOpen(false)}
+                >
+                  <a
+                    href={link.href}
+                    className="text-[13px] font-medium text-neutral-800 hover:text-neutral-950 transition-colors flex items-center gap-1 py-1"
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown size={11} className="text-neutral-500" />
+                  </a>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isProjectsDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        className="absolute top-full left-0 mt-1.5 w-52 rounded-2xl bg-white/85 backdrop-blur-2xl border border-white/80 p-2 shadow-xl z-50"
+                      >
+                        {link.subItems?.map((sub) => (
+                          <a
+                            key={sub.name}
+                            href={sub.href}
+                            className="block px-3.5 py-2 text-xs text-neutral-800 hover:text-neutral-950 hover:bg-white/70 rounded-xl transition-colors font-medium"
+                          >
+                            {sub.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <a
+                  href={link.href}
+                  className="text-[13px] font-medium text-neutral-800 hover:text-neutral-950 transition-colors py-1"
+                >
+                  {link.name}
+                </a>
+              )}
+            </div>
+          ))}
+        </nav>
+
+        {/* Right Section: Exact MobilityLab Toggle Switch + Contact Button */}
+        <div className="hidden sm:flex items-center gap-4">
+          {/* Exact MobilityLab Toggle Capsule Switch: Tech [ ● ] Film */}
+          <div className="flex items-center gap-1.5 text-xs font-medium text-neutral-800">
+            <button
+              type="button"
+              onClick={() => setViewMode('tech')}
+              className={`text-[12px] font-mono cursor-pointer transition-colors ${
+                viewMode === 'tech' ? 'text-neutral-950 font-bold' : 'text-neutral-500 hover:text-neutral-950'
+              }`}
+            >
+              Tech
+            </button>
+
+            {/* Dark Charcoal Slider Capsule with White Sliding Circle (Exact MobilityLab match) */}
+            <button
+              type="button"
+              role="switch"
+              aria-checked={viewMode === 'filmmaking'}
+              onClick={() => {
+                if (viewMode === 'tech') setViewMode('both');
+                else if (viewMode === 'both') setViewMode('filmmaking');
+                else setViewMode('tech');
+              }}
+              className="w-11 h-5.5 bg-neutral-700 hover:bg-neutral-800 rounded-full p-0.5 transition-colors relative cursor-pointer flex items-center shadow-xs"
+              title={`Current: ${viewMode || 'both'}. Click to toggle.`}
+            >
+              <motion.div
+                className="w-4.5 h-4.5 bg-white rounded-full shadow-sm"
+                animate={{ 
+                  x: viewMode === 'tech' ? 1 : viewMode === 'both' ? 10 : 21 
+                }}
+                transition={{ type: "spring", stiffness: 500, damping: 32 }}
+              />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setViewMode('filmmaking')}
+              className={`text-[12px] font-mono cursor-pointer transition-colors ${
+                viewMode === 'filmmaking' ? 'text-neutral-950 font-bold' : 'text-neutral-500 hover:text-neutral-950'
+              }`}
+            >
+              Film
+            </button>
           </div>
 
-          {/* Mode Switcher */}
-          {viewMode !== null && (
-            <div className="bg-white/5 border border-white/10 rounded-full p-0.5 flex items-center relative backdrop-blur-md">
-              {(['tech', 'filmmaking', 'both'] as const).map((mode) => (
-                <button
-                  key={mode}
-                  onClick={() => setViewMode(mode)}
-                  className={`text-[9px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full relative z-10 transition-colors duration-300 cursor-pointer ${
-                    viewMode === mode ? 'text-black font-extrabold' : 'text-white/50 hover:text-white'
-                  }`}
-                >
-                  {viewMode === mode && (
-                    <motion.div
-                      layoutId="headerActiveMode"
-                      className="absolute inset-0 bg-white rounded-full z-[-1]"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {mode === 'tech' ? 'Tech' : mode === 'filmmaking' ? 'Film' : 'Both'}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Exact MobilityLab Contact Button with White Square Arrow Badge */}
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2.5 pl-4 pr-1.5 py-1.5 rounded-xl bg-neutral-950 text-white text-xs font-semibold hover:bg-neutral-800 transition-all shadow-xs"
+          >
+            <span>Contact</span>
+            <span className="w-5 h-5 rounded-md bg-white text-neutral-950 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shadow-xs">
+              <svg className="w-3 h-3 text-neutral-950 stroke-current stroke-[2.5]" fill="none" viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </a>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Burger Menu Button */}
         <button 
           aria-label="Toggle navigation menu"
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white cursor-pointer"
+          className="lg:hidden w-8 h-8 flex items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 text-neutral-900 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={16} /> : <Menu size={16} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="absolute top-[calc(100%+1rem)] left-0 w-full glass rounded-3xl overflow-hidden md:hidden shadow-2xl"
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            className="lg:hidden mt-2 rounded-2xl bg-white/95 backdrop-blur-2xl border border-neutral-200 p-5 shadow-xl space-y-4"
           >
-            <div className="flex flex-col p-8 gap-6">
-              {/* Mobile Mode Switcher */}
-              {viewMode !== null && (
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-1 flex justify-between items-center relative backdrop-blur-md mb-2">
-                  {(['tech', 'filmmaking', 'both'] as const).map((mode) => (
-                    <button
-                      key={mode}
-                      onClick={() => {
-                        setViewMode(mode);
-                        setIsOpen(false);
-                      }}
-                      className={`flex-1 text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl relative z-10 transition-colors duration-300 text-center cursor-pointer ${
-                        viewMode === mode ? 'text-black font-extrabold' : 'text-white/50 hover:text-white'
-                      }`}
-                    >
-                      {viewMode === mode && (
-                        <motion.div
-                          layoutId="mobileActiveMode"
-                          className="absolute inset-0 bg-white rounded-xl z-[-1]"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                      {mode === 'tech' ? 'Tech' : mode === 'filmmaking' ? 'Film' : 'Both'}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {navLinks.map((link, i) => (
-                <motion.a 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+            <div className="flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <a 
                   key={link.name} 
                   href={link.href} 
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-bold tracking-tighter text-white/60 hover:text-white transition-colors"
+                  className="text-xs font-semibold text-neutral-800 hover:text-neutral-950 py-1"
                 >
                   {link.name}
-                </motion.a>
+                </a>
               ))}
+
+              <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+                <span className="text-xs font-mono text-neutral-500">Curation:</span>
+                <div className="flex items-center gap-1.5">
+                  {(['tech', 'both', 'filmmaking'] as const).map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => {
+                        setViewMode(m);
+                        setIsOpen(false);
+                      }}
+                      className={`text-[10px] font-mono px-2.5 py-1 rounded-full ${
+                        viewMode === m ? 'bg-neutral-950 text-white font-bold' : 'bg-neutral-100 text-neutral-700'
+                      }`}
+                    >
+                      {m === 'tech' ? 'Tech' : m === 'both' ? 'Both' : 'Film'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="mt-2 text-center w-full py-2.5 rounded-xl bg-neutral-950 text-white text-xs font-bold uppercase tracking-wider"
+              >
+                Contact ↗
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 }

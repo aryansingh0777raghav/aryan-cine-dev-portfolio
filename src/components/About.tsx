@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { ArrowUpRight, Youtube } from 'lucide-react';
 
 interface AboutProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -8,87 +9,7 @@ export default function About({ viewMode }: AboutProps) {
   const getSubheading = () => {
     if (viewMode === 'tech') return 'The Technical Architect';
     if (viewMode === 'filmmaking') return 'The Cinematic Storyteller';
-    return 'The Visionary';
-  };
-
-  const getParagraphs = () => {
-    if (viewMode === 'tech') {
-      return (
-        <>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique analytical perspective to technology, 
-            combining system-level scientific thinking with clean software engineering. My transition from sciences to tech 
-            has built a strong foundation in adaptability, algorithmic problem solving, and building high-performance systems.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            I am a software engineer dedicated to building practical, developer-friendly solutions. 
-            My technical focus centers on crafting interactive web applications, browser-based sandbox IDEs, 
-            and intelligent AI automation agents that simplify work and enhance productivity.
-          </motion.p>
-        </>
-      );
-    }
-    if (viewMode === 'filmmaking') {
-      return (
-        <>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Hi, I'm Aryan Singh! I am an independent film director, writer, editor, and music composer. 
-            I focus on creating atmospheric, psychological drama short films that explore inner conflict, 
-            moral dilemmas, and character-driven tension.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            Through my production channel CineOn Studio 7, I write, direct, score, and edit films, managing the entire creative pipeline. 
-            My goal is to craft compelling narratives with rich visual aesthetics, deep emotional pacing, 
-            and a memorable sonic landscape.
-          </motion.p>
-        </>
-      );
-    }
-    // Default both
-    return (
-      <>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          Hi, I'm Aryan Singh! With a foundational background in Biology, I bring a unique perspective to technology, 
-          combining analytical skills with creativity. My journey from the sciences to tech has strengthened my 
-          adaptability and problem-solving abilities, focused entirely on developing practical digital solutions.
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          I am a continuous learner passionate about emerging tech trends and innovative applications of programming. 
-          Whether it's building AI tools, robust web applications, or directing short films, I aim to create 
-          impactful digital experiences.
-        </motion.p>
-      </>
-    );
-  };
-
-  const getTitlesText = () => {
-    if (viewMode === 'tech') return 'Software Engineer | AI & Web Developer';
-    if (viewMode === 'filmmaking') return 'Film Director | Screenwriter & Editor';
-    return 'Director & Software Engineer | AI Enthusiast & Filmmaker';
+    return 'Dual-Threat Engineer & Director';
   };
 
   const getProfileLinks = () => {
@@ -110,103 +31,84 @@ export default function About({ viewMode }: AboutProps) {
   };
 
   return (
-    <section id="about" className="py-20 md:py-32 px-6 bg-black relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/[0.02] blur-[150px] rounded-full pointer-events-none" />
+    <section id="about" className="py-24 md:py-36 bg-white border-b border-neutral-200">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Monospaced Section Indexer */}
+        <div className="flex items-center gap-3 mb-12">
+          <span className="section-index">002 // About & Background</span>
+          <div className="h-px bg-neutral-200 flex-1" />
+        </div>
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-6 md:mb-8"
-          >
-            {getSubheading()}
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tighter text-gradient"
-          >
-            About Me
-          </motion.h2>
-          <div className="space-y-6 text-white/60 text-base md:text-lg leading-relaxed max-w-xl">
-            {getParagraphs()}
-          </div>
-          
-          <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">Titles</p>
-              <p className="text-white text-sm md:text-base font-bold leading-snug">{getTitlesText()}</p>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="glass rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 font-bold">
-                {viewMode === 'filmmaking' ? 'Industry Profiles' : viewMode === 'tech' ? 'Developer Portals' : 'Profiles & Portals'}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Narrative */}
+          <div className="lg:col-span-7 space-y-6">
+            <span className="swiss-pill-tag mb-2">
+              {getSubheading()}
+            </span>
+
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950">
+              Bridging analytical logic<br />
+              <span className="text-neutral-500 font-semibold">with human storytelling.</span>
+            </h2>
+
+            <div className="space-y-4 text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
+              <p>
+                Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. With a foundational background in biology and analytical sciences, I bring a unique system-level perspective to software development — treating software architectures like biological ecosystems where resilience, balance, and fault-tolerance are paramount.
               </p>
-              <div className="flex flex-wrap gap-3 md:gap-4 mt-2">
-                {getProfileLinks().map((link) => (
-                  <motion.a 
-                    key={link.label}
-                    whileHover={{ scale: 1.1, color: "#fff" }}
-                    href={link.url}
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="text-[10px] md:text-xs font-bold text-white/60 transition-colors"
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative aspect-[4/5] md:aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden glass border border-white/10 group"
-        >
-          {/* Profile Image */}
-          <img 
-            src="/images/profile.png" 
-            alt="Aryan Singh" 
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-[transform,filter] duration-700 ease-out transform-gpu"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          
-          <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10">
-            <div className="glass-dark rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/5 backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-[9px] md:text-[10px] font-black text-white/40 uppercase tracking-widest">CineOn Studio 7</p>
-                <a href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1" target="_blank" rel="noreferrer" className="text-[9px] md:text-[10px] font-bold text-white bg-red-600 px-2 py-0.5 rounded">SUBSCRIBE</a>
-              </div>
-              <p className="text-[10px] md:text-xs text-white/60 font-medium italic">
-                "Bridging the gap between biological complexity and digital precision."
+              <p>
+                As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency AI tools.
+              </p>
+              <p>
+                Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I write, direct, score, and edit atmospheric psychological drama films that confront existential conflict, isolation, and student mental health.
               </p>
             </div>
+
+            {/* Profile Links Matrix */}
+            <div className="pt-6 border-t border-neutral-200 flex flex-wrap gap-2.5">
+              {getProfileLinks().map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="swiss-btn-outline text-xs"
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight size={12} />
+                </a>
+              ))}
+            </div>
           </div>
-        </motion.div>
+
+          {/* Right Portrait Showcase */}
+          <div className="lg:col-span-5">
+            <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-4 sm:p-6 space-y-4">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 relative bg-neutral-100">
+                <img 
+                  src="/images/profile.png" 
+                  alt="Aryan Singh" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+
+              <div className="p-4 rounded-xl bg-white border border-neutral-200 flex items-center justify-between">
+                <div>
+                  <p className="text-[11px] font-mono font-bold text-neutral-900">CineOn Studio 7</p>
+                  <p className="text-[10px] text-neutral-500">Official Production Channel</p>
+                </div>
+                <a
+                  href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-[11px] font-bold hover:bg-red-700 transition-colors"
+                >
+                  <Youtube size={13} />
+                  <span>Subscribe</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -5,32 +5,32 @@ export default function LoadingScreen() {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center"
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center"
     >
-      <div className="relative">
+      <div className="relative text-center">
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl font-bold tracking-tighter text-white mb-4"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-4xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3 font-mono"
         >
-          AS
+          AS.
         </motion.div>
         <motion.div
-          className="h-[2px] bg-white absolute bottom-0 left-0"
+          className="h-[2px] bg-neutral-950 absolute -bottom-1 left-0"
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         />
       </div>
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="mt-6 text-xs uppercase tracking-[0.3em] text-white"
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="mt-6 text-[10px] font-mono uppercase tracking-[0.25em] text-neutral-400"
       >
-        Initializing Experience
+        Loading System
       </motion.p>
     </motion.div>
   );

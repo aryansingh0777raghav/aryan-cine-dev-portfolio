@@ -3,6 +3,8 @@ import Lenis from 'lenis';
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Statement from './components/Statement';
+import Pillars from './components/Pillars';
 import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
@@ -62,10 +64,9 @@ export default function App() {
 
     rafId = requestAnimationFrame(raf);
 
-    // Simulate loading time for 3D assets
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 400);
 
     return () => {
       (window as any).lenis = null;
@@ -87,7 +88,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-black min-h-screen font-sans selection:bg-white selection:text-black overflow-x-hidden">
+    <div className="bg-white text-neutral-950 min-h-screen font-sans selection:bg-neutral-950 selection:text-white overflow-x-hidden">
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
@@ -99,7 +100,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="fixed inset-0 z-[9999]"
           >
             <ViewSelector onSelectMode={handleSelectMode} />
@@ -109,22 +110,51 @@ export default function App() {
 
       {viewMode !== null && (
         <>
+          {/* Top Precision Scroll Progress Line */}
           <motion.div
-            className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-white to-orange-600 z-[9999] origin-left"
+            className="fixed top-0 left-0 right-0 h-[2px] bg-neutral-950 z-[9999] origin-left"
             style={{ scaleX }}
           />
+
+          {/* MobilityLab Swiss Header */}
           <Navbar viewMode={viewMode} setViewMode={handleSelectMode} />
+
           <main>
+            {/* 001 // Overview Hero */}
             <Hero viewMode={viewMode} />
+
+            {/* 002 // Philosophy & Vision Statement */}
+            <Statement />
+
+            {/* 003 // 4 Core Competency Pillars */}
+            <Pillars />
+
+            {/* About & Narrative */}
             <About viewMode={viewMode} />
+
+            {/* 004 // Projects & Flagship ArKTest Beta Showcase */}
             <Projects viewMode={viewMode} />
+
+            {/* 005 // Trajectory & Milestones Timeline */}
             <Timeline viewMode={viewMode} />
+
+            {/* 006 // Press & Recognitions */}
             <Certifications viewMode={viewMode} />
+
+            {/* 007 // Technical & Creative Matrix */}
             <Skills viewMode={viewMode} />
+
+            {/* Digital Identity Visiting Card */}
             <VisitingCard />
+
+            {/* 008 // Inquiries & Contact */}
             <Contact />
           </main>
+
+          {/* AI Voice Assistant */}
           <VoiceAssistant viewMode={viewMode} />
+
+          {/* Swiss Minimalist Footer */}
           <Footer />
         </>
       )}
