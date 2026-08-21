@@ -531,20 +531,20 @@ export default function Projects({ viewMode }: ProjectsProps) {
               </span>
             </div>
 
-            <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-6 sm:p-10 md:p-12 hover:border-neutral-300 transition-all shadow-xs">
+            <div className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white shadow-xl hover:border-neutral-700 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
                 {/* Left: Interactive Preview & Metrics */}
                 <div className="lg:col-span-6 space-y-4">
                   <div 
                     onClick={() => setSelectedProject(flagshipProject)}
-                    className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-xs cursor-pointer group"
+                    className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-xs cursor-pointer group"
                   >
                     <img 
                       src="/images/arktest.png" 
                       alt="ArKTest Beta Dashboard" 
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
                     <div className="absolute bottom-3 right-3">
                       <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-neutral-950 text-xs font-semibold shadow-xs">
                         <Info size={13} /> View Architecture
@@ -555,11 +555,11 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   {/* 4 Metrics Pills */}
                   <div className="grid grid-cols-2 gap-2.5">
                     {flagshipProject.metrics?.map((metric, i) => (
-                      <div key={i} className="p-3 rounded-xl bg-white border border-neutral-200/80">
-                        <p className="text-[11px] font-mono font-bold text-neutral-900 leading-tight mb-0.5">
+                      <div key={i} className="p-3 rounded-xl bg-neutral-900/90 border border-neutral-800">
+                        <p className="text-[11px] font-mono font-bold text-white leading-tight mb-0.5">
                           {metric.label}
                         </p>
-                        <p className="text-[10px] text-neutral-500 leading-tight font-normal">
+                        <p className="text-[10px] text-neutral-400 leading-tight font-normal">
                           {metric.desc}
                         </p>
                       </div>
@@ -570,17 +570,17 @@ export default function Projects({ viewMode }: ProjectsProps) {
                 {/* Right: Project Details & Action Buttons */}
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-2xl sm:text-4xl font-black text-neutral-950 tracking-tight mb-2">
+                    <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-2">
                       ArKTest Beta
                     </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-neutral-700 mb-2">
+                    <p className="text-xs sm:text-sm font-semibold text-neutral-300 mb-2">
                       {flagshipProject.tagline}
                     </p>
                     <p className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-4">
                       {flagshipProject.role}
                     </p>
 
-                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal mb-6">
+                    <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal mb-6">
                       {flagshipProject.desc}
                     </p>
 
@@ -588,8 +588,8 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
                       {flagshipProject.features?.slice(0, 4).map((feat, idx) => (
                         <div key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 size={15} className="text-neutral-950 shrink-0 mt-0.5" />
-                          <span className="text-xs text-neutral-700 font-medium leading-snug">
+                          <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="text-xs text-neutral-300 font-medium leading-snug">
                             {feat.title}
                           </span>
                         </div>
@@ -598,12 +598,12 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="pt-6 border-t border-neutral-200 flex flex-wrap items-center gap-3">
+                  <div className="pt-6 border-t border-neutral-800 flex flex-wrap items-center gap-3">
                     <a
                       href="https://arktest-beta.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-950 text-white text-xs font-semibold tracking-wide hover:bg-neutral-800 transition-all shadow-xs"
+                      className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 text-xs font-semibold tracking-wide hover:bg-neutral-200 transition-all shadow-xs"
                     >
                       <Globe size={13} />
                       <span>Live Platform</span>
@@ -614,15 +614,15 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       href="https://www.linkedin.com/company/arktest-beta/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-neutral-300 text-neutral-800 text-xs font-semibold tracking-wide hover:bg-neutral-100 transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 border border-neutral-700 text-white text-xs font-semibold tracking-wide hover:bg-neutral-800 transition-colors"
                     >
-                      <Linkedin size={13} className="text-blue-600" />
+                      <Linkedin size={13} className="text-blue-400" />
                       <span>Company LinkedIn</span>
                     </a>
 
                     <button
                       onClick={() => setSelectedProject(flagshipProject)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-200 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       <Info size={13} /> Full Specs
                     </button>
@@ -657,17 +657,17 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-200 bg-white p-6 hover:border-neutral-400 hover:shadow-xs transition-all flex flex-col justify-between group"
+                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 hover:shadow-xl transition-all flex flex-col justify-between group text-white"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="swiss-pill-tag">{item.category}</span>
+                      <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{item.category}</span>
                       {item.github && (
                         <a 
                           href={item.github} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700 group-hover:bg-neutral-950 group-hover:text-white transition-all"
+                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
                           title="GitHub Repository"
                         >
                           <Github size={13} />
@@ -680,7 +680,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-200 mb-5 bg-neutral-50 cursor-pointer"
+                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 cursor-pointer"
                     >
                       <img 
                         src={item.image} 
@@ -692,26 +692,26 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       />
                     </div>
 
-                    <h4 className="text-lg font-bold text-neutral-950 mb-1 tracking-tight">
+                    <h4 className="text-lg font-bold text-white mb-1 tracking-tight">
                       {item.title}
                     </h4>
 
-                    <p className="text-[11px] font-mono text-neutral-500 mb-3">
+                    <p className="text-[11px] font-mono text-neutral-400 mb-3">
                       {item.tech}
                     </p>
 
-                    <p className="text-xs text-neutral-600 leading-relaxed font-normal mb-6">
+                    <p className="text-xs text-neutral-400 leading-relaxed font-normal mb-6">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
                     <button
                       onClick={() => {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="text-xs font-mono font-medium text-neutral-800 hover:text-neutral-950 flex items-center gap-1 cursor-pointer"
+                      className="text-xs font-mono font-medium text-neutral-300 hover:text-white flex items-center gap-1 cursor-pointer"
                     >
                       <Info size={12} /> View Architecture
                     </button>
@@ -720,7 +720,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-semibold text-neutral-950 hover:underline flex items-center gap-1"
+                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
                       >
                         Code <ArrowUpRight size={12} />
                       </a>
@@ -756,17 +756,17 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-200 bg-white p-6 hover:border-neutral-400 hover:shadow-xs transition-all flex flex-col justify-between group"
+                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 hover:shadow-xl transition-all flex flex-col justify-between group text-white"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="swiss-pill-tag">{item.category}</span>
+                      <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{item.category}</span>
                       {item.github ? (
                         <a 
                           href={item.github} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700 group-hover:bg-neutral-950 group-hover:text-white transition-all"
+                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
                           title="GitHub Repository"
                         >
                           <Github size={13} />
@@ -776,7 +776,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                           href={item.link} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700 group-hover:bg-neutral-950 group-hover:text-white transition-all"
+                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
                           title="Live Demo"
                         >
                           <ExternalLink size={13} />
@@ -789,7 +789,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-200 mb-5 bg-neutral-50 cursor-pointer"
+                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 cursor-pointer"
                     >
                       <img 
                         src={item.image} 
@@ -801,26 +801,26 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       />
                     </div>
 
-                    <h4 className="text-lg font-bold text-neutral-950 mb-1 tracking-tight">
+                    <h4 className="text-lg font-bold text-white mb-1 tracking-tight">
                       {item.title}
                     </h4>
 
-                    <p className="text-[11px] font-mono text-neutral-500 mb-3">
+                    <p className="text-[11px] font-mono text-neutral-400 mb-3">
                       {item.tech}
                     </p>
 
-                    <p className="text-xs text-neutral-600 leading-relaxed font-normal mb-6">
+                    <p className="text-xs text-neutral-400 leading-relaxed font-normal mb-6">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
                     {item.link ? (
                       <a
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-semibold text-neutral-950 hover:underline flex items-center gap-1"
+                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
                       >
                         Live Demo <ArrowUpRight size={12} />
                       </a>
@@ -829,7 +829,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-semibold text-neutral-950 hover:underline flex items-center gap-1"
+                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
                       >
                         Source Code <ArrowUpRight size={12} />
                       </a>
@@ -842,7 +842,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="text-xs font-mono font-medium text-neutral-800 hover:text-neutral-950 flex items-center gap-1 cursor-pointer"
+                      className="text-xs font-mono font-medium text-neutral-300 hover:text-white flex items-center gap-1 cursor-pointer"
                     >
                       <Info size={12} /> Specs
                     </button>
@@ -871,10 +871,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
             <div className="space-y-8">
               {filteredFilm.map((film, idx) => (
-                <div key={idx} className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-6 sm:p-10 md:p-12">
+                <div key={idx} className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white shadow-xl">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div className="lg:col-span-6">
-                      <div className="aspect-video rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-900 relative">
+                      <div className="aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 relative">
                         <img 
                           src={film.image} 
                           alt={film.title} 
@@ -885,39 +885,40 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
                     <div className="lg:col-span-6">
                       <div className="flex flex-wrap gap-2 mb-3">
-                        <span className="swiss-pill-tag">{film.category}</span>
-                        <span className="swiss-pill-tag font-mono">// {film.year}</span>
+                        <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{film.category}</span>
+                        <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-400">// {film.year}</span>
                       </div>
                       
-                      <h4 className="text-2xl sm:text-3xl font-black text-neutral-950 tracking-tight mb-2">
+                      <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
                         {film.title}
                       </h4>
-                      <p className="text-xs font-mono text-neutral-500 mb-3">{film.tech}</p>
+                      <p className="text-xs font-mono text-neutral-400 mb-3">{film.tech}</p>
                       
                       {/* Roles */}
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {film.roles?.map((r, i) => (
-                          <span key={i} className="px-2.5 py-0.5 rounded-md bg-white border border-neutral-200 text-[10px] font-mono font-semibold text-neutral-700">
+                          <span key={i} className="px-2.5 py-0.5 rounded-md bg-neutral-900 border border-neutral-800 text-[10px] font-mono font-semibold text-neutral-300">
                             {r}
                           </span>
                         ))}
                       </div>
 
-                      <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-6 font-normal">
+                      <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-6 font-normal">
                         {film.desc}
                       </p>
 
-                      <div className="flex flex-wrap gap-2.5 pt-4 border-t border-neutral-200">
+                      <div className="flex flex-wrap gap-2.5 pt-4 border-t border-neutral-800">
                         {film.links?.map((lnk, i) => (
                           <a 
                             key={i} 
                             href={lnk.url} 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className="swiss-btn-outline text-xs flex items-center gap-1.5"
+                            className="px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-200 hover:bg-white hover:text-neutral-950 text-xs font-semibold transition-all flex items-center gap-1.5"
                           >
                             {lnk.icon}
-                            <span>{lnk.label} ↗</span>
+                            <span>{lnk.label}</span>
+                            <ArrowUpRight size={11} className="opacity-60" />
                           </a>
                         ))}
                       </div>
