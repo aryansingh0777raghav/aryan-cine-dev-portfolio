@@ -12,22 +12,41 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
 
-  const navLinks = [
-    { name: 'Overview', href: '#home' },
-    { name: 'Pillars', href: '#pillars' },
-    { 
-      name: 'Projects', 
-      href: '#projects',
-      hasDropdown: true,
-      subItems: [
+  const getSubItems = () => {
+    if (viewMode === 'tech') {
+      return [
         { name: 'ArKTest Beta (Flagship)', href: '#projects' },
         { name: 'ArVerse OS', href: '#projects' },
         { name: 'Certilink (Verification)', href: '#projects' },
-        { name: 'The Night of Life (Film)', href: '#projects' }
-      ]
+        { name: 'ArType (AI Assistant)', href: '#projects' }
+      ];
+    }
+    if (viewMode === 'filmmaking') {
+      return [
+        { name: 'The Night of Life (4K Film)', href: '#projects' },
+        { name: 'CineOn Studio 7', href: '#projects' },
+        { name: 'Press & Media Spotlight', href: '#certifications' }
+      ];
+    }
+    return [
+      { name: 'ArKTest Beta (Flagship)', href: '#projects' },
+      { name: 'ArVerse OS', href: '#projects' },
+      { name: 'Certilink (Verification)', href: '#projects' },
+      { name: 'The Night of Life (Film)', href: '#projects' }
+    ];
+  };
+
+  const navLinks = [
+    { name: 'Overview', href: '#home' },
+    { name: viewMode === 'filmmaking' ? 'Craft' : 'Pillars', href: '#pillars' },
+    { 
+      name: viewMode === 'filmmaking' ? 'Films' : 'Projects', 
+      href: '#projects',
+      hasDropdown: true,
+      subItems: getSubItems()
     },
     { name: 'Timeline', href: '#timeline' },
-    { name: 'News', href: '#certifications' },
+    { name: viewMode === 'filmmaking' ? 'Press' : 'Credentials', href: '#certifications' },
   ];
 
   return (

@@ -134,10 +134,10 @@ export default function App() {
             <Hero viewMode={viewMode} />
 
             {/* 002 // Philosophy & Vision Statement */}
-            <Statement />
+            <Statement viewMode={viewMode} />
 
             {/* 003 // 4 Core Competency Pillars */}
-            <Pillars />
+            <Pillars viewMode={viewMode} />
 
             {/* About & Narrative */}
             <About viewMode={viewMode} />
@@ -155,17 +155,17 @@ export default function App() {
             <Skills viewMode={viewMode} />
 
             {/* Digital Identity Visiting Card */}
-            <VisitingCard />
+            <VisitingCard viewMode={viewMode} />
 
             {/* 008 // Inquiries & Contact */}
-            <Contact />
+            <Contact viewMode={viewMode} />
           </main>
 
           {/* AI Voice Assistant */}
           <VoiceAssistant viewMode={viewMode} />
 
           {/* Swiss Minimalist Footer */}
-          <Footer />
+          <Footer viewMode={viewMode} />
         </>
       )}
     </div>

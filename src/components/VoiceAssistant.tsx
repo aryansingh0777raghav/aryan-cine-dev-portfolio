@@ -26,15 +26,29 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
   const cmd = command.toLowerCase();
   
   const info = {
-    about: "Aryan Singh is a dual-threat Software Engineer, Founder & Lead Full-Stack Architect of ArKTest Beta, and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
-    projects: "Aryan's flagship project is ArKTest Beta (Full-Stack QA Testing Platform), along with ArVerse OS (Virtual OS Simulator), ArType (AI Android Assistant), ArLip (AI Shorts Generator), and ArCh (Perplexity-style Search Engine).",
+    about: viewMode === 'tech'
+      ? "Aryan Singh is a Software Engineer and Full-Stack Architect based in Gorakhpur, India. Founder & Lead Full-Stack Architect of ArKTest Beta, architecting automated escrow platforms, AI tools, and virtual operating systems. Open for freelance contracts and engineering roles."
+      : viewMode === 'filmmaking'
+      ? "Aryan Singh is an Independent Film Director, Screenwriter, and Editor based in Gorakhpur, India. Founder of CineOn Studio 7 and director of 'The Night of Life: Before You Think About It'. Available for directorial collaborations and creative productions."
+      : "Aryan Singh is a dual-threat Software Engineer, Founder & Lead Full-Stack Architect of ArKTest Beta, and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
+    projects: viewMode === 'filmmaking'
+      ? "Aryan's primary directorial project is 'The Night of Life: Before You Think About It' (4K short film with CineOn Studio 7), along with screenwriting archives."
+      : "Aryan's flagship platform is ArKTest Beta (Crowd Testing & Escrow QA Platform), along with ArVerse OS (Virtual OS Simulator), ArType (AI Android Assistant), Certilink (Credential Verifier), ArLip, and ArCh.",
     arktest: "ArKTest Beta (https://arktest-beta.vercel.app) is a full-stack crowd testing & QA innovation platform founded by Aryan Singh (Co-Founded by Vijay Laxmi Singh). Built with FastAPI (Python 3.14), PostgreSQL/SQLAlchemy, and Vanilla JS, it features an automated ArK Points escrow economy, pessimistic DB locking (with_for_update()), OWASP security, single-user CSV exports, PWA capabilities, and SMTP failover. Official LinkedIn page: https://www.linkedin.com/company/arktest-beta/",
-    skills: "On the tech side, he's a master of Python (FastAPI), PostgreSQL, SQLAlchemy, Java, C++, SQL, and modern web tech. In the studio, he excels as a Writer, Director, Actor, Musician, and Editor.",
+    skills: viewMode === 'filmmaking'
+      ? "In the studio, he excels as a Screenwriter, Director, Actor, Sound Designer, and Editor utilizing DaVinci Resolve and Premiere Pro."
+      : "On the tech side, he's a master of Python (FastAPI), PostgreSQL, SQLAlchemy, React, TypeScript, Java, C++, SQL, and modern web architectures.",
     education: "He is currently pursuing his BCA (Bachelor of Computer Applications) at ITM Gorakhpur (Sep 2024 - Dec 2027), building on a strong foundation from SR International Academy, Nathnagar.",
-    experience: "Aryan has a solid professional background:\n1. Founder & Lead Full-Stack Architect at ArKTest Beta (2026 – Present)\n2. Python Training Internship at Data Culture Technology (Jun 2025 – Aug 2025)\n3. Samsung Innovation Campus Big Data Certification (Oct 2025 – Nov 2025)\n4. CineOn Studio 7 (2026) - Film Director & Editor.",
+    experience: viewMode === 'filmmaking'
+      ? "Aryan's creative journey:\n1. CineOn Studio 7 (2026) - Film Director & Editor\n2. 'The Night of Life' - 4K Directorial Debut\n3. The Indian Blog - Featured Independent Filmmaker."
+      : "Aryan has a solid professional background:\n1. Founder & Lead Full-Stack Architect at ArKTest Beta (2026 – Present)\n2. Python Training Internship at Data Culture Technology (Jun 2025 – Aug 2025)\n3. Samsung Innovation Campus Big Data Certification (Oct 2025 – Nov 2025)\n4. ITM Gorakhpur BCA (2024–2027).",
     samsung: "Aryan completed the Big Data Certification course of the Samsung Innovation Campus (9/10/2025 to 15/11/2025). The certificate number is SIC08720. This training focused on data manipulation, analysis, and processing large datasets.",
-    availability: "Aryan is currently AVAILABLE for freelance work! You can hire him for web development, AI tool building, or professional film production.",
-    contact: "You can reach out to Aryan directly at aryansingh979211@gmail.com. He is currently open for freelance opportunities.",
+    availability: viewMode === 'tech'
+      ? "Aryan is currently AVAILABLE for freelance engineering work, full-stack development, and AI tool building!"
+      : viewMode === 'filmmaking'
+      ? "Aryan is currently OPEN for film directing, screenplay development, and cinematic production collaborations!"
+      : "Aryan is currently AVAILABLE for freelance work! You can hire him for web development, AI tool building, or professional film production.",
+    contact: "You can reach out to Aryan directly at aryansingh979211@gmail.com. He is currently open for new opportunities.",
     social: "You can find Aryan on LinkedIn as iamaryan07, GitHub as aryansingh0777raghav, and Instagram as iam_aryannnn07.",
     links: "I can open his LinkedIn, GitHub, or IMDb for you. Just ask!",
     filmmaking: "Aryan's filmmaking style is psychological and dramatic. His short film 'The Night of Life: Before You Think About It' explores deep inner conflict and is available on YouTube."
@@ -67,6 +81,12 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
     return info.about;
   }
 
+  if (viewMode === 'tech') {
+    return `Aryan Singh is a Software Engineer & Founder of ArKTest Beta. How can I help you explore his technical architecture, AI tools, or repositories?`;
+  }
+  if (viewMode === 'filmmaking') {
+    return `Aryan Singh is an Independent Film Director and Screenwriter. How can I help you explore his productions or 'The Night of Life'?`;
+  }
   return `Aryan Singh is a dual-threat Software Engineer & Filmmaker. Founder of ArKTest Beta and director of 'The Night of Life'. How can I help you explore his portfolio?`;
 };
 
@@ -79,7 +99,11 @@ export default function VoiceAssistant({ viewMode }: VoiceAssistantProps) {
     {
       id: 'initial',
       sender: 'ai',
-      text: "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering projects, ArKTest Beta, or film productions.",
+      text: viewMode === 'tech'
+        ? "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering architectures, ArKTest Beta, or developer tooling."
+        : viewMode === 'filmmaking'
+        ? "Hello! I am Aryan's AI assistant. Ask me anything about his cinematic directing, 'The Night of Life', or CineOn Studio 7 productions."
+        : "Hello! I am Aryan's AI assistant. Ask me anything about his software engineering projects, ArKTest Beta, or film productions.",
       timestamp: new Date()
     }
   ]);

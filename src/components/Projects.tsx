@@ -335,10 +335,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
       github: "https://github.com/aryansingh0777raghav/Chess-Game" 
     },
     { 
-      title: "Personal CinePortfolio", 
-      category: "Minimalist Production Portfolio",
+      title: "Cine-Dev Showcase Portal", 
+      category: "Interactive Web Architecture",
       tech: "HTML5, CSS3, JavaScript ES6",
-      desc: "A sleek and performance-driven portfolio designed with minimalism and high aesthetic clarity at its core.", 
+      desc: "A sleek and performance-driven web interface engineered with semantic markup and vanilla JavaScript ES6 for multimedia showcases.", 
       image: "/images/CinePortfolio.png",
       link: "https://aryansingh0777raghav.github.io/Aryan-Singh-Cine-Portfolio/" 
     },
@@ -390,7 +390,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
       title: "The Night of Life: Before You Think About It",
       year: "2026",
       category: "Cinematic Film Production",
-      tech: "Psychological Drama, 4K Cinema, Premiere Pro, DaVinci Resolve",
+      tech: "DaVinci Resolve 19, Premiere Pro, 4K DCI, 24fps Narrative Cinema",
       image: "/images/The%20Night%20of%20Life.png",
       desc: "A psychological drama short film exploring inner conflict, existential isolation, student academic despair, and life-changing decisions. Written, directed, scored, and edited by Aryan Singh under CineOn Studio 7.",
       roles: ["Writer", "Director", "Actor", "Musician", "Editor"],
@@ -431,6 +431,28 @@ export default function Projects({ viewMode }: ProjectsProps) {
     ((activeCategory === 'all' || activeCategory === 'web') ? filteredWeb.length : 0) +
     ((activeCategory === 'all' || activeCategory === 'film') ? filteredFilm.length : 0);
 
+  const getCategoryPills = () => {
+    if (viewMode === 'tech') {
+      return [
+        { id: 'all' as const, label: `All Tech (${aiProjects.length + webProjects.length + 1})` },
+        { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
+        { id: 'web' as const, label: `Web Apps (${webProjects.length})` }
+      ];
+    }
+    if (viewMode === 'filmmaking') {
+      return [
+        { id: 'all' as const, label: `All Cinema (${filmProjects.length})` },
+        { id: 'film' as const, label: `Directorial Works (${filmProjects.length})` }
+      ];
+    }
+    return [
+      { id: 'all' as const, label: `All (${aiProjects.length + webProjects.length + filmProjects.length + 1})` },
+      { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
+      { id: 'web' as const, label: `Web Apps (${webProjects.length})` },
+      { id: 'film' as const, label: `Cinema (${filmProjects.length})` }
+    ];
+  };
+
   return (
     <section id="projects" className="py-24 md:py-36 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-6">
@@ -444,11 +466,17 @@ export default function Projects({ viewMode }: ProjectsProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
-              Selected Works.<br />
-              <span className="text-neutral-500 font-semibold">Flagship systems & creative labs.</span>
+              {viewMode === 'filmmaking' ? 'Cinematic Archive.' : viewMode === 'tech' ? 'Engineered Systems.' : 'Selected Works.'}<br />
+              <span className="text-neutral-500 font-semibold">
+                {viewMode === 'filmmaking' ? 'Narrative short films & screenplays.' : viewMode === 'tech' ? 'Flagship platforms & software tools.' : 'Flagship systems & creative labs.'}
+              </span>
             </h2>
             <p className="text-sm sm:text-base text-neutral-600 font-normal">
-              A comprehensive archive of 18+ engineered software platforms, AI applications, web interfaces, and narrative filmmaking.
+              {viewMode === 'tech'
+                ? 'A comprehensive archive of 18+ engineered software platforms, AI applications, developer tools, and web interfaces.'
+                : viewMode === 'filmmaking'
+                ? 'Cinematic short film productions, screenwriting archives, and directorial projects under CineOn Studio 7.'
+                : 'A comprehensive archive of 18+ engineered software platforms, AI applications, web interfaces, and narrative filmmaking.'}
             </p>
           </div>
         </div>
@@ -477,12 +505,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
-            {[
-              { id: 'all' as const, label: `All (${aiProjects.length + webProjects.length + filmProjects.length + 1})` },
-              { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
-              { id: 'web' as const, label: `Web Apps (${webProjects.length})` },
-              { id: 'film' as const, label: `Cinema (${filmProjects.length})` }
-            ].map((cat) => (
+            {getCategoryPills().map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => {

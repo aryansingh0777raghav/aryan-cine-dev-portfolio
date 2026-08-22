@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, Youtube } from 'lucide-react';
+import { ArrowUpRight, Youtube, Github, Globe } from 'lucide-react';
 
 interface AboutProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
@@ -12,10 +12,36 @@ export default function About({ viewMode }: AboutProps) {
     return 'Dual-Threat Engineer & Director';
   };
 
+  const getHeading = () => {
+    if (viewMode === 'tech') {
+      return (
+        <>
+          Engineering resilient systems<br />
+          <span className="text-neutral-500 font-semibold">with analytical precision.</span>
+        </>
+      );
+    }
+    if (viewMode === 'filmmaking') {
+      return (
+        <>
+          Capturing existential truths<br />
+          <span className="text-neutral-500 font-semibold">through psychological cinema.</span>
+        </>
+      );
+    }
+    return (
+      <>
+        Bridging analytical logic<br />
+        <span className="text-neutral-500 font-semibold">with human storytelling.</span>
+      </>
+    );
+  };
+
   const getProfileLinks = () => {
     const techLinks = [
       { label: 'GitHub', url: 'https://github.com/aryansingh0777raghav' },
-      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/iamaryan07' }
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/iamaryan07' },
+      { label: 'ArKTest Platform', url: 'https://arktest-beta.vercel.app/' }
     ];
     const filmLinks = [
       { label: 'Press Feature', url: 'https://indianblog.co.in/aryan-singh-filmmaker/' },
@@ -47,20 +73,47 @@ export default function About({ viewMode }: AboutProps) {
             </span>
 
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950">
-              Bridging analytical logic<br />
-              <span className="text-neutral-500 font-semibold">with human storytelling.</span>
+              {getHeading()}
             </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
-              <p>
-                Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. With a foundational background in biology and analytical sciences, I bring a unique system-level perspective to software development — treating software architectures like biological ecosystems where resilience, balance, and fault-tolerance are paramount.
-              </p>
-              <p>
-                As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency AI tools.
-              </p>
-              <p>
-                Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I write, direct, score, and edit atmospheric psychological drama films that confront existential conflict, isolation, and student mental health.
-              </p>
+              {viewMode === 'tech' ? (
+                <>
+                  <p>
+                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. With a foundational background in analytical sciences and system-level computing, I approach software development with strict architectural discipline — designing fault-tolerant, scalable, and modular backend infrastructures.
+                  </p>
+                  <p>
+                    As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency developer tools using FastAPI, PostgreSQL/SQLAlchemy, and modern TypeScript.
+                  </p>
+                  <p>
+                    Currently pursuing my BCA at ITM Gorakhpur, holding credentials from Samsung Innovation Campus in Big Data (SIC08720) and Grade A++ in Python & Data Analytics from Techpile Technology.
+                  </p>
+                </>
+              ) : viewMode === 'filmmaking' ? (
+                <>
+                  <p>
+                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. As an independent screenwriter, director, and editor, I create immersive narrative cinema that explores psychological tension, human isolation, and existential dilemmas.
+                  </p>
+                  <p>
+                    Through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I helm complete cinematic pipelines — from script development and actor direction to atmospheric cinematography, DaVinci Resolve color grading, and original musical scoring.
+                  </p>
+                  <p>
+                    My directorial debut short film, <strong className="font-semibold text-neutral-950">'The Night of Life: Before You Think About It'</strong>, confronts youth mental health and student academic pressure, featured in independent film media and indexed on IMDb, TMDB, Letterboxd, and FilmFreeway.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. With a foundational background in biology and analytical sciences, I bring a unique system-level perspective to software development — treating software architectures like biological ecosystems where resilience, balance, and fault-tolerance are paramount.
+                  </p>
+                  <p>
+                    As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency AI tools.
+                  </p>
+                  <p>
+                    Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I write, direct, score, and edit atmospheric psychological drama films that confront existential conflict, isolation, and student mental health.
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Profile Links Matrix */}
@@ -91,21 +144,39 @@ export default function About({ viewMode }: AboutProps) {
                 />
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-neutral-200 flex items-center justify-between">
-                <div>
-                  <p className="text-[11px] font-mono font-bold text-neutral-900">CineOn Studio 7</p>
-                  <p className="text-[10px] text-neutral-500">Official Production Channel</p>
+              {viewMode === 'tech' ? (
+                <div className="p-4 rounded-xl bg-white border border-neutral-200 flex items-center justify-between">
+                  <div>
+                    <p className="text-[11px] font-mono font-bold text-neutral-900">GitHub Verified</p>
+                    <p className="text-[10px] text-neutral-500">@aryansingh0777raghav</p>
+                  </div>
+                  <a
+                    href="https://github.com/aryansingh0777raghav"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-950 text-white text-[11px] font-bold hover:bg-neutral-800 transition-colors"
+                  >
+                    <Github size={13} />
+                    <span>View Repos</span>
+                  </a>
                 </div>
-                <a
-                  href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-[11px] font-bold hover:bg-red-700 transition-colors"
-                >
-                  <Youtube size={13} />
-                  <span>Subscribe</span>
-                </a>
-              </div>
+              ) : (
+                <div className="p-4 rounded-xl bg-white border border-neutral-200 flex items-center justify-between">
+                  <div>
+                    <p className="text-[11px] font-mono font-bold text-neutral-900">CineOn Studio 7</p>
+                    <p className="text-[10px] text-neutral-500">Official Production Channel</p>
+                  </div>
+                  <a
+                    href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-[11px] font-bold hover:bg-red-700 transition-colors"
+                  >
+                    <Youtube size={13} />
+                    <span>Subscribe</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -16,7 +16,11 @@ import {
   Sparkles
 } from 'lucide-react';
 
-export default function Contact() {
+interface ContactProps {
+  viewMode?: 'tech' | 'filmmaking' | 'both' | null;
+}
+
+export default function Contact({ viewMode }: ContactProps) {
   const [submitted, setSubmitted] = useState(false);
 
   const developerProfiles = [
@@ -50,7 +54,11 @@ export default function Contact() {
             <span className="text-neutral-500 font-semibold">Let's build something exceptional.</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 font-normal">
-            Available for full-stack engineering contracts, startup advisory, or film directing collaborations.
+            {viewMode === 'tech'
+              ? 'Available for full-stack engineering contracts, platform architecture, and startup advisory.'
+              : viewMode === 'filmmaking'
+              ? 'Available for film directing collaborations, screenplay development, and production advisory.'
+              : 'Available for full-stack engineering contracts, startup advisory, or film directing collaborations.'}
           </p>
         </div>
 
@@ -86,54 +94,62 @@ export default function Contact() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-xs font-semibold text-neutral-800">
-                    Open for Software Engineering & Film Contracts
+                    {viewMode === 'tech'
+                      ? 'Open for Software Engineering & Full-Stack Contracts'
+                      : viewMode === 'filmmaking'
+                      ? 'Open for Film Directing & Creative Productions'
+                      : 'Open for Software Engineering & Film Contracts'}
                   </span>
                 </div>
               </div>
 
               {/* Developer & Social Profiles */}
-              <div className="pt-4 border-t border-neutral-200/80">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
-                  Developer & Social Networks
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {developerProfiles.map((p, i) => (
-                    <a
-                      key={i}
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/80 text-xs font-semibold text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all shadow-2xs"
-                    >
-                      {p.icon}
-                      <span>{p.label}</span>
-                      <ArrowUpRight size={11} className="opacity-70" />
-                    </a>
-                  ))}
+              {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+                <div className="pt-4 border-t border-neutral-200/80">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    Developer & Engineering Networks
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {developerProfiles.map((p, i) => (
+                      <a
+                        key={i}
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/80 text-xs font-semibold text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all shadow-2xs"
+                      >
+                        {p.icon}
+                        <span>{p.label}</span>
+                        <ArrowUpRight size={11} className="opacity-70" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Cinema & Press Profiles */}
-              <div className="pt-4 border-t border-neutral-200/80">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
-                  Cinema, Film & Press Portals
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {cinemaProfiles.map((p, i) => (
-                    <a
-                      key={i}
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 text-[11px] font-semibold text-neutral-700 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all shadow-2xs"
-                    >
-                      {p.icon}
-                      <span>{p.label}</span>
-                      <ArrowUpRight size={10} className="opacity-70" />
-                    </a>
-                  ))}
+              {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && (
+                <div className="pt-4 border-t border-neutral-200/80">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    Cinema, Film & Press Portals
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {cinemaProfiles.map((p, i) => (
+                      <a
+                        key={i}
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/80 text-[11px] font-semibold text-neutral-700 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all shadow-2xs"
+                      >
+                        {p.icon}
+                        <span>{p.label}</span>
+                        <ArrowUpRight size={10} className="opacity-70" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 

@@ -73,7 +73,11 @@ export default function Timeline({ viewMode }: TimelineProps) {
             <span className="text-neutral-500 font-semibold">Chronological progression.</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 font-normal">
-            A chronological timeline of startup founding, technical internships, certifications, and creative productions.
+            {viewMode === 'tech'
+              ? 'A chronological timeline of startup founding, technical internships, and computer applications coursework.'
+              : viewMode === 'filmmaking'
+              ? 'Chronological milestones in narrative screenwriting, cinematic directing, and independent festival releases.'
+              : 'A chronological timeline of startup founding, technical internships, certifications, and creative productions.'}
           </p>
         </div>
 

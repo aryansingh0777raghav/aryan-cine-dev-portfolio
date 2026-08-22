@@ -20,13 +20,13 @@ export default function Certifications({ viewMode }: CertificationsProps) {
       title: "Aryan Singh: The Young Filmmaker Redefining Independent Storytelling",
       publisher: "THE INDIAN BLOG",
       date: "July 27, 2026",
-      desc: "Featured in an exclusive editorial spotlight celebrating emerging independent storytellers in India. Details Aryan Singh's journey from Gorakhpur, UP, his directorial debut 'The Night of Life: Before You Think About It', and his multi-disciplinary vision bridging software engineering with cinema.",
+      desc: "Featured in an exclusive editorial spotlight celebrating emerging independent storytellers in India. Details Aryan Singh's journey from Gorakhpur, UP, his directorial debut 'The Night of Life: Before You Think About It', and his unique auteur storytelling philosophy.",
       link: "https://indianblog.co.in/aryan-singh-filmmaker/",
       image: "/images/aryan_press_portrait.jpg",
       points: [
         "Spotlight on directorial debut 'The Night of Life'",
         "Celebrated for emotional realism & philosophical depth",
-        "Recognized for dual expertise in Software & Cinema"
+        "Recognized among emerging Indian independent directors"
       ]
     },
     {
@@ -70,18 +70,26 @@ export default function Certifications({ viewMode }: CertificationsProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
-          <span className="section-index">006 // Press & Recognitions</span>
+          <span className="section-index">
+            {viewMode === 'tech' ? '006 // Technical Credentials' : viewMode === 'filmmaking' ? '006 // Press & Directorial Spotlight' : '006 // Press & Recognitions'}
+          </span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>
 
         {/* Section Header */}
         <div className="max-w-2xl mb-16">
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
-            In the Spotlight.<br />
-            <span className="text-neutral-500 font-semibold">Press features & credentials.</span>
+            {viewMode === 'tech' ? 'Credentials & Awards.' : viewMode === 'filmmaking' ? 'Press Spotlight.' : 'In the Spotlight.'}<br />
+            <span className="text-neutral-500 font-semibold">
+              {viewMode === 'tech' ? 'Institutional certifications & training.' : viewMode === 'filmmaking' ? 'Media coverage & editorial features.' : 'Press features & credentials.'}
+            </span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 font-normal">
-            Verified media coverage, institutional certifications, and industry accolades.
+            {viewMode === 'tech'
+              ? 'Verified institutional certifications, big data credentials, and technical performance accolades.'
+              : viewMode === 'filmmaking'
+              ? 'Verified independent media coverage, editorial spotlights, and critical film acclaim.'
+              : 'Verified media coverage, institutional certifications, and industry accolades.'}
           </p>
         </div>
 

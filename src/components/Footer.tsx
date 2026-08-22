@@ -1,14 +1,40 @@
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Footer() {
-  const socialLinks = [
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/iamaryan07" },
-    { label: "GitHub", url: "https://github.com/aryansingh0777raghav" },
-    { label: "IMDb", url: "https://www.imdb.com/name/nm18214429/" },
-    { label: "TMDB", url: "https://www.themoviedb.org/person/6018661-aryan-singh" },
-    { label: "Letterboxd", url: "https://boxd.it/2VQn1" },
-    { label: "Instagram", url: "https://www.instagram.com/iam_aryannnn07" },
-  ];
+interface FooterProps {
+  viewMode?: 'tech' | 'filmmaking' | 'both' | null;
+}
+
+export default function Footer({ viewMode }: FooterProps) {
+  const getSocialLinks = () => {
+    if (viewMode === 'tech') {
+      return [
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/iamaryan07" },
+        { label: "GitHub", url: "https://github.com/aryansingh0777raghav" },
+        { label: "Instagram", url: "https://www.instagram.com/iam_aryannnn07" },
+      ];
+    }
+    if (viewMode === 'filmmaking') {
+      return [
+        { label: "YouTube (CineOn)", url: "https://www.youtube.com/@cineonstudio7" },
+        { label: "IMDb", url: "https://www.imdb.com/name/nm18214429/" },
+        { label: "TMDB", url: "https://www.themoviedb.org/person/6018661-aryan-singh" },
+        { label: "Letterboxd", url: "https://boxd.it/2VQn1" },
+        { label: "FilmFreeway", url: "https://filmfreeway.com/iamaryannnn07" },
+        { label: "Instagram", url: "https://www.instagram.com/iam_aryannnn07" },
+      ];
+    }
+    return [
+      { label: "LinkedIn", url: "https://www.linkedin.com/in/iamaryan07" },
+      { label: "GitHub", url: "https://github.com/aryansingh0777raghav" },
+      { label: "YouTube", url: "https://www.youtube.com/@cineonstudio7" },
+      { label: "IMDb", url: "https://www.imdb.com/name/nm18214429/" },
+      { label: "TMDB", url: "https://www.themoviedb.org/person/6018661-aryan-singh" },
+      { label: "Letterboxd", url: "https://boxd.it/2VQn1" },
+      { label: "Instagram", url: "https://www.instagram.com/iam_aryannnn07" },
+    ];
+  };
+
+  const socialLinks = getSocialLinks();
 
   return (
     <footer className="py-16 md:py-24 bg-white text-neutral-900">

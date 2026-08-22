@@ -44,11 +44,17 @@ export default function Skills({ viewMode }: SkillsProps) {
         {/* Section Header */}
         <div className="max-w-2xl mb-16">
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-950 mb-3">
-            Capabilities Matrix.<br />
-            <span className="text-neutral-500 font-semibold">Engineering & storytelling toolset.</span>
+            {viewMode === 'tech' ? 'Technical Matrix.' : viewMode === 'filmmaking' ? 'Creative Matrix.' : 'Capabilities Matrix.'}<br />
+            <span className="text-neutral-500 font-semibold">
+              {viewMode === 'tech' ? 'Software engineering & systems toolset.' : viewMode === 'filmmaking' ? 'Directorial & cinematic craft.' : 'Engineering & storytelling toolset.'}
+            </span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 font-normal">
-            Specialized competencies across full-stack software development, systems security, and narrative filmmaking.
+            {viewMode === 'tech'
+              ? 'Specialized competencies across full-stack backend development, PostgreSQL concurrency, and AI developer tooling.'
+              : viewMode === 'filmmaking'
+              ? 'Specialized competencies across psychological screenwriting, atmospheric cinematography, DaVinci Resolve color grading, and editorial direction.'
+              : 'Specialized competencies across full-stack software development, systems security, and narrative filmmaking.'}
           </p>
         </div>
 

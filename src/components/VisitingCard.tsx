@@ -3,24 +3,47 @@ import { motion } from 'motion/react';
 import { Download, RefreshCw, UserCheck, Sparkles } from 'lucide-react';
 import { soundFX } from '../utils/audio';
 
-export default function VisitingCard() {
+interface VisitingCardProps {
+  viewMode?: 'tech' | 'filmmaking' | 'both' | null;
+}
+
+export default function VisitingCard({ viewMode }: VisitingCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [saved, setSaved] = useState(false);
 
   const downloadVCard = () => {
     soundFX.playClick();
+    
+    const org = viewMode === 'tech' 
+      ? 'ArKTest Beta' 
+      : viewMode === 'filmmaking' 
+      ? 'CineOn Studio 7' 
+      : 'ArKTest Beta | CineOn Studio 7';
+      
+    const title = viewMode === 'tech'
+      ? 'Founder & Lead Full-Stack Architect'
+      : viewMode === 'filmmaking'
+      ? 'Independent Film Director & Screenwriter'
+      : 'Founder & Lead Full-Stack Architect | Independent Film Director';
+
+    const note = viewMode === 'tech'
+      ? 'Founder & Architect of ArKTest Beta (Crowdsourced QA Marketplace & Escrow Concurrency)'
+      : viewMode === 'filmmaking'
+      ? 'Director of The Night of Life (4K Short Film) & Screenwriter at CineOn Studio 7'
+      : 'Founder & Architect of ArKTest Beta & Director of The Night of Life';
+
     const vCardData = `BEGIN:VCARD
 VERSION:3.0
 N:Singh;Aryan;;;
 FN:Aryan Singh
-ORG:ArKTest Beta | CineOn Studio 7
-TITLE:Founder & Lead Full-Stack Architect | Independent Film Director
+ORG:${org}
+TITLE:${title}
 EMAIL;TYPE=INTERNET,PREF:aryansingh979211@gmail.com
 ADR;TYPE=HOME:;;Gorakhpur;Uttar Pradesh;;India
 URL;TYPE=WORK:https://aryan-cine-dev-portfolio.vercel.app/
 URL;TYPE=LinkedIn:https://www.linkedin.com/in/iamaryan07
 URL;TYPE=GitHub:https://github.com/aryansingh0777raghav
-NOTE:Founder & Architect of ArKTest Beta (Crowdsourced QA Marketplace) & Director of The Night of Life
+NOTE:${note}
 END:VCARD`;
 
     const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
