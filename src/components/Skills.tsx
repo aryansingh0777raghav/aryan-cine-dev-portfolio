@@ -7,27 +7,24 @@ interface SkillsProps {
 
 const skills = {
   technical: [
-    "Python 3.14 & FastAPI",
-    "PostgreSQL & SQLAlchemy",
-    "Pessimistic Concurrency (with_for_update)",
-    "React 19 & TypeScript",
-    "Tailwind CSS",
-    "Kotlin & Jetpack Compose",
+    "Python & FastAPI",
+    "PostgreSQL & SQL",
+    "JavaScript (ES6+) & TypeScript",
+    "React & Tailwind CSS",
+    "HTML5 & Semantic CSS3",
     "Data Structures & Algorithms",
-    "OWASP API Security",
-    "Automated Escrow Architectures",
-    "Pytest Test Automation",
-    "Progressive Web Apps (PWA)",
-    "Groq & LLM APIs"
+    "Java & C++",
+    "Big Data Analytics (Samsung SIC)",
+    "RESTful API Architecture",
+    "Git & GitHub Version Control"
   ],
   creative: [
-    "Screenwriting & Directing",
-    "Psychological Realism",
-    "Atmospheric Cinematography",
+    "Screenwriting & Script Development",
+    "Film Direction & Scene Pacing",
+    "Cinematography & Lighting",
     "DaVinci Resolve Color Grading",
-    "Premiere Pro Editorial",
-    "Actor Direction & Dialogue",
-    "Sound Design & Audio Ducking"
+    "Premiere Pro Video Editing",
+    "Sound Design & Audio Mixing"
   ]
 };
 

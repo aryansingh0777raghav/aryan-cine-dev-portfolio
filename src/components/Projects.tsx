@@ -338,17 +338,19 @@ export default function Projects({ viewMode }: ProjectsProps) {
       title: "Cine-Dev Showcase Portal", 
       category: "Interactive Web Architecture",
       tech: "HTML5, CSS3, JavaScript ES6",
-      desc: "A sleek and performance-driven web interface engineered with semantic markup and vanilla JavaScript ES6 for multimedia showcases.", 
+      desc: "A sleek dual-theme split interface engineered with vanilla JavaScript ES6 and semantic CSS for multimedia showcases.", 
       image: "/images/CinePortfolio.png",
-      link: "https://aryansingh0777raghav.github.io/Aryan-Singh-Cine-Portfolio/" 
+      link: "https://aryansingh0777raghav.github.io/Aryan-Singh-Cine-Portfolio/",
+      github: "https://github.com/aryansingh0777raghav/Aryan-Singh-Cine-Portfolio" 
     },
     { 
       title: "Portfolio Terminal", 
       category: "Interactive CLI Portfolio",
       tech: "JavaScript, Bash Emulator, CSS3",
       desc: "Interactive command-line terminal portfolio supporting authentic shell commands and interactive Easter eggs.", 
-      image: "/images/web-projects.png",
-      link: "https://aryansingh0777raghav.github.io/Aryan-Interactive-portfolio/" 
+      image: "/images/Portfolio-Terminal.png",
+      link: "https://aryansingh0777raghav.github.io/Aryan-Interactive-portfolio/",
+      github: "https://github.com/aryansingh0777raghav/Aryan-Interactive-portfolio" 
     },
     { 
       title: "Personal Portfolio Minimal V3", 
@@ -356,7 +358,8 @@ export default function Projects({ viewMode }: ProjectsProps) {
       tech: "Vanilla JavaScript, CSS3, HTML5",
       desc: "A clean, minimal, and ultra-fast personal portfolio website with a sharp focus on simplicity and typography performance.", 
       image: "/images/MinimalV3.png",
-      link: "https://aryansingh0777raghav.github.io/Personal-Portfolio-MinimalV3/" 
+      link: "https://aryansingh0777raghav.github.io/Personal-Portfolio-MinimalV3/",
+      github: "https://github.com/aryansingh0777raghav/Personal-Portfolio-MinimalV3" 
     },
     { 
       title: "Personal Portfolio NetUI", 
@@ -364,16 +367,17 @@ export default function Projects({ viewMode }: ProjectsProps) {
       tech: "React, Tailwind CSS, Glassmorphic UI",
       desc: "A clean personal portfolio built with NetUI showcasing translucent layered cards and dynamic lighting.", 
       image: "/images/NetUI.png",
-      link: "https://aryansingh0777raghav.github.io/Personal-Portfolio-NetUI/" 
+      link: "https://aryansingh0777raghav.github.io/Personal-Portfolio-NetUI/",
+      github: "https://github.com/aryansingh0777raghav/Personal-Portfolio-NetUI" 
     },
     { 
-      title: "ArTool YouTube Extension", 
+      title: "ArTools YouTube Extension", 
       category: "Chrome Extension & Productivity",
       tech: "JavaScript, Chrome Extension API, DOM Parser",
       desc: "A productivity browser extension allowing instant downloads of YouTube videos, audio streams, and HD thumbnails.", 
       image: "/images/ArTool.png",
-      github: "https://github.com/aryansingh0777raghav/ArTool",
-      link: "https://github.com/aryansingh0777raghav/ArTool" 
+      github: "https://github.com/aryansingh0777raghav/ArTools-Chrome-Youtube-Extension",
+      link: "https://github.com/aryansingh0777raghav/ArTools-Chrome-Youtube-Extension" 
     },
     { 
       title: "MySites Portal", 
@@ -381,7 +385,8 @@ export default function Projects({ viewMode }: ProjectsProps) {
       tech: "JavaScript ES6, LocalStorage API, CSS3",
       desc: "A developer website saver that organizes your deployments, stores metadata, and offers fast instantaneous search.", 
       image: "/images/MySites.png",
-      link: "https://aryansingh0777raghav.github.io/MySites/" 
+      link: "https://aryansingh0777raghav.github.io/MySites/",
+      github: "https://github.com/aryansingh0777raghav/MySites" 
     }
   ];
 
@@ -390,7 +395,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
       title: "The Night of Life: Before You Think About It",
       year: "2026",
       category: "Cinematic Film Production",
-      tech: "DaVinci Resolve 19, Premiere Pro, 4K DCI, 24fps Narrative Cinema",
+      tech: "",
       image: "/images/The%20Night%20of%20Life.png",
       desc: "A psychological drama short film exploring inner conflict, existential isolation, student academic despair, and life-changing decisions. Written, directed, scored, and edited by Aryan Singh under CineOn Studio 7.",
       roles: ["Writer", "Director", "Actor", "Musician", "Editor"],
@@ -915,7 +920,9 @@ export default function Projects({ viewMode }: ProjectsProps) {
                       <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
                         {film.title}
                       </h4>
-                      <p className="text-xs font-mono text-neutral-400 mb-3">{film.tech}</p>
+                      {film.tech ? (
+                        <p className="text-xs font-mono text-neutral-400 mb-3">{film.tech}</p>
+                      ) : null}
                       
                       {/* Roles */}
                       <div className="flex flex-wrap gap-1.5 mb-4">
