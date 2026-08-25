@@ -47,6 +47,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     },
     { name: 'Timeline', href: '#timeline' },
     { name: viewMode === 'filmmaking' ? 'Press' : 'Credentials', href: '#certifications' },
+    { name: 'Journal', href: '#feed' },
   ];
 
   return (

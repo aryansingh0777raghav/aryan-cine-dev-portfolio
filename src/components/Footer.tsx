@@ -65,6 +65,7 @@ export default function Footer({ viewMode }: FooterProps) {
               <a href="#projects" className="hover:text-neutral-950">Projects</a>
               <a href="#timeline" className="hover:text-neutral-950">Timeline</a>
               <a href="#certifications" className="hover:text-neutral-950">Recognitions</a>
+              <a href="#feed" className="hover:text-neutral-950">Journal</a>
               <a href="#contact" className="hover:text-neutral-950">Contact</a>
             </div>
           </div>

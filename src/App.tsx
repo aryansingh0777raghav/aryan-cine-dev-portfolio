@@ -10,6 +10,7 @@ import Projects from './components/Projects';
 import Timeline from './components/Timeline';
 import Certifications from './components/Certifications';
 import Skills from './components/Skills';
+import InstagramFeed from './components/InstagramFeed';
 import VisitingCard from './components/VisitingCard';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -154,10 +155,13 @@ export default function App() {
             {/* 007 // Technical & Creative Matrix */}
             <Skills viewMode={viewMode} />
 
+            {/* 008 // Visual Journal & Instagram Live Feed */}
+            <InstagramFeed viewMode={viewMode} />
+
             {/* Digital Identity Visiting Card */}
             <VisitingCard viewMode={viewMode} />
 
-            {/* 008 // Inquiries & Contact */}
+            {/* 009 // Inquiries & Contact */}
             <Contact viewMode={viewMode} />
           </main>
 
