@@ -11,7 +11,6 @@ import Timeline from './components/Timeline';
 import Certifications from './components/Certifications';
 import Skills from './components/Skills';
 import InstagramFeed from './components/InstagramFeed';
-import VisitingCard from './components/VisitingCard';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
@@ -157,9 +156,6 @@ export default function App() {
 
             {/* 008 // Visual Journal & Instagram Live Feed */}
             <InstagramFeed viewMode={viewMode} />
-
-            {/* Digital Identity Visiting Card */}
-            <VisitingCard viewMode={viewMode} />
 
             {/* 009 // Inquiries & Contact */}
             <Contact viewMode={viewMode} />

@@ -43,7 +43,7 @@ export default function Contact({ viewMode }: ContactProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
-          <span className="section-index">008 // Inquiries & Collaboration</span>
+          <span className="section-index">009 // Inquiries & Collaboration</span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>
 
