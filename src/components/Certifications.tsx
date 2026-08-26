@@ -16,6 +16,20 @@ export default function Certifications({ viewMode }: CertificationsProps) {
   const recognitions = [
     {
       type: "filmmaking",
+      tag: "Google Knowledge Graph • Verified Entity",
+      title: "Google Knowledge Panel: Aryan Singh (Filmmaker)",
+      publisher: "GOOGLE SEARCH",
+      date: "August 2026",
+      desc: "Officially indexed and recognized in Google's Knowledge Graph as an independent filmmaker and director, verifying directorial credentials, birth records, and cinematic works across global search indexes.",
+      link: "https://share.google/rvj5TA6ZWVsg3A3GH",
+      points: [
+        "Official Verified Google Knowledge Graph Entity",
+        "Indexed for search query 'Aryan Singh Filmmaker'",
+        "Live entity link: share.google/rvj5TA6ZWVsg3A3GH"
+      ]
+    },
+    {
+      type: "filmmaking",
       tag: "Press Coverage • Editorial Spotlight",
       title: "Aryan Singh: The Young Filmmaker Redefining Independent Storytelling",
       publisher: "THE INDIAN BLOG",

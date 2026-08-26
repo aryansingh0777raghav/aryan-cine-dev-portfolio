@@ -15,6 +15,7 @@ export default function Footer({ viewMode }: FooterProps) {
     }
     if (viewMode === 'filmmaking') {
       return [
+        { label: "Google Panel", url: "https://share.google/rvj5TA6ZWVsg3A3GH" },
         { label: "YouTube (CineOn)", url: "https://www.youtube.com/@cineonstudio7" },
         { label: "IMDb", url: "https://www.imdb.com/name/nm18214429/" },
         { label: "TMDB", url: "https://www.themoviedb.org/person/6018661-aryan-singh" },
@@ -24,6 +25,7 @@ export default function Footer({ viewMode }: FooterProps) {
       ];
     }
     return [
+      { label: "Google Panel", url: "https://share.google/rvj5TA6ZWVsg3A3GH" },
       { label: "LinkedIn", url: "https://www.linkedin.com/in/iamaryan07" },
       { label: "GitHub", url: "https://github.com/aryansingh0777raghav" },
       { label: "YouTube", url: "https://www.youtube.com/@cineonstudio7" },

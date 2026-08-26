@@ -30,6 +30,7 @@ export default function Contact({ viewMode }: ContactProps) {
   ];
 
   const cinemaProfiles = [
+    { label: "Google Knowledge Panel", url: "https://share.google/rvj5TA6ZWVsg3A3GH", icon: <Sparkles size={13} className="text-blue-500" /> },
     { label: "YouTube (CineOn)", url: "https://www.youtube.com/@cineonstudio7", icon: <Youtube size={13} className="text-red-600" /> },
     { label: "IMDb Profile", url: "https://www.imdb.com/name/nm18214429", icon: <Film size={13} /> },
     { label: "TMDB", url: "https://www.themoviedb.org/person/6018661-aryan-singh", icon: <Film size={13} /> },
