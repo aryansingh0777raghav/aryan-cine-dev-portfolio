@@ -45,15 +45,14 @@ export default function App() {
     let lenis: any = null;
 
     if (!isTouchDevice) {
-      // Desktop: Smooth Lenis mousewheel momentum
+      // Desktop: Ultra-Smooth Lenis mousewheel momentum
       lenis = new Lenis({
-        duration: 1.1,
+        duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.95,
-        touchMultiplier: 0,
-        syncTouch: false,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.5,
         infinite: false,
       });
 

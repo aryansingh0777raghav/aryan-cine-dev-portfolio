@@ -5,18 +5,32 @@ interface SkillsProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
-const skills = {
-  technical: [
-    "Python & FastAPI",
-    "PostgreSQL & SQL",
-    "JavaScript (ES6+) & TypeScript",
-    "React & Tailwind CSS",
-    "HTML5 & Semantic CSS3",
+const resumeSkills = {
+  languages: [
+    "Python",
+    "C",
+    "C++",
+    "SQL",
+    "Java (Core/Basic)",
+    "HTML"
+  ],
+  backend: [
+    "FastAPI",
+    "RESTful APIs",
+    "PostgreSQL & SQLite Schema Design"
+  ],
+  tools: [
+    "Git",
+    "GitHub",
+    "VS Code",
+    "Vercel Deployment"
+  ],
+  other: [
+    "AI-Augmented Software Development",
+    "API Integration",
+    "Rapid Prototyping",
     "Data Structures & Algorithms",
-    "Java & C++",
-    "Big Data Analytics (Samsung SIC)",
-    "RESTful API Architecture",
-    "Git & GitHub Version Control"
+    "DBMS & OOP Fundamentals"
   ],
   creative: [
     "Screenwriting & Script Development",
@@ -48,39 +62,103 @@ export default function Skills({ viewMode }: SkillsProps) {
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 font-normal">
             {viewMode === 'tech'
-              ? 'Specialized competencies across full-stack backend development, PostgreSQL concurrency, and AI developer tooling.'
+              ? 'Core competencies in backend API architecture, database systems, and modern AI-augmented developer workflows.'
               : viewMode === 'filmmaking'
-              ? 'Specialized competencies across psychological screenwriting, atmospheric cinematography, DaVinci Resolve color grading, and editorial direction.'
-              : 'Specialized competencies across full-stack software development, systems security, and narrative filmmaking.'}
+              ? 'Competencies in psychological screenwriting, atmospheric cinematography, DaVinci Resolve color grading, and editorial direction.'
+              : 'Specialized competencies across software engineering, AI workflows, and cinematic storytelling.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Tech Matrix */}
           {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-neutral-200 bg-white p-8 hover:border-neutral-400 transition-all"
+              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 transition-all ${
+                viewMode === 'tech' ? 'lg:col-span-12' : 'lg:col-span-7'
+              }`}
             >
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-100">
                 <Terminal size={18} className="text-neutral-950" />
                 <h3 className="text-lg font-bold text-neutral-950 tracking-tight">
-                  Software Engineering & Architecture
+                  Technical Skills & Systems
                 </h3>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {skills.technical.map((item, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-medium text-neutral-800 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
-                  >
-                    <Check size={11} className="text-neutral-400" />
-                    {item}
+              <div className="space-y-6">
+                {/* Languages */}
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    // Programming Languages
                   </span>
-                ))}
+                  <div className="flex flex-wrap gap-2">
+                    {resumeSkills.languages.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-semibold text-neutral-900 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
+                      >
+                        <Check size={11} className="text-neutral-400" />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Backend & APIs */}
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    // Backend & APIs
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {resumeSkills.backend.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-semibold text-neutral-900 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
+                      >
+                        <Check size={11} className="text-neutral-400" />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tools & Platforms */}
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    // Tools & Platforms
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {resumeSkills.tools.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-semibold text-neutral-900 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
+                      >
+                        <Check size={11} className="text-neutral-400" />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* AI Workflows & Core CS */}
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                    // AI Workflows & Core CS
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {resumeSkills.other.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-semibold text-neutral-900 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
+                      >
+                        <Check size={11} className="text-neutral-400" />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
@@ -91,25 +169,32 @@ export default function Skills({ viewMode }: SkillsProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-neutral-200 bg-white p-8 hover:border-neutral-400 transition-all"
+              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 transition-all ${
+                viewMode === 'filmmaking' ? 'lg:col-span-12' : 'lg:col-span-5'
+              }`}
             >
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-100">
                 <Film size={18} className="text-neutral-950" />
                 <h3 className="text-lg font-bold text-neutral-950 tracking-tight">
-                  Cinema, Direction & Post-Production
+                  Cinema & Directorial Craft
                 </h3>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {skills.creative.map((item, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-medium text-neutral-800 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
-                  >
-                    <Sparkles size={11} className="text-neutral-400" />
-                    {item}
-                  </span>
-                ))}
+              <div>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block mb-2.5">
+                  // Production & Post
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSkills.creative.map((item, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs font-mono font-semibold text-neutral-900 hover:bg-neutral-950 hover:text-white transition-colors cursor-default"
+                    >
+                      <Sparkles size={11} className="text-neutral-400" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}

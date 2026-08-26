@@ -173,6 +173,45 @@ export default function Hero({ viewMode }: HeroProps) {
             )}
           </motion.div>
         </div>
+
+        {/* Full-Width Panoramic Cinematic Frame (Ultra-Smooth Layer Isolated) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          style={{ 
+            contain: 'paint',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'translate3d(0, 0, 0)',
+            WebkitTransform: 'translate3d(0, 0, 0)'
+          }}
+          className="mt-12 sm:mt-16 p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl bg-[#0A0A0A] border border-neutral-800 shadow-sm overflow-hidden"
+        >
+          <div 
+            style={{ 
+              contain: 'paint',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
+            className="w-full rounded-xl sm:rounded-2xl overflow-hidden border border-neutral-800/80 bg-black"
+          >
+            <img 
+              src="/images/aryan_panorama.png" 
+              alt="Aryan Singh" 
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              style={{
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
+              className="w-full h-auto object-contain block"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

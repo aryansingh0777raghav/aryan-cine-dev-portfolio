@@ -96,7 +96,6 @@ export default function Footer({ viewMode }: FooterProps) {
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-400">
           <p>© 2026 Aryan Singh. All rights reserved.</p>
-          <p>Swiss Minimalist Architecture • MobilityLab Design System</p>
         </div>
       </div>
     </footer>
