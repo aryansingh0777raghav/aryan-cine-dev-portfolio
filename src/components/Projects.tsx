@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ExternalLink, 
@@ -56,6 +56,22 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'ai' | 'web' | 'film'>('all');
+
+  // Lock background Lenis & body scroll when modal is open to eliminate double-scroll collision lag
+  useEffect(() => {
+    const lenis = (window as any).lenis;
+    if (selectedProject) {
+      lenis?.stop();
+      document.body.style.overflow = 'hidden';
+    } else {
+      lenis?.start();
+      document.body.style.overflow = '';
+    }
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
 
   const flagshipProject: Project = {
     title: "ArKTest Beta (Application Review Kit)",
@@ -1026,14 +1042,22 @@ export default function Projects({ viewMode }: ProjectsProps) {
         {selectedProject && (
           <div 
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-neutral-950/60 backdrop-blur-xs overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 overflow-y-auto overscroll-contain transform-gpu"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-4xl max-h-[88vh] overflow-y-auto rounded-3xl bg-white border border-neutral-200 p-6 sm:p-10 shadow-2xl relative"
+              style={{
+                contain: 'paint',
+                transform: 'translate3d(0,0,0)',
+                WebkitTransform: 'translate3d(0,0,0)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+              }}
+              className="w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white border border-neutral-200 p-6 sm:p-10 shadow-2xl relative overscroll-contain"
             >
               {/* Close Button */}
               <button
