@@ -116,6 +116,43 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
   const aiProjects: Project[] = [
     {
+      title: "SaveAlly.",
+      category: "Full-Stack / PWA / AI / Local-First",
+      tech: "React, TypeScript, Vite, Tailwind CSS, IndexedDB, PWA / Service Workers, Node.js, Groq AI",
+      image: "/images/saveally.png",
+      desc: "SaveAlly. is an elegant, privacy-first personal memory for the internet that allows users to save articles, products, videos, recipes, and ideas without accounts or central tracking. Engineered as an installable PWA acting as an Android Web Share Target with client-side Service Worker request interception, local-first IndexedDB persistence, a custom serverless metadata extraction pipeline (zero third-party CORS proxies), and BYOK Groq AI natural language search with dynamic multi-model discovery.",
+      link: "https://saveally.vercel.app",
+      github: "https://github.com/aryansingh0777raghav/SaveAlly.",
+      role: "Creator & Full-Stack Architect",
+      tagline: "Privacy-first personal memory for the internet with Android Web Share Target PWA & Groq AI",
+      coreVision: "SaveAlly. is designed as an uncompromising privacy-first personal knowledge vault. By uniting the Android Web Share Target API with client-side Service Worker request interception, local IndexedDB persistence, a serverless OpenGraph metadata extraction pipeline, and BYOK Groq AI semantic natural language search, SaveAlly. delivers an effortless capture experience with 100% data sovereignty.",
+      metrics: [
+        { label: "100% Local Privacy", desc: "Zero accounts or tracking; all bookmarks and collections persist on-device via IndexedDB." },
+        { label: "Android Share Target", desc: "Saves links directly from any mobile app via the Android native share sheet." },
+        { label: "Zero 3rd-Party Proxies", desc: "Custom serverless OpenGraph extraction pipeline with smart heuristic fallbacks." },
+        { label: "BYOK Groq AI", desc: "Semantic natural language search, dynamic model discovery, and smart auto-tagging." }
+      ],
+      techStack: [
+        { name: "React, TypeScript & Vite", desc: "High-performance reactive frontend with strictly typed contracts and instantaneous state hydration." },
+        { name: "PWA & Service Worker Share Target", desc: "Android Web Share Target manifest with client-side Service Worker request interception for 1-tap saving from any app." },
+        { name: "IndexedDB Local-First Persistence", desc: "Enterprise-grade client-side key-value database storing all items, custom collections, and search indexes on-device." },
+        { name: "Node.js Serverless Metadata Pipeline", desc: "Custom serverless extraction pipeline capturing OpenGraph titles, descriptions, favicons, and hero images without third-party CORS proxies." },
+        { name: "Groq Cloud AI (BYOK Multi-Model)", desc: "Natural language semantic querying, smart content auto-tagging, and dynamic multi-model catalog discovery." },
+        { name: "Tailwind CSS Design System", desc: "Warm editorial aesthetic with warm paper palettes, fluid responsive grids, and clean visual cards." }
+      ],
+      features: [
+        { title: "Android Web Share Target & Service Worker", desc: "Install as a PWA on Android to save links from any browser or social app directly through the native system share sheet." },
+        { title: "100% Local-First Privacy & IndexedDB", desc: "All saves, collections, notes, and metadata reside exclusively on your physical device with zero central telemetry or tracking." },
+        { title: "BYOK Groq AI Natural Language Search", desc: "Ask questions or query saves using everyday language (e.g. 'find design articles from last week') powered by ultra-fast Groq LLM inference." },
+        { title: "Custom Serverless Metadata Extraction", desc: "Extracts rich OpenGraph previews, site icons, and summaries directly with zero third-party proxy privacy leaks." },
+        { title: "1-Click JSON Portability & Duplicate Cleaner", desc: "Full JSON backup import/export capabilities paired with automated URL normalization and duplicate link detection." }
+      ],
+      links: [
+        { label: "Live Platform", url: "https://saveally.vercel.app" },
+        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/SaveAlly." }
+      ]
+    },
+    {
       title: "ArType",
       category: "AI Android Assistant",
       tech: "Kotlin, Jetpack Compose, Material 3, Groq API, Android Accessibility Service",
@@ -690,17 +727,30 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
                       <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{item.category}</span>
-                      {item.github && (
-                        <a 
-                          href={item.github} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
-                          title="GitHub Repository"
-                        >
-                          <Github size={13} />
-                        </a>
-                      )}
+                      <div className="flex items-center gap-1.5">
+                        {item.link && (
+                          <a 
+                            href={item.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-emerald-500 hover:text-white transition-all"
+                            title="Live Demo"
+                          >
+                            <Globe size={13} />
+                          </a>
+                        )}
+                        {item.github && (
+                          <a 
+                            href={item.github} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
+                            title="GitHub Repository"
+                          >
+                            <Github size={13} />
+                          </a>
+                        )}
+                      </div>
                     </div>
 
                     <div 
@@ -743,16 +793,28 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     >
                       <Info size={12} /> View Architecture
                     </button>
-                    {item.github && (
-                      <a
-                        href={item.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
-                      >
-                        Code <ArrowUpRight size={12} />
-                      </a>
-                    )}
+                    <div className="flex items-center gap-3">
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1"
+                        >
+                          Live <ArrowUpRight size={12} />
+                        </a>
+                      )}
+                      {item.github && (
+                        <a
+                          href={item.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
+                        >
+                          Code <ArrowUpRight size={12} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}

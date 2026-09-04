@@ -33,7 +33,8 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
       : "Aryan Singh is a dual-threat Software Engineer, Founder & Lead Full-Stack Architect of ArKTest Beta, and Film Director. He specializes in bridging logical engineering with creative storytelling. He's currently available for freelance software and film projects.",
     projects: viewMode === 'filmmaking'
       ? "Aryan's primary directorial project is 'The Night of Life: Before You Think About It' (4K short film with CineOn Studio 7), along with screenwriting archives."
-      : "Aryan's flagship platform is ArKTest Beta (Crowd Testing & Escrow QA Platform), along with ArVerse OS (Virtual OS Simulator), ArType (AI Android Assistant), Certilink (Credential Verifier), ArLip, and ArCh.",
+      : "Aryan's flagship platforms are SaveAlly. (Privacy-First Internet Memory PWA with Groq AI) and ArKTest Beta (Crowd Testing & Escrow QA Platform), along with ArVerse OS, ArType, Certilink, ArLip, and ArCh.",
+    saveally: "SaveAlly. (https://saveally.vercel.app) is an elegant, privacy-first personal memory for the internet that allows users to save articles, products, videos, recipes, and ideas without accounts or tracking. Built as an Android Web Share Target PWA with local IndexedDB persistence, a custom serverless metadata extraction pipeline, and BYOK Groq AI semantic search.",
     arktest: "ArKTest Beta (https://arktest-beta.vercel.app) is a full-stack crowd testing & QA innovation platform founded by Aryan Singh (Co-Founded by Vijay Laxmi Singh). Built with FastAPI (Python 3.14), PostgreSQL/SQLAlchemy, and Vanilla JS, it features an automated ArK Points escrow economy, pessimistic DB locking (with_for_update()), OWASP security, single-user CSV exports, PWA capabilities, and SMTP failover. Official LinkedIn page: https://www.linkedin.com/company/arktest-beta/",
     skills: viewMode === 'filmmaking'
       ? "In the studio, he excels as a Screenwriter, Director, Actor, Sound Designer, and Editor utilizing DaVinci Resolve and Premiere Pro."
@@ -56,7 +57,10 @@ const getLocalResponse = (command: string, viewMode: 'tech' | 'filmmaking' | 'bo
 
   const has = (keywords: string[]) => keywords.some(k => cmd.includes(k));
 
-  if (has(['arktest', 'beta test', 'testing task', 'ark points', 'testing platform'])) {
+  if (has(['saveally', 'save ally', 'personal memory', 'bookmark', 'share target'])) {
+    setTimeout(() => scrollToSection('#projects'), 150);
+    return info.saveally;
+  } else if (has(['arktest', 'beta test', 'testing task', 'ark points', 'testing platform'])) {
     setTimeout(() => scrollToSection('#projects'), 150);
     return info.arktest;
   } else if (has(['samsung', 'sic08720', 'big data', 'bigdata'])) {
