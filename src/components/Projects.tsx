@@ -122,7 +122,6 @@ export default function Projects({ viewMode }: ProjectsProps) {
       image: "/images/saveally.png",
       desc: "SaveAlly. is an elegant, privacy-first personal memory for the internet that allows users to save articles, products, videos, recipes, and ideas without accounts or central tracking. Engineered as an installable PWA acting as an Android Web Share Target with client-side Service Worker request interception, local-first IndexedDB persistence, a custom serverless metadata extraction pipeline (zero third-party CORS proxies), and BYOK Groq AI natural language search with dynamic multi-model discovery.",
       link: "https://saveally.vercel.app",
-      github: "https://github.com/aryansingh0777raghav/SaveAlly.",
       role: "Creator & Full-Stack Architect",
       tagline: "Privacy-first personal memory for the internet with Android Web Share Target PWA & Groq AI",
       coreVision: "SaveAlly. is designed as an uncompromising privacy-first personal knowledge vault. By uniting the Android Web Share Target API with client-side Service Worker request interception, local IndexedDB persistence, a serverless OpenGraph metadata extraction pipeline, and BYOK Groq AI semantic natural language search, SaveAlly. delivers an effortless capture experience with 100% data sovereignty.",
@@ -148,8 +147,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
         { title: "1-Click JSON Portability & Duplicate Cleaner", desc: "Full JSON backup import/export capabilities paired with automated URL normalization and duplicate link detection." }
       ],
       links: [
-        { label: "Live Platform", url: "https://saveally.vercel.app" },
-        { label: "Source Code", url: "https://github.com/aryansingh0777raghav/SaveAlly." }
+        { label: "Live Platform", url: "https://saveally.vercel.app" }
       ]
     },
     {
