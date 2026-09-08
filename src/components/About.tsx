@@ -1,11 +1,21 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight, Youtube, Github, Globe } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowUpRight, Youtube, Github, Globe, Terminal, Film } from 'lucide-react';
 
 interface AboutProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
 export default function About({ viewMode }: AboutProps) {
+  const [activePersona, setActivePersona] = useState<'tech' | 'filmmaker'>('tech');
+
+  useEffect(() => {
+    if (viewMode === 'filmmaking') {
+      setActivePersona('filmmaker');
+    } else if (viewMode === 'tech') {
+      setActivePersona('tech');
+    }
+  }, [viewMode]);
   const getSubheading = () => {
     if (viewMode === 'tech') return 'The Technical Architect';
     if (viewMode === 'filmmaking') return 'The Cinematic Storyteller';
@@ -135,16 +145,71 @@ export default function About({ viewMode }: AboutProps) {
 
           {/* Right Portrait Showcase */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-4 sm:p-6 space-y-4">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 relative bg-neutral-100">
-                <img 
-                  src="/images/profile.png" 
-                  alt="Aryan Singh" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                />
+            <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-4 sm:p-6 space-y-4 shadow-xs">
+              
+              {/* Persona Switcher Tabs */}
+              <div className="flex items-center justify-between gap-2 p-1.5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs">
+                <button
+                  onClick={() => setActivePersona('tech')}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                    activePersona === 'tech'
+                      ? 'bg-neutral-950 text-white shadow-xs'
+                      : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
+                  }`}
+                >
+                  <Terminal size={12} />
+                  <span>The Architect</span>
+                </button>
+                <button
+                  onClick={() => setActivePersona('filmmaker')}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                    activePersona === 'filmmaker'
+                      ? 'bg-neutral-950 text-white shadow-xs'
+                      : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
+                  }`}
+                >
+                  <Film size={12} className={activePersona === 'filmmaker' ? 'text-amber-400' : ''} />
+                  <span>The Filmmaker</span>
+                </button>
               </div>
 
-              {viewMode === 'tech' ? (
+              {/* Photo Frame with AnimatePresence */}
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 relative bg-neutral-100 shadow-xs">
+                <AnimatePresence mode="wait">
+                  {activePersona === 'tech' ? (
+                    <motion.img 
+                      key="tech-img"
+                      src="/images/profile.png" 
+                      alt="Aryan Singh - Software Engineer & Founder of ArKTest Beta" 
+                      title="Aryan Singh - Software Engineer"
+                      loading="eager"
+                      fetchPriority="high"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 block"
+                    />
+                  ) : (
+                    <motion.img 
+                      key="film-img"
+                      src="/images/aryan-singh-filmmaker.jpg" 
+                      alt="Aryan Singh - Independent Film Director & Writer" 
+                      title="Aryan Singh Filmmaker"
+                      loading="eager"
+                      fetchPriority="high"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full object-cover block"
+                    />
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Dynamic Bottom Badge */}
+              {activePersona === 'tech' ? (
                 <div className="p-4 rounded-xl bg-white border border-neutral-200 flex items-center justify-between">
                   <div>
                     <p className="text-[11px] font-mono font-bold text-neutral-900">GitHub Verified</p>
