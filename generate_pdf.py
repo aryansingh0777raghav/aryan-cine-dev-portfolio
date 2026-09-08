@@ -336,6 +336,7 @@ def build_pdf(filename="Aryan_Singh_Master_Dossier.pdf"):
     story.append(Paragraph("7. VERIFIED DIGITAL ENTITIES & OFFICIAL WEB REGISTRIES", sec_heading))
     entities = [
         ("Google Knowledge Graph", "share.google/rvj5TA6ZWVsg3A3GH", "Official Verified Entity under query 'Aryan Singh Filmmaker'"),
+        ("Wikidata Entity", "wikidata.org/wiki/Q138471331", "Official structured Knowledge Base Item (Aryan Singh: Q138471331)"),
         ("IMDb Profile", "imdb.com/name/nm18214429/", "Official Director & Writer credit registry"),
         ("The Indian Blog", "indianblog.co.in/aryan-singh-filmmaker/", "Independent media editorial coverage"),
         ("TMDB Person", "themoviedb.org/person/6018661-aryan-singh", "The Movie Database official biography and director entry"),

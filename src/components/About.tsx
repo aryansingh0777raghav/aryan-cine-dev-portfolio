@@ -54,6 +54,7 @@ export default function About({ viewMode }: AboutProps) {
       { label: 'ArKTest Platform', url: 'https://arktest-beta.vercel.app/' }
     ];
     const filmLinks = [
+      { label: 'Wikidata', url: 'https://www.wikidata.org/wiki/Q138471331' },
       { label: 'Press Feature', url: 'https://indianblog.co.in/aryan-singh-filmmaker/' },
       { label: 'IMDb', url: 'https://www.imdb.com/name/nm18214429' },
       { label: 'TMDB', url: 'https://www.themoviedb.org/person/6018661-aryan-singh' },
