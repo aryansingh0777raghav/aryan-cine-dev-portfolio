@@ -123,6 +123,90 @@
   .swiss-grid-divider {
     @apply border-t border-neutral-200 w-full;
   }
+
+  /* 🏎️ Tactile 3D Depth & Ambient Elevation System (Inspired by Audi / Revolut F1 Studio Lighting) */
+
+  /* 1. Ambient Frame for Images & Posters (About Section & Media Frames) */
+  .ambient-depth-frame {
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.06),
+      0 8px 18px -3px rgba(0, 0, 0, 0.12),
+      0 24px 48px -8px rgba(0, 0, 0, 0.16),
+      0 40px 72px -16px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ambient-depth-frame:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.08),
+      0 14px 28px -4px rgba(0, 0, 0, 0.18),
+      0 36px 68px -8px rgba(0, 0, 0, 0.22),
+      0 56px 96px -16px rgba(0, 0, 0, 0.16);
+  }
+
+  /* 2. Ambient Card (for Light Cards, e.g. Instagram Posts, Info Badges) */
+  .ambient-depth-card {
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.04),
+      0 8px 18px -3px rgba(0, 0, 0, 0.08),
+      0 24px 44px -8px rgba(0, 0, 0, 0.10);
+    transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .ambient-depth-card:hover {
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.06),
+      0 14px 28px -4px rgba(0, 0, 0, 0.12),
+      0 36px 60px -8px rgba(0, 0, 0, 0.14);
+  }
+
+  /* 3. Ambient Card Dark (for [#0A0A0A] Project Cards on White Canvas) */
+  .ambient-depth-card-dark {
+    box-shadow: 
+      0 2px 6px rgba(0, 0, 0, 0.12),
+      0 12px 28px -4px rgba(0, 0, 0, 0.22),
+      0 36px 68px -8px rgba(0, 0, 0, 0.28),
+      0 60px 100px -16px rgba(0, 0, 0, 0.20);
+    transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  }
+
+  .ambient-depth-card-dark:hover {
+    box-shadow: 
+      0 4px 10px rgba(0, 0, 0, 0.14),
+      0 18px 36px -4px rgba(0, 0, 0, 0.28),
+      0 48px 90px -8px rgba(0, 0, 0, 0.34),
+      0 80px 128px -16px rgba(0, 0, 0, 0.24);
+  }
+
+  /* 4. Ambient Floating (for Floating Interactive Switchers, Badges, Modals) */
+  .ambient-depth-floating {
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.04),
+      0 8px 18px -2px rgba(0, 0, 0, 0.09),
+      0 18px 36px -6px rgba(0, 0, 0, 0.10);
+  }
+
+  /* 5. Ambient Typographic Silkscreen Emboss (Visible tactile 3D depth on main title) */
+  .ambient-depth-headline {
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.14),
+      0 8px 20px rgba(0, 0, 0, 0.16),
+      0 18px 36px rgba(0, 0, 0, 0.12);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.08));
+  }
+
+  /* 6. Ambient Navbar Capsule (Floating Optical Glass with High-Transparency & Refraction) */
+  .ambient-depth-navbar {
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.5),
+      0 0 0 1.5px rgba(0, 0, 0, 0.05),
+      0 4px 12px rgba(0, 0, 0, 0.06),
+      0 12px 28px -2px rgba(0, 0, 0, 0.12),
+      0 32px 64px -4px rgba(0, 0, 0, 0.15),
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.95),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.04) !important;
+  }
 }
 
 /* Lenis Scroll Smooth Base */

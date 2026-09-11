@@ -133,7 +133,7 @@ export default function InstagramFeed({ viewMode }: InstagramFeedProps) {
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
                       }}
-                      className="rounded-2xl border border-neutral-200/90 bg-[#FAFAFB] p-3 sm:p-4 shadow-2xs hover:border-neutral-400 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group relative"
+                      className="rounded-2xl border border-neutral-200/90 bg-[#FAFAFB] p-3 sm:p-4 ambient-depth-card hover:border-neutral-400 transition-all flex flex-col justify-between overflow-hidden group relative"
                     >
                       {/* Top Card Bar */}
                       <div className="flex items-center justify-between px-1 mb-3">

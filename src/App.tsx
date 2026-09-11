@@ -14,7 +14,6 @@ import InstagramFeed from './components/InstagramFeed';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
-import VoiceAssistant from './components/VoiceAssistant';
 import ViewSelector from './components/ViewSelector';
 
 export default function App() {
@@ -159,9 +158,6 @@ export default function App() {
             {/* 009 // Inquiries & Contact */}
             <Contact viewMode={viewMode} />
           </main>
-
-          {/* AI Voice Assistant */}
-          <VoiceAssistant viewMode={viewMode} />
 
           {/* Swiss Minimalist Footer */}
           <Footer viewMode={viewMode} />

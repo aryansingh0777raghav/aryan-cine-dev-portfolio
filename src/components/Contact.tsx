@@ -66,7 +66,7 @@ export default function Contact({ viewMode }: ContactProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           {/* Left Details & Profiles Matrix */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-2xl border border-neutral-200 bg-[#FAFAFB] p-6 sm:p-8 space-y-6">
+            <div className="rounded-2xl border border-neutral-200 bg-[#FAFAFB] p-6 sm:p-8 space-y-6 ambient-depth-card">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-1">
                   Direct Email
@@ -156,7 +156,7 @@ export default function Contact({ viewMode }: ContactProps) {
 
           {/* Right Contact Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 ambient-depth-card">
               {submitted ? (
                 <div className="py-16 text-center space-y-3">
                   <CheckCircle2 size={40} className="text-emerald-500 mx-auto" />

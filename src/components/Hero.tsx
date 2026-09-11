@@ -48,7 +48,7 @@ export default function Hero({ viewMode }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-neutral-950 leading-[1.05] mb-8"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-neutral-950 leading-[1.05] mb-8 ambient-depth-headline"
           >
             {viewMode === 'tech' ? (
               <>
@@ -104,7 +104,7 @@ export default function Hero({ viewMode }: HeroProps) {
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-neutral-200/80 mb-12"
           >
             {credentials.map((item, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/70 hover:border-neutral-300 transition-colors">
+              <div key={idx} className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/70 hover:border-neutral-300 ambient-depth-floating transition-all">
                 <p className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 mb-0.5">
                   {item.label}
                 </p>

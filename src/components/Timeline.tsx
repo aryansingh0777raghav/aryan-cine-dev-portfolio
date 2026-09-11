@@ -90,7 +90,7 @@ export default function Timeline({ viewMode }: TimelineProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="rounded-2xl border border-neutral-200 bg-white p-7 hover:border-neutral-400 hover:shadow-xs transition-all flex flex-col justify-between"
+              className="rounded-2xl border border-neutral-200 bg-white p-7 hover:border-neutral-400 ambient-depth-card transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">

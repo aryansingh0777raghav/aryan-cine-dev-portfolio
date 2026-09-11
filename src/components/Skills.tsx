@@ -76,7 +76,7 @@ export default function Skills({ viewMode }: SkillsProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 transition-all ${
+              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 ambient-depth-card transition-all ${
                 viewMode === 'tech' ? 'lg:col-span-12' : 'lg:col-span-7'
               }`}
             >
@@ -169,7 +169,7 @@ export default function Skills({ viewMode }: SkillsProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 transition-all ${
+              className={`rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 hover:border-neutral-400 ambient-depth-card transition-all ${
                 viewMode === 'filmmaking' ? 'lg:col-span-12' : 'lg:col-span-5'
               }`}
             >

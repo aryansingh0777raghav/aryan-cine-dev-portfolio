@@ -610,13 +610,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
               </span>
             </div>
 
-            <div className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white shadow-xl hover:border-neutral-700 transition-all">
+            <div className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white ambient-depth-card-dark hover:border-neutral-700 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
                 {/* Left: Interactive Preview & Metrics */}
                 <div className="lg:col-span-6 space-y-4">
                   <div 
                     onClick={() => setSelectedProject(flagshipProject)}
-                    className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-xs cursor-pointer group"
+                    className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 ambient-depth-frame cursor-pointer group"
                   >
                     <img 
                       src="/images/arktest.png" 
@@ -736,7 +736,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 hover:shadow-xl transition-all flex flex-col justify-between group text-white"
+                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 ambient-depth-card-dark transition-all flex flex-col justify-between group text-white"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
@@ -772,7 +772,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 cursor-pointer"
+                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 ambient-depth-frame cursor-pointer"
                     >
                       <img 
                         src={item.image} 
@@ -860,7 +860,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 hover:shadow-xl transition-all flex flex-col justify-between group text-white"
+                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 ambient-depth-card-dark transition-all flex flex-col justify-between group text-white"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
@@ -893,7 +893,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
                         soundFX.playModalOpen();
                         setSelectedProject(item);
                       }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 cursor-pointer"
+                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 ambient-depth-frame cursor-pointer"
                     >
                       <img 
                         src={item.image} 
@@ -975,10 +975,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
             <div className="space-y-8">
               {filteredFilm.map((film, idx) => (
-                <div key={idx} className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white shadow-xl">
+                <div key={idx} className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white ambient-depth-card-dark">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div className="lg:col-span-6">
-                      <div className="aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 relative">
+                      <div className="aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 relative ambient-depth-frame">
                         <img 
                           src={film.image} 
                           alt={film.title} 

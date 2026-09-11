@@ -53,7 +53,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
   return (
     <header className="fixed top-3.5 md:top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transform-gpu">
       {/* Floating Beveled Glassmorphism Pill with Specular Highlight and Layered Ambient Depth */}
-      <div className="bg-white/55 backdrop-blur-md md:backdrop-blur-2xl border border-black/[0.08] ring-1 ring-white/90 rounded-2xl md:rounded-full py-3 md:py-3.5 px-5 sm:px-8 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,1)] flex items-center justify-between transition-all duration-300 transform-gpu">
+      <div className="bg-white/40 backdrop-blur-2xl backdrop-saturate-180 border border-white/60 rounded-2xl md:rounded-full py-3 md:py-3.5 px-5 sm:px-8 ambient-depth-navbar flex items-center justify-between transition-all duration-300 transform-gpu">
         
         {/* Left: Modern Geometric 'A' Monogram Logo + AryanVerse brand */}
         <a href="#home" className="flex items-center gap-2.5 group shrink-0">
@@ -184,7 +184,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
           {/* Exact MobilityLab Contact Button with White Square Arrow Badge */}
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2.5 pl-4 pr-1.5 py-1.5 rounded-xl bg-neutral-950 text-white text-xs font-semibold hover:bg-neutral-800 transition-all shadow-xs"
+            className="group inline-flex items-center gap-2.5 pl-4 pr-1.5 py-1.5 rounded-xl bg-neutral-950 text-white text-xs font-semibold hover:bg-neutral-800 transition-all shadow-[0_2px_8px_rgba(0,0,0,0.30)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.40)]"
           >
             <span>Contact</span>
             <span className="w-5 h-5 rounded-md bg-white text-neutral-950 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shadow-xs">
