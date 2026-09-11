@@ -23,14 +23,14 @@ export default function VisitingCard({ viewMode }: VisitingCardProps) {
     const title = viewMode === 'tech'
       ? 'Founder & Lead Full-Stack Architect'
       : viewMode === 'filmmaking'
-      ? 'Independent Film Director & Screenwriter'
-      : 'Founder & Lead Full-Stack Architect | Independent Film Director';
+      ? 'Filmmaker, Writer, Director, Actor & Musician'
+      : 'Software Architect & Founder | Filmmaker, Writer, Director, Actor & Musician';
 
     const note = viewMode === 'tech'
       ? 'Founder & Architect of ArKTest Beta (Crowdsourced QA Marketplace & Escrow Concurrency)'
       : viewMode === 'filmmaking'
-      ? 'Director of The Night of Life (4K Short Film) & Screenwriter at CineOn Studio 7'
-      : 'Founder & Architect of ArKTest Beta & Director of The Night of Life';
+      ? 'Filmmaker, Screenwriter, Director, Actor & Musician at CineOn Studio 7 (The Night of Life)'
+      : 'Founder & Architect of ArKTest Beta | Filmmaker, Screenwriter, Director, Actor & Musician at CineOn Studio 7';
 
     const vCardData = `BEGIN:VCARD
 VERSION:3.0

@@ -33,9 +33,11 @@ const resumeSkills = {
     "DBMS & OOP Fundamentals"
   ],
   creative: [
-    "Screenwriting & Script Development",
+    "Screenwriting & Narrative Writing",
     "Film Direction & Scene Pacing",
-    "Cinematography & Lighting",
+    "Actor & Character Performance",
+    "Original Musical Scoring & Composition",
+    "Cinematography & Atmosphere",
     "DaVinci Resolve Color Grading",
     "Premiere Pro Video Editing",
     "Sound Design & Audio Mixing"

@@ -17,15 +17,15 @@ export default function Hero({ viewMode }: HeroProps) {
     }
     if (viewMode === 'filmmaking') {
       return [
-        { label: "CineOn Studio 7", role: "Founder & Director" },
+        { label: "CineOn Studio 7", role: "Filmmaker, Writer & Director" },
         { label: "The Night of Life", role: "4K Directorial Debut (2026)" },
         { label: "The Indian Blog", role: "Featured Independent Director" },
         { label: "IMDb / TMDB / Letterboxd", role: "Verified Production Records" },
       ];
     }
     return [
-      { label: "ArKTest Beta", role: "Founder & Lead Architect" },
-      { label: "CineOn Studio 7", role: "Film Director & Writer" },
+      { label: "ArKTest Beta", role: "Founder & Systems Architect" },
+      { label: "CineOn Studio 7", role: "Filmmaker, Writer, Actor & Musician" },
       { label: "ITM Gorakhpur", role: "BCA (2024–2027)" },
       { label: "Samsung Innovation Campus", role: "Big Data (SIC08720)" },
     ];
@@ -59,14 +59,14 @@ export default function Hero({ viewMode }: HeroProps) {
               </>
             ) : viewMode === 'filmmaking' ? (
               <>
-                Conceive. Direct.<br />
+                Conceive. Create.<br />
                 <span className="text-neutral-500 font-semibold">
-                  Crafting psychological cinema & stories.
+                  Independent cinema, screenplays & sound.
                 </span>
               </>
             ) : (
               <>
-                Engineer. Direct.<br />
+                Engineer. Create.<br />
                 <span className="text-neutral-500 font-semibold">
                   Transforming digital platforms & cinematic stories.
                 </span>
@@ -87,11 +87,11 @@ export default function Hero({ viewMode }: HeroProps) {
               </>
             ) : viewMode === 'filmmaking' ? (
               <>
-                Aryan Singh is an Independent Film Director, Screenwriter, and Editor based in Gorakhpur, India. Founder of <span className="font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4">CineOn Studio 7</span> and director of <span className="font-semibold text-neutral-950">The Night of Life: Before You Think About It</span>, crafting atmospheric psychological drama, existential narratives, and character-driven cinema.
+                Aryan Singh is an Independent Filmmaker, Screenwriter, Director, Actor, and Musician based in Gorakhpur, India. Founder of <span className="font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4">CineOn Studio 7</span> and creator of <span className="font-semibold text-neutral-950">The Night of Life: Before You Think About It</span>, crafting atmospheric psychological cinema, existential narratives, and original scores.
               </>
             ) : (
               <>
-                Aryan Singh is a dual-threat Software Engineer and Independent Film Director based in Gorakhpur, India. Founder & Lead Full-Stack Architect of <span className="font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4">ArKTest Beta</span>, architecting automated escrow reward platforms, AI tools, virtual operating systems, and narrative psychological films.
+                Aryan Singh is a multi-hyphenate Software Architect and Independent Filmmaker, Writer, Director, Actor, and Musician based in Gorakhpur, India. Founder & Lead Full-Stack Architect of <span className="font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4">ArKTest Beta</span> and Founder of <span className="font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4">CineOn Studio 7</span> (directorial debut <span className="font-semibold text-neutral-950">The Night of Life</span>).
               </>
             )}
           </motion.p>

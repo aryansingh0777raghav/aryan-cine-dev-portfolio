@@ -81,8 +81,8 @@ export default function Pillars({ viewMode }: PillarsProps) {
       {
         index: "03",
         icon: Clapperboard,
-        title: "Cinematic Direction & Writing",
-        desc: "Directing, writing, and editing psychological narrative short films (The Night of Life) with CineOn Studio 7. Exploring human relationships, existential solitude, and visual atmosphere."
+        title: "Cinema, Writing & Musical Score",
+        desc: "Writing, directing, scoring original music, acting, and editing psychological narrative cinema (The Night of Life) with CineOn Studio 7. Exploring existential solitude, human connection, and sensory atmosphere."
       },
       {
         index: "04",

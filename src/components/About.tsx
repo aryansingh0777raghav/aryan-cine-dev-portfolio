@@ -22,8 +22,8 @@ export default function About({ viewMode }: AboutProps) {
   }, [viewMode]);
   const getSubheading = () => {
     if (viewMode === 'tech') return 'The Technical Architect';
-    if (viewMode === 'filmmaking') return 'The Cinematic Storyteller';
-    return 'Dual-Threat Engineer & Director';
+    if (viewMode === 'filmmaking') return 'Filmmaker • Screenwriter • Actor • Musician';
+    return 'Architect • Filmmaker • Writer • Actor • Musician';
   };
 
   const getHeading = () => {
@@ -107,25 +107,25 @@ export default function About({ viewMode }: AboutProps) {
               ) : viewMode === 'filmmaking' ? (
                 <>
                   <p>
-                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. As an independent screenwriter, director, and editor, I create immersive narrative cinema that explores psychological tension, human isolation, and existential dilemmas.
+                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. As an <strong className="font-semibold text-neutral-950">independent filmmaker, screenwriter, director, actor, and musician</strong>, I create immersive narrative cinema exploring psychological tension, existential solitude, and emotional vulnerability.
                   </p>
                   <p>
-                    Through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I helm complete cinematic pipelines — from script development and actor direction to atmospheric cinematography, DaVinci Resolve color grading, and original musical scoring.
+                    Through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I helm end-to-end cinematic pipelines — from original screenplay writing and actor performance to atmospheric cinematography, DaVinci Resolve color grading, and original musical scoring.
                   </p>
                   <p>
-                    My directorial debut short film, <strong className="font-semibold text-neutral-950">'The Night of Life: Before You Think About It'</strong>, confronts youth mental health and student academic pressure, featured in independent film media and indexed on IMDb, TMDB, Letterboxd, and FilmFreeway.
+                    My directorial debut short film, <strong className="font-semibold text-neutral-950">'The Night of Life: Before You Think About It'</strong>, confronts youth mental health and student academic pressure, indexed on IMDb, TMDB, Letterboxd, and FilmFreeway.
                   </p>
                 </>
               ) : (
                 <>
                   <p>
-                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. With a foundational background in biology and analytical sciences, I bring a unique system-level perspective to software development — treating software architectures like biological ecosystems where resilience, balance, and fault-tolerance are paramount.
+                    Hi, I'm <strong className="font-semibold text-neutral-950">Aryan Singh</strong>. Operating across both high-throughput software architecture and multifaceted cinematic arts, I refuse to be confined to a single dimension — bringing systems-level rigor to code and deep human authenticity to storytelling.
                   </p>
                   <p>
-                    As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency AI tools.
+                    As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency developer tools using FastAPI, PostgreSQL, and modern TypeScript.
                   </p>
                   <p>
-                    Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I write, direct, score, and edit atmospheric psychological drama films that confront existential conflict, isolation, and student mental health.
+                    Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I am an <strong className="font-semibold text-neutral-950">independent filmmaker, screenwriter, director, actor, and musician</strong> — writing original screenplays, performing, composing original musical scores, and directing psychological films that confront existential conflict, isolation, and student mental health.
                   </p>
                 </>
               )}
@@ -246,7 +246,7 @@ export default function About({ viewMode }: AboutProps) {
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                       <p className="text-[11px] font-mono font-bold text-neutral-900">Unified Vision Verified</p>
                     </div>
-                    <p className="text-[10px] text-neutral-500">ArKTest Architect & CineOn Director</p>
+                    <p className="text-[10px] text-neutral-500">Systems Architect • Filmmaker, Writer, Actor & Musician</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <a
@@ -275,7 +275,7 @@ export default function About({ viewMode }: AboutProps) {
                 <div className="p-4 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-between ambient-depth-floating">
                   <div>
                     <p className="text-[11px] font-mono font-bold text-neutral-900">GitHub Verified</p>
-                    <p className="text-[10px] text-neutral-500">@aryansingh0777raghav</p>
+                    <p className="text-[10px] text-neutral-500">Founder & Lead Full-Stack Architect</p>
                   </div>
                   <a
                     href="https://github.com/aryansingh0777raghav"
@@ -291,7 +291,7 @@ export default function About({ viewMode }: AboutProps) {
                 <div className="p-4 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-between ambient-depth-floating">
                   <div>
                     <p className="text-[11px] font-mono font-bold text-neutral-900">CineOn Studio 7</p>
-                    <p className="text-[10px] text-neutral-500">Official Production Channel</p>
+                    <p className="text-[10px] text-neutral-500">Filmmaker, Writer, Director, Actor & Musician</p>
                   </div>
                   <a
                     href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1"
@@ -320,7 +320,7 @@ export default function About({ viewMode }: AboutProps) {
                   Parent Creative Engine
                 </span>
                 <p className="text-xs font-semibold text-neutral-900 leading-snug">
-                  Uniting software architectures (ArKTest Beta) & atmospheric cinema (CineOn Studio 7).
+                  Uniting software architectures (ArKTest Beta) & multidisciplinary cinema (CineOn Studio 7).
                 </p>
                 <p className="text-[10px] font-mono text-neutral-500 mt-1">
                   ONE VISION. NO LIMITS.
