@@ -48,7 +48,7 @@ export default function Pillars({ viewMode }: PillarsProps) {
           index: "02",
           icon: PenTool,
           title: "Screenwriting & Narrative Depth",
-          desc: "Crafting character-driven screenplays exploring existential conflict, student mental health, academic isolation, and emotional vulnerability with authenticity."
+          desc: "Crafting character-driven screenplays exploring existential conflict, complex father-son dynamics, generational divide, and emotional vulnerability with authenticity."
         },
         {
           index: "03",

@@ -20,9 +20,9 @@ const experience = [
     year: "2026",
     marker: "// 2026",
     company: "CineOn Studio 7",
-    role: "Film Director, Screenwriter & Editor",
+    role: "Filmmaker, Writer, Director, Actor & Musician",
     type: "filmmaking" as const,
-    details: "Written and directed 'The Night of Life: Before You Think About It' — a psychological narrative short film addressing student mental health, academic isolation, and inner psychological resilience. Handled entire post-production, editing, and distribution across IMDb and film festival circuits.",
+    details: "Written, directed, scored, edited, and starred in 'The Night of Life: Before You Think About It' — an intense psychological crime drama exploring complex father-son dynamics, generational divide, severe depression, and unfulfilled dreams during a midnight highway breakdown. Handled end-to-end production, original score, and distribution across IMDb, TMDB, and Letterboxd.",
     link: "https://www.youtube.com/@cineonstudio7"
   },
   {

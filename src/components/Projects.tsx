@@ -448,7 +448,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
       category: "Cinematic Film Production",
       tech: "",
       image: "/images/The%20Night%20of%20Life.png",
-      desc: "A psychological drama short film exploring inner conflict, existential isolation, student academic despair, and life-changing decisions. Written, directed, scored, and edited by Aryan Singh under CineOn Studio 7.",
+      desc: "An intense psychological drama short film exploring a fractured father-son dynamic, generational clash, severe depression, and unfulfilled dreams trapped during an isolated midnight highway breakdown. Written, directed, scored, edited, and starring Aryan Singh as Aarav under CineOn Studio 7.",
       roles: ["Writer", "Director", "Actor", "Musician", "Editor"],
       imdb: "https://www.imdb.com/title/tt39846631",
       tmdb: "https://www.themoviedb.org/movie/1638463-the-night-of-life-before-you-think-about-it",

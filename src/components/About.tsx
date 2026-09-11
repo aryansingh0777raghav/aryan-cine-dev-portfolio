@@ -113,7 +113,7 @@ export default function About({ viewMode }: AboutProps) {
                     Through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I helm end-to-end cinematic pipelines — from original screenplay writing and actor performance to atmospheric cinematography, DaVinci Resolve color grading, and original musical scoring.
                   </p>
                   <p>
-                    My directorial debut short film, <strong className="font-semibold text-neutral-950">'The Night of Life: Before You Think About It'</strong>, confronts youth mental health and student academic pressure, indexed on IMDb, TMDB, Letterboxd, and FilmFreeway.
+                    My directorial debut short film, <strong className="font-semibold text-neutral-950">'The Night of Life: Before You Think About It'</strong> (which I wrote, directed, scored, edited, and starred in as Aarav), is an intense psychological drama confronting a fractured father-son dynamic, generational clash, severe depression, and unfulfilled dreams during a midnight highway breakdown — indexed on IMDb, TMDB, Letterboxd, and FilmFreeway.
                   </p>
                 </>
               ) : (
@@ -125,7 +125,7 @@ export default function About({ viewMode }: AboutProps) {
                     As the Founder & Lead Full-Stack Architect of <strong className="font-semibold text-neutral-950">ArKTest Beta</strong>, I engineer crowdsourced QA marketplaces, zero-race-condition escrow economies, and low-latency developer tools using FastAPI, PostgreSQL, and modern TypeScript.
                   </p>
                   <p>
-                    Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I am an <strong className="font-semibold text-neutral-950">independent filmmaker, screenwriter, director, actor, and musician</strong> — writing original screenplays, performing, composing original musical scores, and directing psychological films that confront existential conflict, isolation, and student mental health.
+                    Simultaneously, through <strong className="font-semibold text-neutral-950">CineOn Studio 7</strong>, I am an <strong className="font-semibold text-neutral-950">independent filmmaker, screenwriter, director, actor, and musician</strong> — writing original screenplays, performing, composing original musical scores, and directing psychological films that confront complex human relationships, repressed emotions, and existential struggles.
                   </p>
                 </>
               )}
