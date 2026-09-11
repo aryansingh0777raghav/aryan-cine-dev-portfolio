@@ -18,12 +18,7 @@ import ViewSelector from './components/ViewSelector';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<'tech' | 'filmmaking' | 'both' | null>(() => {
-    if (typeof window !== 'undefined') {
-      return (sessionStorage.getItem('portfolio-view-mode') as any) || null;
-    }
-    return null;
-  });
+  const [viewMode, setViewMode] = useState<'tech' | 'filmmaking' | 'both' | null>(null);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -57,9 +52,7 @@ export default function App() {
 
       (window as any).lenis = lenis;
 
-      if (!sessionStorage.getItem('portfolio-view-mode')) {
-        lenis.stop();
-      }
+      lenis.stop();
 
       function raf(time: number) {
         lenis.raf(time);
@@ -86,7 +79,6 @@ export default function App() {
 
   const handleSelectMode = (mode: 'tech' | 'filmmaking' | 'both') => {
     setViewMode(mode);
-    sessionStorage.setItem('portfolio-view-mode', mode);
     
     // Resume scroll once selection is made
     const lenis = (window as any).lenis;
