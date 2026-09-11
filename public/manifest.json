@@ -1,0 +1,37 @@
+{
+  "name": "Aryan Singh | Engineer & Director",
+  "short_name": "Aryan Singh",
+  "description": "Official Portfolio of Aryan Singh — Software Engineer & Independent Film Director",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0A0A0A",
+  "orientation": "portrait-primary",
+  "categories": [
+    "portfolio",
+    "technology",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
