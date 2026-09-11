@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, Youtube, Github, Globe, Terminal, Film } from 'lucide-react';
+import { ArrowUpRight, Youtube, Github, Globe, Terminal, Film, Sparkles } from 'lucide-react';
 
 interface AboutProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
 export default function About({ viewMode }: AboutProps) {
-  const [activePersona, setActivePersona] = useState<'tech' | 'filmmaker'>('tech');
+  const [activePersona, setActivePersona] = useState<'unified' | 'tech' | 'filmmaker'>(
+    viewMode === 'filmmaking' ? 'filmmaker' : viewMode === 'tech' ? 'tech' : 'unified'
+  );
 
   useEffect(() => {
     if (viewMode === 'filmmaking') {
       setActivePersona('filmmaker');
     } else if (viewMode === 'tech') {
       setActivePersona('tech');
+    } else {
+      setActivePersona('unified');
     }
   }, [viewMode]);
   const getSubheading = () => {
@@ -149,10 +153,21 @@ export default function About({ viewMode }: AboutProps) {
             <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-4 sm:p-6 space-y-4 ambient-depth-card">
               
               {/* Persona Switcher Tabs */}
-              <div className="flex items-center justify-between gap-2 p-1.5 rounded-2xl bg-white border border-neutral-200/90 ambient-depth-floating">
+              <div className="flex items-center justify-between gap-1.5 p-1.5 rounded-2xl bg-white border border-neutral-200/90 ambient-depth-floating">
+                <button
+                  onClick={() => setActivePersona('unified')}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                    activePersona === 'unified'
+                      ? 'bg-neutral-950 text-white shadow-xs'
+                      : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
+                  }`}
+                >
+                  <Sparkles size={12} className={activePersona === 'unified' ? 'text-amber-400' : ''} />
+                  <span>Unified</span>
+                </button>
                 <button
                   onClick={() => setActivePersona('tech')}
-                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     activePersona === 'tech'
                       ? 'bg-neutral-950 text-white shadow-xs'
                       : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
@@ -163,7 +178,7 @@ export default function About({ viewMode }: AboutProps) {
                 </button>
                 <button
                   onClick={() => setActivePersona('filmmaker')}
-                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     activePersona === 'filmmaker'
                       ? 'bg-neutral-950 text-white shadow-xs'
                       : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
@@ -177,7 +192,21 @@ export default function About({ viewMode }: AboutProps) {
               {/* Photo Frame with AnimatePresence */}
               <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200/80 relative bg-neutral-100 ambient-depth-frame">
                 <AnimatePresence mode="wait">
-                  {activePersona === 'tech' ? (
+                  {activePersona === 'unified' ? (
+                    <motion.img 
+                      key="unified-img"
+                      src="/images/aryan-unified.jpg" 
+                      alt="Aryan Singh - Dual-Threat Software Engineer & Independent Film Director" 
+                      title="Aryan Singh - Unified Vision"
+                      loading="eager"
+                      fetchPriority="high"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full object-cover block"
+                    />
+                  ) : activePersona === 'tech' ? (
                     <motion.img 
                       key="tech-img"
                       src="/images/profile.png" 
@@ -210,7 +239,39 @@ export default function About({ viewMode }: AboutProps) {
               </div>
 
               {/* Dynamic Bottom Badge */}
-              {activePersona === 'tech' ? (
+              {activePersona === 'unified' ? (
+                <div className="p-4 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-between ambient-depth-floating">
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <p className="text-[11px] font-mono font-bold text-neutral-900">Unified Vision Verified</p>
+                    </div>
+                    <p className="text-[10px] text-neutral-500">ArKTest Architect & CineOn Director</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://github.com/aryansingh0777raghav"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-neutral-950 text-white text-[10px] font-bold hover:bg-neutral-800 transition-colors"
+                      title="GitHub Profile"
+                    >
+                      <Github size={11} />
+                      <span className="hidden sm:inline">Code</span>
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@cineonstudio7?sub_confirmation=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-bold hover:bg-red-700 transition-colors"
+                      title="CineOn YouTube Channel"
+                    >
+                      <Youtube size={11} />
+                      <span className="hidden sm:inline">Films</span>
+                    </a>
+                  </div>
+                </div>
+              ) : activePersona === 'tech' ? (
                 <div className="p-4 rounded-xl bg-white border border-neutral-200/80 flex items-center justify-between ambient-depth-floating">
                   <div>
                     <p className="text-[11px] font-mono font-bold text-neutral-900">GitHub Verified</p>
