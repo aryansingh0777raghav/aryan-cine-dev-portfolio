@@ -187,11 +187,13 @@
       0 18px 36px -6px rgba(0, 0, 0, 0.10);
   }
 
-  /* 5. Ambient Typographic Silkscreen Emboss (Ultra-Lightweight GPU Optimized) */
+  /* 5. Ambient Typographic Silkscreen Emboss (Visible tactile 3D depth on main title) */
   .ambient-depth-headline {
     text-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.08),
-      0 8px 18px rgba(0, 0, 0, 0.06);
+      0 2px 4px rgba(0, 0, 0, 0.14),
+      0 8px 20px rgba(0, 0, 0, 0.16),
+      0 18px 36px rgba(0, 0, 0, 0.12);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.08));
   }
 
   /* 6. Ambient Navbar Capsule (Floating Optical Glass with High-Transparency & Refraction) */
