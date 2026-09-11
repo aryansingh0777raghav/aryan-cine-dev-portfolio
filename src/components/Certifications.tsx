@@ -85,7 +85,7 @@ export default function Certifications({ viewMode }: CertificationsProps) {
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
           <span className="section-index">
-            {viewMode === 'tech' ? '006 // Technical Credentials' : viewMode === 'filmmaking' ? '006 // Press & Directorial Spotlight' : '006 // Press & Recognitions'}
+            {viewMode === 'tech' ? '007 // Technical Credentials' : viewMode === 'filmmaking' ? '007 // Press & Directorial Spotlight' : '007 // Press & Recognitions'}
           </span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>

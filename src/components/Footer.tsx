@@ -96,8 +96,31 @@ export default function Footer({ viewMode }: FooterProps) {
           </div>
         </div>
 
+        {/* ARYAN ONE Master Brand Insignia Seal */}
+        <div className="py-12 border-b border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="w-44 sm:w-52">
+            <img 
+              src="/images/aryan-one-logo.png" 
+              alt="ARYAN ONE — One Vision. No Limits." 
+              className="w-full h-auto object-contain block ambient-depth-logo"
+            />
+          </div>
+          <div className="text-center sm:text-right space-y-1">
+            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-400">
+              Master Creative Holding & System Division
+            </p>
+            <p className="text-xs font-semibold text-neutral-800">
+              High-Velocity Platforms • Cinematic Storytelling
+            </p>
+            <p className="text-[10px] font-mono text-neutral-500">
+              ONE VISION. NO LIMITS.
+            </p>
+          </div>
+        </div>
+
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-400">
           <p>© 2026 Aryan Singh. All rights reserved.</p>
+          <p className="tracking-wide">ENGINEERED WITH ARCHITECTURAL PRECISION</p>
         </div>
       </div>
     </footer>

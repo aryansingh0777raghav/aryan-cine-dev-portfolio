@@ -187,13 +187,11 @@
       0 18px 36px -6px rgba(0, 0, 0, 0.10);
   }
 
-  /* 5. Ambient Typographic Silkscreen Emboss (Visible tactile 3D depth on main title) */
+  /* 5. Ambient Typographic Silkscreen Emboss (Ultra-Lightweight GPU Optimized) */
   .ambient-depth-headline {
     text-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.14),
-      0 8px 20px rgba(0, 0, 0, 0.16),
-      0 18px 36px rgba(0, 0, 0, 0.12);
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.08));
+      0 2px 4px rgba(0, 0, 0, 0.08),
+      0 8px 18px rgba(0, 0, 0, 0.06);
   }
 
   /* 6. Ambient Navbar Capsule (Floating Optical Glass with High-Transparency & Refraction) */
@@ -206,6 +204,23 @@
       0 32px 64px -4px rgba(0, 0, 0, 0.15),
       inset 0 1.5px 2px rgba(255, 255, 255, 0.95),
       inset 0 -1px 1px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  /* 7. Tactile 3D Physical Logo / Emblem Multi-Stop Depth */
+  .ambient-depth-logo {
+    filter: 
+      drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16))
+      drop-shadow(0 12px 24px rgba(0, 0, 0, 0.12))
+      drop-shadow(0 24px 48px rgba(0, 0, 0, 0.08));
+    transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease;
+  }
+
+  .ambient-depth-logo:hover {
+    filter: 
+      drop-shadow(0 4px 8px rgba(0, 0, 0, 0.20))
+      drop-shadow(0 16px 32px rgba(0, 0, 0, 0.16))
+      drop-shadow(0 32px 64px rgba(0, 0, 0, 0.10));
+    transform: translateY(-2px);
   }
 }
 

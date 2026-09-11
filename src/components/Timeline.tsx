@@ -62,7 +62,7 @@ export default function Timeline({ viewMode }: TimelineProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
-          <span className="section-index">005 // Milestones & Journey</span>
+          <span className="section-index">006 // Milestones & Journey</span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>
 

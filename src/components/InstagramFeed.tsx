@@ -22,7 +22,7 @@ export default function InstagramFeed({ viewMode }: InstagramFeedProps) {
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-10">
           <span className="section-index">
-            {viewMode === 'filmmaking' ? '008 // Visual Journal & Frames' : viewMode === 'tech' ? '008 // Creative Log & Feeds' : '008 // Visual Journal & Instagram'}
+            {viewMode === 'filmmaking' ? '009 // Visual Journal & Frames' : viewMode === 'tech' ? '009 // Creative Log & Feeds' : '009 // Visual Journal & Instagram'}
           </span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>

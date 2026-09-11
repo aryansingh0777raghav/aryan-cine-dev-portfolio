@@ -514,7 +514,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
-          <span className="section-index">004 // Projects & Labs</span>
+          <span className="section-index">005 // Projects & Labs</span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>
 
@@ -1059,10 +1059,11 @@ export default function Projects({ viewMode }: ProjectsProps) {
               }}
               className="w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white border border-neutral-200 p-6 sm:p-10 shadow-2xl relative overscroll-contain"
             >
-              {/* Close Button */}
+              {/* Close Button - Sticky Floating for effortless mobile/desktop dismissal */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-800 cursor-pointer"
+                aria-label="Close details modal"
+                className="sticky top-0 float-right z-30 -mr-2 -mt-2 sm:mr-0 sm:mt-0 w-9 h-9 rounded-full bg-neutral-100/95 hover:bg-neutral-200 backdrop-blur-md flex items-center justify-center text-neutral-800 shadow-xs cursor-pointer transition-colors"
               >
                 <X size={18} />
               </button>

@@ -72,7 +72,7 @@ export default function About({ viewMode }: AboutProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Monospaced Section Indexer */}
         <div className="flex items-center gap-3 mb-12">
-          <span className="section-index">002 // About & Background</span>
+          <span className="section-index">004 // About & Background</span>
           <div className="h-px bg-neutral-200 flex-1" />
         </div>
 
@@ -243,6 +243,28 @@ export default function About({ viewMode }: AboutProps) {
                   </a>
                 </div>
               )}
+            </div>
+
+            {/* Parent Creative Venture Insignia Card */}
+            <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/90 ambient-depth-card flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div className="w-24 sm:w-24 shrink-0">
+                <img 
+                  src="/images/aryan-one-logo.png" 
+                  alt="ARYAN ONE — One Vision. No Limits." 
+                  className="w-full h-auto object-contain block ambient-depth-logo"
+                />
+              </div>
+              <div className="flex-1 sm:border-l sm:border-neutral-200/80 sm:pl-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100">
+                <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-neutral-400 block mb-0.5">
+                  Parent Creative Engine
+                </span>
+                <p className="text-xs font-semibold text-neutral-900 leading-snug">
+                  Uniting software architectures (ArKTest Beta) & atmospheric cinema (CineOn Studio 7).
+                </p>
+                <p className="text-[10px] font-mono text-neutral-500 mt-1">
+                  ONE VISION. NO LIMITS.
+                </p>
+              </div>
             </div>
           </div>
         </div>

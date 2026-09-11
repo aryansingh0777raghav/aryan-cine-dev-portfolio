@@ -74,12 +74,12 @@ export default function App() {
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 400);
+    }, 2800);
 
     return () => {
       (window as any).lenis = null;
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenis) lenis.destroy();
       clearTimeout(timer);
     };
   }, []);
