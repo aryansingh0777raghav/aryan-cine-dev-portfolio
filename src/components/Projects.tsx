@@ -17,12 +17,17 @@ import {
   Newspaper,
   BookOpen,
   Award,
-  Search
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Archive,
+  FolderGit2
 } from 'lucide-react';
 import { soundFX } from '../utils/audio';
 
 interface Project {
   title: string;
+  isMajor?: boolean;
   category?: string;
   tech: string;
   image: string;
@@ -52,10 +57,127 @@ interface ProjectsProps {
   viewMode: 'tech' | 'filmmaking' | 'both' | null;
 }
 
+interface ProjectCardProps {
+  item: Project;
+  idx: number;
+  onSelect: (item: Project) => void;
+}
+
+function ProjectCard({ item, idx, onSelect }: ProjectCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: Math.min(idx * 0.06, 0.25) }}
+      className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 ambient-depth-card-dark transition-all flex flex-col justify-between group text-white"
+    >
+      <div>
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">
+            {item.category}
+          </span>
+          <div className="flex items-center gap-1.5">
+            {item.link && (
+              <a 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-emerald-500 hover:text-white transition-all"
+                title="Live Demo"
+              >
+                <Globe size={13} />
+              </a>
+            )}
+            {item.github && (
+              <a 
+                href={item.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
+                title="GitHub Repository"
+              >
+                <Github size={13} />
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div 
+          onClick={() => {
+            soundFX.playModalOpen();
+            onSelect(item);
+          }}
+          className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 ambient-depth-frame cursor-pointer"
+        >
+          <img 
+            src={item.image} 
+            alt={item.title} 
+            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/images/profile.png';
+            }}
+          />
+        </div>
+
+        <h4 className="text-lg font-bold text-white mb-1 tracking-tight">
+          {item.title}
+        </h4>
+
+        <p className="text-[11px] font-mono text-neutral-400 mb-3">
+          {item.tech}
+        </p>
+
+        <p className="text-xs text-neutral-400 leading-relaxed font-normal mb-6">
+          {item.desc}
+        </p>
+      </div>
+
+      <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
+        <button
+          onClick={() => {
+            soundFX.playModalOpen();
+            onSelect(item);
+          }}
+          className="text-xs font-mono font-medium text-neutral-300 hover:text-white flex items-center gap-1 cursor-pointer"
+        >
+          <Info size={12} /> Specs
+        </button>
+        <div className="flex items-center gap-3">
+          {item.link && (
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1"
+            >
+              Live <ArrowUpRight size={12} />
+            </a>
+          )}
+          {item.github && (
+            <a
+              href={item.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
+            >
+              Code <ArrowUpRight size={12} />
+            </a>
+          )}
+          {!item.link && !item.github && (
+            <span className="text-[11px] font-mono text-neutral-500">Archived</span>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Projects({ viewMode }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'ai' | 'web' | 'film'>('all');
+  const [isArchiveExpanded, setIsArchiveExpanded] = useState(false);
 
   // Lock background Lenis & body scroll when modal is open to eliminate double-scroll collision lag
   useEffect(() => {
@@ -133,6 +255,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const aiProjects: Project[] = [
     {
       title: "SaveAlly.",
+      isMajor: true,
       category: "Full-Stack / PWA / AI / Local-First",
       tech: "React, TypeScript, Vite, Tailwind CSS, IndexedDB, PWA / Service Workers, Node.js, Groq AI",
       image: "/images/saveally.png",
@@ -168,6 +291,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "ArType",
+      isMajor: true,
       category: "AI Android Assistant",
       tech: "Kotlin, Jetpack Compose, Material 3, Groq API, Android Accessibility Service",
       image: "/images/artype.png",
@@ -196,6 +320,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "ArVerse OS",
+      isMajor: true,
       category: "Web OS & Virtual Environment",
       tech: "React, Tailwind CSS, Vite, Framer Motion, Context API, AI",
       image: "/images/ArVerse.png",
@@ -222,6 +347,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "ArFt (Frontend Sandbox)",
+      isMajor: true,
       category: "AI Code Editor & Sandbox",
       tech: "React, Vite, Groq API, Monaco Editor, JSZip, IndexedDB, Native Filesystem API",
       image: "/images/ArFt.png",
@@ -248,6 +374,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "ArLip (AI Shorts Generator)",
+      isMajor: true,
       category: "AI Media Automation",
       tech: "React, FastAPI, Groq API, FFmpeg, yt-dlp, Python, Whisper AI, SQLite",
       image: "/images/ArLip.png",
@@ -274,6 +401,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "ArCh (Aryan Search Engine)",
+      isMajor: true,
       category: "Perplexity-Style AI Engine",
       tech: "Electron.js, FastAPI, Groq API, Vosk STT, Piper TTS, Python, AI, Desktop",
       image: "/images/arch.png",
@@ -301,6 +429,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "Solexplain AI",
+      isMajor: false,
       category: "Web3 Transaction Parser",
       tech: "TypeScript, Solana Web3.js, OpenAI API, React, Tailwind CSS",
       image: "/images/solexplain.png",
@@ -324,6 +453,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     {
       title: "Personal AI Voice Assistant",
+      isMajor: false,
       category: "Desktop Automation & Voice AI",
       tech: "Python, SpeechRecognition, Pyttsx3, OS / Subprocess",
       image: "/images/Voiceassistant.png",
@@ -346,6 +476,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const webProjects: Project[] = [
     { 
       title: "Certilink (Credential & Verification Engine)", 
+      isMajor: true,
       category: "Digital Credential & Verification",
       tech: "HTML5, Modern CSS, JavaScript ES6, LocalStorage API, Hash Verification",
       desc: "A specialized digital verification engine and credential repository designed for hosting, indexing, and validating verified academic and industry certifications with instant verification links and interactive preview modals.", 
@@ -361,6 +492,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "3D Concept Portfolio", 
+      isMajor: false,
       category: "Interactive 3D Frontend",
       tech: "React, Three.js, Canvas, Tailwind CSS",
       desc: "A 3D Concept Portfolio project showcasing creative interactive web capabilities and spatial canvas rendering.", 
@@ -370,6 +502,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Scrollytelling Portfolio", 
+      isMajor: false,
       category: "Cinematic Web Experience",
       tech: "React, Framer Motion, Tailwind CSS, Lenis Scroll",
       desc: "Premium cinematic scrollytelling portfolio with smooth hardware-accelerated scrolling and high-end animations.", 
@@ -378,6 +511,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Chess Web Game", 
+      isMajor: false,
       category: "Interactive Browser Game",
       tech: "JavaScript, HTML5 Canvas, MiniMax AI",
       desc: "A fully functional chess game built for the web with legal move validation, check detection, and local AI logic.", 
@@ -387,6 +521,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Cine-Dev Showcase Portal", 
+      isMajor: false,
       category: "Interactive Web Architecture",
       tech: "HTML5, CSS3, JavaScript ES6",
       desc: "A sleek dual-theme split interface engineered with vanilla JavaScript ES6 and semantic CSS for multimedia showcases.", 
@@ -396,6 +531,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Portfolio Terminal", 
+      isMajor: false,
       category: "Interactive CLI Portfolio",
       tech: "JavaScript, Bash Emulator, CSS3",
       desc: "Interactive command-line terminal portfolio supporting authentic shell commands and interactive Easter eggs.", 
@@ -405,6 +541,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Personal Portfolio Minimal V3", 
+      isMajor: false,
       category: "Ultra-Minimalist UI",
       tech: "Vanilla JavaScript, CSS3, HTML5",
       desc: "A clean, minimal, and ultra-fast personal portfolio website with a sharp focus on simplicity and typography performance.", 
@@ -414,6 +551,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "Personal Portfolio NetUI", 
+      isMajor: false,
       category: "Glassmorphism Concept",
       tech: "React, Tailwind CSS, Glassmorphic UI",
       desc: "A clean personal portfolio built with NetUI showcasing translucent layered cards and dynamic lighting.", 
@@ -423,6 +561,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "ArTools YouTube Extension", 
+      isMajor: false,
       category: "Chrome Extension & Productivity",
       tech: "JavaScript, Chrome Extension API, DOM Parser",
       desc: "A productivity browser extension allowing instant downloads of YouTube videos, audio streams, and HD thumbnails.", 
@@ -432,6 +571,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     },
     { 
       title: "MySites Portal", 
+      isMajor: false,
       category: "Web Deployment Saver & Search",
       tech: "JavaScript ES6, LocalStorage API, CSS3",
       desc: "A developer website saver that organizes your deployments, stores metadata, and offers fast instantaneous search.", 
@@ -444,6 +584,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const filmProjects: Project[] = [
     {
       title: "The Night of Life: Before You Think About It",
+      isMajor: true,
       year: "2026",
       category: "Cinematic Film Production",
       tech: "",
@@ -478,14 +619,26 @@ export default function Projects({ viewMode }: ProjectsProps) {
     );
   };
 
-  const filteredAI = aiProjects.filter(matchesSearch);
-  const filteredWeb = webProjects.filter(matchesSearch);
+  const filteredMajorAI = aiProjects.filter(p => p.isMajor && matchesSearch(p));
+  const filteredArchiveAI = aiProjects.filter(p => !p.isMajor && matchesSearch(p));
+
+  const filteredMajorWeb = webProjects.filter(p => p.isMajor && matchesSearch(p));
+  const filteredArchiveWeb = webProjects.filter(p => !p.isMajor && matchesSearch(p));
+
   const filteredFilm = filmProjects.filter(matchesSearch);
   const showFlagship = (activeCategory === 'all' || activeCategory === 'ai') && matchesSearch(flagshipProject);
+
   const totalCount = (showFlagship ? 1 : 0) +
-    ((activeCategory === 'all' || activeCategory === 'ai') ? filteredAI.length : 0) +
-    ((activeCategory === 'all' || activeCategory === 'web') ? filteredWeb.length : 0) +
+    ((activeCategory === 'all' || activeCategory === 'ai') ? (filteredMajorAI.length + filteredArchiveAI.length) : 0) +
+    ((activeCategory === 'all' || activeCategory === 'web') ? (filteredMajorWeb.length + filteredArchiveWeb.length) : 0) +
     ((activeCategory === 'all' || activeCategory === 'film') ? filteredFilm.length : 0);
+
+  const archivedProjects = [
+    ...((activeCategory === 'all' || activeCategory === 'ai') ? filteredArchiveAI : []),
+    ...((activeCategory === 'all' || activeCategory === 'web') ? filteredArchiveWeb : [])
+  ];
+
+  const isExpanded = isArchiveExpanded || searchQuery.trim() !== '';
 
   const getCategoryPills = () => {
     if (viewMode === 'tech') {
@@ -529,10 +682,10 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </h2>
             <p className="text-sm sm:text-base text-neutral-600 font-normal">
               {viewMode === 'tech'
-                ? 'A comprehensive archive of 18+ engineered software platforms, AI applications, developer tools, and web interfaces.'
+                ? 'A curated showcase of flagship software platforms, AI systems, and specialized developer tools.'
                 : viewMode === 'filmmaking'
                 ? 'Cinematic short film productions, screenwriting archives, and directorial projects under CineOn Studio 7.'
-                : 'A comprehensive archive of 18+ engineered software platforms, AI applications, web interfaces, and narrative filmmaking.'}
+                : 'A curated showcase of flagship software platforms, AI systems, web architecture, and narrative filmmaking.'}
             </p>
           </div>
         </div>
@@ -715,11 +868,11 @@ export default function Projects({ viewMode }: ProjectsProps) {
         {/* 💻 Cluster 1: AI Systems & Developer Tooling */}
         {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && 
          (activeCategory === 'all' || activeCategory === 'ai') && 
-         filteredAI.length > 0 && (
+         filteredMajorAI.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                Cluster 01 // AI Systems ({filteredAI.length})
+                Cluster 01 // Core AI Systems ({filteredMajorAI.length})
               </span>
               <div className="h-px bg-neutral-200 flex-1" />
             </div>
@@ -729,108 +882,13 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredAI.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 ambient-depth-card-dark transition-all flex flex-col justify-between group text-white"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{item.category}</span>
-                      <div className="flex items-center gap-1.5">
-                        {item.link && (
-                          <a 
-                            href={item.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-emerald-500 hover:text-white transition-all"
-                            title="Live Demo"
-                          >
-                            <Globe size={13} />
-                          </a>
-                        )}
-                        {item.github && (
-                          <a 
-                            href={item.github} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
-                            title="GitHub Repository"
-                          >
-                            <Github size={13} />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    <div 
-                      onClick={() => {
-                        soundFX.playModalOpen();
-                        setSelectedProject(item);
-                      }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 ambient-depth-frame cursor-pointer"
-                    >
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/images/profile.png';
-                        }}
-                      />
-                    </div>
-
-                    <h4 className="text-lg font-bold text-white mb-1 tracking-tight">
-                      {item.title}
-                    </h4>
-
-                    <p className="text-[11px] font-mono text-neutral-400 mb-3">
-                      {item.tech}
-                    </p>
-
-                    <p className="text-xs text-neutral-400 leading-relaxed font-normal mb-6">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
-                    <button
-                      onClick={() => {
-                        soundFX.playModalOpen();
-                        setSelectedProject(item);
-                      }}
-                      className="text-xs font-mono font-medium text-neutral-300 hover:text-white flex items-center gap-1 cursor-pointer"
-                    >
-                      <Info size={12} /> View Architecture
-                    </button>
-                    <div className="flex items-center gap-3">
-                      {item.link && (
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1"
-                        >
-                          Live <ArrowUpRight size={12} />
-                        </a>
-                      )}
-                      {item.github && (
-                        <a
-                          href={item.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
-                        >
-                          Code <ArrowUpRight size={12} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
+              {filteredMajorAI.map((item, idx) => (
+                <ProjectCard
+                  key={item.title}
+                  item={item}
+                  idx={idx}
+                  onSelect={(proj) => setSelectedProject(proj)}
+                />
               ))}
             </div>
           </div>
@@ -839,119 +897,27 @@ export default function Projects({ viewMode }: ProjectsProps) {
         {/* 🌐 Cluster 2: Web Applications & Interfaces */}
         {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && 
          (activeCategory === 'all' || activeCategory === 'web') && 
-         filteredWeb.length > 0 && (
+         filteredMajorWeb.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                Cluster 02 // Web Projects ({filteredWeb.length})
+                Cluster 02 // Web Architecture ({filteredMajorWeb.length})
               </span>
               <div className="h-px bg-neutral-200 flex-1" />
             </div>
 
             <h3 className="text-xl sm:text-3xl font-black text-neutral-950 mb-8 tracking-tight">
-              Web Applications & Interactive Interfaces
+              Web Applications & Credential Architecture
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredWeb.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-2xl border border-neutral-800/90 bg-[#0A0A0A] p-6 hover:border-neutral-700 ambient-depth-card-dark transition-all flex flex-col justify-between group text-white"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-mono text-neutral-300">{item.category}</span>
-                      {item.github ? (
-                        <a 
-                          href={item.github} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
-                          title="GitHub Repository"
-                        >
-                          <Github size={13} />
-                        </a>
-                      ) : item.link ? (
-                        <a 
-                          href={item.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="w-7 h-7 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-neutral-950 transition-all"
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={13} />
-                        </a>
-                      ) : null}
-                    </div>
-
-                    <div 
-                      onClick={() => {
-                        soundFX.playModalOpen();
-                        setSelectedProject(item);
-                      }}
-                      className="aspect-video rounded-xl overflow-hidden border border-neutral-800 mb-5 bg-neutral-900 ambient-depth-frame cursor-pointer"
-                    >
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/images/profile.png';
-                        }}
-                      />
-                    </div>
-
-                    <h4 className="text-lg font-bold text-white mb-1 tracking-tight">
-                      {item.title}
-                    </h4>
-
-                    <p className="text-[11px] font-mono text-neutral-400 mb-3">
-                      {item.tech}
-                    </p>
-
-                    <p className="text-xs text-neutral-400 leading-relaxed font-normal mb-6">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between">
-                    {item.link ? (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
-                      >
-                        Live Demo <ArrowUpRight size={12} />
-                      </a>
-                    ) : item.github ? (
-                      <a
-                        href={item.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
-                      >
-                        Source Code <ArrowUpRight size={12} />
-                      </a>
-                    ) : (
-                      <span className="text-xs font-mono text-neutral-400">Archived Project</span>
-                    )}
-
-                    <button
-                      onClick={() => {
-                        soundFX.playModalOpen();
-                        setSelectedProject(item);
-                      }}
-                      className="text-xs font-mono font-medium text-neutral-300 hover:text-white flex items-center gap-1 cursor-pointer"
-                    >
-                      <Info size={12} /> Specs
-                    </button>
-                  </div>
-                </motion.div>
+              {filteredMajorWeb.map((item, idx) => (
+                <ProjectCard
+                  key={item.title}
+                  item={item}
+                  idx={idx}
+                  onSelect={(proj) => setSelectedProject(proj)}
+                />
               ))}
             </div>
           </div>
@@ -961,7 +927,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
         {(viewMode === 'filmmaking' || viewMode === 'both' || viewMode === null) && 
          (activeCategory === 'all' || activeCategory === 'film') && 
          filteredFilm.length > 0 && (
-          <div>
+          <div className="mb-24">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
                 Cluster 03 // Cinema ({filteredFilm.length})
@@ -1033,6 +999,123 @@ export default function Projects({ viewMode }: ProjectsProps) {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* 📁 Cluster 04: Project Archive & Creative Labs (Expandable) */}
+        {(viewMode === 'tech' || viewMode === 'both' || viewMode === null) && 
+         archivedProjects.length > 0 && (
+          <div id="archive-section" className="scroll-mt-24">
+            {!isExpanded ? (
+              /* Collapsed State: Interactive Teaser Banner */
+              <div className="rounded-3xl border border-neutral-200 bg-[#FAFAFB] p-8 sm:p-12 text-center relative overflow-hidden">
+                <div className="max-w-2xl mx-auto space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-xs font-mono text-neutral-700 shadow-2xs">
+                    <Archive size={13} className="text-neutral-500" />
+                    <span>Project Archive & Creative Labs</span>
+                  </div>
+                  
+                  <h3 className="text-2xl sm:text-3xl font-black text-neutral-950 tracking-tight">
+                    Explore Secondary Tools, Browser Labs & Prototypes
+                  </h3>
+                  
+                  <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal max-w-lg mx-auto">
+                    {activeCategory === 'ai' 
+                      ? `Discover ${filteredArchiveAI.length} additional AI voice automation scripts and blockchain parser tools.`
+                      : activeCategory === 'web'
+                      ? `Discover ${filteredArchiveWeb.length} additional interactive web experiments, browser games, extensions, and past UI concepts.`
+                      : `Discover ${archivedProjects.length} additional experimental prototypes, interactive canvas games, Chrome extensions, and creative laboratory projects.`}
+                  </p>
+                  
+                  <div className="pt-2">
+                    <button
+                      onClick={() => {
+                        soundFX.playToggle();
+                        setIsArchiveExpanded(true);
+                      }}
+                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-neutral-950 text-white text-xs font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-sm cursor-pointer group"
+                    >
+                      <FolderGit2 size={15} className="text-neutral-300 group-hover:scale-110 transition-transform" />
+                      <span>
+                        View Archive & Creative Labs ({archivedProjects.length} More Projects)
+                      </span>
+                      <ChevronDown size={15} className="group-hover:translate-y-0.5 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Expanded State: Full Archive Grid with Dual Collapse Controls */
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-wider">
+                    Archive & Labs // {archivedProjects.length} Projects
+                  </span>
+                  <div className="h-px bg-neutral-200 flex-1" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="px-2.5 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono font-semibold text-neutral-700 flex items-center gap-1.5">
+                        <Archive size={11} className="text-neutral-500" /> Creative Labs & Archive
+                      </span>
+                      <span className="text-xs font-mono text-neutral-400">
+                        {searchQuery.trim() ? `Search results in archive (${archivedProjects.length})` : `Showing all ${archivedProjects.length} archived & experimental works`}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-neutral-950 tracking-tight">
+                      Creative Labs & Project Archive
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-1 font-normal max-w-2xl">
+                      A curated archive of experimental tools, browser extensions, interactive canvas games, and creative frontend concepts.
+                    </p>
+                  </div>
+
+                  {!searchQuery.trim() && (
+                    <button
+                      onClick={() => {
+                        soundFX.playToggle();
+                        setIsArchiveExpanded(false);
+                        document.getElementById('archive-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-neutral-300 hover:border-neutral-900 text-neutral-800 text-xs font-semibold transition-all cursor-pointer shadow-2xs shrink-0 self-start sm:self-auto"
+                    >
+                      <ChevronUp size={13} />
+                      <span>Hide Archive</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Responsive Archive Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {archivedProjects.map((item, idx) => (
+                    <ProjectCard 
+                      key={item.title} 
+                      item={item} 
+                      idx={idx} 
+                      onSelect={(proj) => setSelectedProject(proj)} 
+                    />
+                  ))}
+                </div>
+
+                {!searchQuery.trim() && (
+                  <div className="mt-12 text-center">
+                    <button
+                      onClick={() => {
+                        soundFX.playToggle();
+                        setIsArchiveExpanded(false);
+                        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-900 text-xs font-bold transition-all cursor-pointer shadow-2xs"
+                    >
+                      <ChevronUp size={14} />
+                      <span>Collapse Archive & Creative Labs</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
