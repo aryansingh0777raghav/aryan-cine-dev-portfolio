@@ -195,7 +195,7 @@ export default function About({ viewMode }: AboutProps) {
                   {activePersona === 'unified' ? (
                     <motion.img 
                       key="unified-img"
-                      src="/images/aryan-unified.jpg" 
+                      src="/images/aryan-unified.png" 
                       alt="Aryan Singh - Dual-Threat Software Engineer & Independent Film Director" 
                       title="Aryan Singh - Unified Vision"
                       loading="eager"
@@ -204,7 +204,7 @@ export default function About({ viewMode }: AboutProps) {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.3 }}
-                      className="w-full h-full object-cover block"
+                      className="w-full h-full object-cover object-top block"
                     />
                   ) : activePersona === 'tech' ? (
                     <motion.img 
@@ -224,8 +224,8 @@ export default function About({ viewMode }: AboutProps) {
                     <motion.img 
                       key="film-img"
                       src="/images/aryan-singh-filmmaker.jpg" 
-                      alt="Aryan Singh - Independent Film Director & Writer" 
-                      title="Aryan Singh Filmmaker"
+                      alt="Aryan Singh - Independent Filmmaker, Writer, Director, Actor & Musician" 
+                      title="Aryan Singh - Filmmaker & Director"
                       loading="eager"
                       fetchPriority="high"
                       initial={{ opacity: 0, scale: 0.98 }}
