@@ -21,7 +21,8 @@ import {
   ChevronDown,
   ChevronUp,
   Archive,
-  FolderGit2
+  FolderGit2,
+  Activity
 } from 'lucide-react';
 import { soundFX } from '../utils/audio';
 
@@ -195,6 +196,61 @@ export default function Projects({ viewMode }: ProjectsProps) {
     };
   }, [selectedProject]);
 
+  const vnisharProject: Project = {
+    title: "VnishAr",
+    category: "Flagship Realtime Platform / Serverless Systems",
+    tech: "React 19, Vite, Tailwind CSS, Pusher Presence Channels, Vercel Serverless Functions, Web Audio API, PWA",
+    image: "/images/vnishar.png",
+    desc: "VnishAr is a login-free, zero-trace ephemeral communication platform built on the philosophy that 'messages are moments, not records.' Built with React 19, Pusher WebSocket Presence Channels, and Vercel Serverless Functions, messages live for strictly 60.00 seconds before dissolving permanently from volatile client RAM. Featuring procedural Web Audio API sound synthesis, dual-theme glassmorphism (Apple Light Frost & Pure Obsidian AMOLED), and offline PWA capability with zero disk overhead.",
+    link: "https://vnishar.vercel.app/",
+    role: "Lead Architect & Full-Stack Developer (Solo Project)",
+    tagline: "Send. See. Vanish. — Zero-Trace Ephemeral Realtime Communication",
+    coreVision: "VnishAr enforces mathematical impermanence in digital communication: every message lives for strictly 60.00 seconds before dissolving permanently from memory. Built on an unauthenticated, zero-disk volatile RAM architecture, it leaves no traces, requires no sign-ups, and guarantees absolute privacy through code.",
+    metrics: [
+      { label: "< 80ms Global Delivery", desc: "Sub-100ms message propagation across edge nodes using Pusher WebSocket channels." },
+      { label: "0 Bytes Disk Overhead", desc: "Zero-disk RAM-only architecture ensures absolute ephemeral privacy with zero server logs." },
+      { label: "60.00s Strictly Enforced", desc: "Authoritative serverless countdown timer with automatic irreversible message purge." },
+      { label: "92 kB Gzipped Bundle", desc: "Lightweight, zero-bloat reactive bundle built with vanilla Web Audio API sound synthesis." }
+    ],
+    techStack: [
+      { name: "React 19 & Vite 6", desc: "Ultra-fast modern frontend runtime featuring concurrent rendering, instant HMR, and sub-100ms client hydration." },
+      { name: "Pusher WebSocket Channels", desc: "Serverless pub/sub presence protocol powering real-time message broadcast and live room participant tracking." },
+      { name: "Vercel Serverless Functions", desc: "Stateless edge execution layer handling message authorization and ephemeral event dispatches with zero disk storage." },
+      { name: "Procedural Web Audio API", desc: "Custom audio synthesizer engine generating procedural mechanical keystrokes and dissolver tones without downloading MP3 assets." },
+      { name: "Dual-Theme Obsidian/Frost UI", desc: "Engineered with Tailwind CSS featuring Apple Light Frost (#f2f2f5) and Obsidian AMOLED (#08090B) glassmorphism." },
+      { name: "Installable PWA & Service Workers", desc: "Progressive Web App manifest with offline asset caching and native standalone mobile app experience." }
+    ],
+    features: [
+      {
+        title: "1. Zero-Disk Volatile Privacy Architecture",
+        desc: "No databases, no logs, and no message history on any server. Messages exist strictly in volatile client memory and dissolve into nothingness upon room exit or expiry."
+      },
+      {
+        title: "2. Authoritative 60-Second Dissolution Engine",
+        desc: "Client and edge-synchronized 60.00s countdown timer with a 550ms optical dissolution physics animation that irreversibly unmounts expired message nodes."
+      },
+      {
+        title: "3. Serverless Pusher Presence & Room Discovery",
+        desc: "Instantaneous room creation and sharing via cryptographic room IDs with live multi-client presence indicators and real-time typing broadcasts."
+      },
+      {
+        title: "4. Procedural Web Audio Synthesis (Zero MP3s)",
+        desc: "Synthesized audio feedback utilizing Web Audio API oscillators, bandpass filters, and exponential gain ramps for typewriter clicks, message send, and vanish swooshes."
+      },
+      {
+        title: "5. Obsidian AMOLED & Frost Glassmorphism",
+        desc: "Adaptive dynamic UI with high-contrast Obsidian AMOLED (#08090B) and Apple Light Frost (#f2f2f5) aesthetics, custom SVG micro-interactions, and 120 FPS hardware acceleration."
+      },
+      {
+        title: "6. Zero-Trace Ephemeral Media & Native PWA",
+        desc: "Base64 volatile ephemeral image sharing that never touches cloud storage, paired with full PWA installation for native iOS and Android workflows."
+      }
+    ],
+    links: [
+      { label: "Live Platform", url: "https://vnishar.vercel.app/" }
+    ]
+  };
+
   const flagshipProject: Project = {
     title: "ArKTest Beta (Application Review Kit)",
     category: "Flagship Full-Stack Platform",
@@ -251,6 +307,8 @@ export default function Projects({ viewMode }: ProjectsProps) {
       { label: "LinkedIn Page", url: "https://www.linkedin.com/company/arktest-beta/" }
     ]
   };
+
+  const flagshipProjects: Project[] = [vnisharProject, flagshipProject];
 
   const aiProjects: Project[] = [
     {
@@ -626,9 +684,20 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const filteredArchiveWeb = webProjects.filter(p => !p.isMajor && matchesSearch(p));
 
   const filteredFilm = filmProjects.filter(matchesSearch);
-  const showFlagship = (activeCategory === 'all' || activeCategory === 'ai') && matchesSearch(flagshipProject);
 
-  const totalCount = (showFlagship ? 1 : 0) +
+  const matchesFlagshipCategory = (project: Project) => {
+    if (searchQuery.trim() !== '') return true;
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'web' && project === vnisharProject) return true;
+    if (activeCategory === 'ai' && project === flagshipProject) return true;
+    return false;
+  };
+
+  const visibleFlagships = flagshipProjects.filter(
+    (p) => matchesFlagshipCategory(p) && matchesSearch(p)
+  );
+
+  const totalCount = visibleFlagships.length +
     ((activeCategory === 'all' || activeCategory === 'ai') ? (filteredMajorAI.length + filteredArchiveAI.length) : 0) +
     ((activeCategory === 'all' || activeCategory === 'web') ? (filteredMajorWeb.length + filteredArchiveWeb.length) : 0) +
     ((activeCategory === 'all' || activeCategory === 'film') ? filteredFilm.length : 0);
@@ -643,9 +712,9 @@ export default function Projects({ viewMode }: ProjectsProps) {
   const getCategoryPills = () => {
     if (viewMode === 'tech') {
       return [
-        { id: 'all' as const, label: `All Tech (${aiProjects.length + webProjects.length + 1})` },
+        { id: 'all' as const, label: `All Tech (${aiProjects.length + webProjects.length + flagshipProjects.length})` },
         { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
-        { id: 'web' as const, label: `Web Apps (${webProjects.length})` }
+        { id: 'web' as const, label: `Web Apps (${webProjects.length + 1})` }
       ];
     }
     if (viewMode === 'filmmaking') {
@@ -655,9 +724,9 @@ export default function Projects({ viewMode }: ProjectsProps) {
       ];
     }
     return [
-      { id: 'all' as const, label: `All (${aiProjects.length + webProjects.length + filmProjects.length + 1})` },
+      { id: 'all' as const, label: `All (${aiProjects.length + webProjects.length + filmProjects.length + flagshipProjects.length})` },
       { id: 'ai' as const, label: `AI Systems (${aiProjects.length + 1})` },
-      { id: 'web' as const, label: `Web Apps (${webProjects.length})` },
+      { id: 'web' as const, label: `Web Apps (${webProjects.length + 1})` },
       { id: 'film' as const, label: `Cinema (${filmProjects.length})` }
     ];
   };
@@ -751,117 +820,137 @@ export default function Projects({ viewMode }: ProjectsProps) {
           </div>
         )}
 
-        {/* 🌟 Flagship Spotlight: ArKTest Beta */}
-        {showFlagship && (viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
-          <div className="mb-24">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="swiss-pill-tag-active flex items-center gap-1.5">
-                <Sparkles size={11} className="text-amber-400" /> Flagship Platform
-              </span>
-              <span className="swiss-pill-tag">
-                Crowd Testing & Escrow
-              </span>
-            </div>
-
-            <div className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white ambient-depth-card-dark hover:border-neutral-700 transition-all">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-                {/* Left: Interactive Preview & Metrics */}
-                <div className="lg:col-span-6 space-y-4">
-                  <div 
-                    onClick={() => setSelectedProject(flagshipProject)}
-                    className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 ambient-depth-frame cursor-pointer group"
-                  >
-                    <img 
-                      src="/images/arktest.png" 
-                      alt="ArKTest Beta Dashboard" 
-                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
-                    <div className="absolute bottom-3 right-3">
-                      <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-neutral-950 text-xs font-semibold shadow-xs">
-                        <Info size={13} /> View Architecture
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* 4 Metrics Pills */}
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {flagshipProject.metrics?.map((metric, i) => (
-                      <div key={i} className="p-3 rounded-xl bg-neutral-900/90 border border-neutral-800">
-                        <p className="text-[11px] font-mono font-bold text-white leading-tight mb-0.5">
-                          {metric.label}
-                        </p>
-                        <p className="text-[10px] text-neutral-400 leading-tight font-normal">
-                          {metric.desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+        {/* 🌟 Flagship Spotlight: Featured Platforms */}
+        {visibleFlagships.length > 0 && (viewMode === 'tech' || viewMode === 'both' || viewMode === null) && (
+          <div className="mb-24 space-y-16">
+            {visibleFlagships.map((flagship) => (
+              <div key={flagship.title}>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="swiss-pill-tag-active flex items-center gap-1.5">
+                    <Sparkles size={11} className="text-amber-400" /> Flagship Platform
+                  </span>
+                  <span className="swiss-pill-tag">
+                    {flagship === vnisharProject ? 'Zero-Trace Ephemeral Realtime' : 'Crowd Testing & Escrow'}
+                  </span>
                 </div>
 
-                {/* Right: Project Details & Action Buttons */}
-                <div className="lg:col-span-6 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-2">
-                      ArKTest Beta
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-neutral-300 mb-2">
-                      {flagshipProject.tagline}
-                    </p>
-                    <p className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-4">
-                      {flagshipProject.role}
-                    </p>
-
-                    <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal mb-6">
-                      {flagshipProject.desc}
-                    </p>
-
-                    {/* Feature Highlights Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
-                      {flagshipProject.features?.slice(0, 4).map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
-                          <span className="text-xs text-neutral-300 font-medium leading-snug">
-                            {feat.title}
+                <div className="rounded-3xl border border-neutral-800 bg-[#0A0A0A] p-6 sm:p-10 md:p-12 text-white ambient-depth-card-dark hover:border-neutral-700 transition-all">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+                    {/* Left: Interactive Preview & Metrics */}
+                    <div className="lg:col-span-6 space-y-4">
+                      <div 
+                        onClick={() => setSelectedProject(flagship)}
+                        className="relative aspect-video rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 ambient-depth-frame cursor-pointer group"
+                      >
+                        <img 
+                          src={flagship.image} 
+                          alt={flagship.title} 
+                          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+                        <div className="absolute bottom-3 right-3">
+                          <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-neutral-950 text-xs font-semibold shadow-xs">
+                            <Info size={13} /> View Architecture
                           </span>
                         </div>
-                      ))}
+                      </div>
+
+                      {/* 4 Metrics Pills */}
+                      <div className="grid grid-cols-2 gap-2.5">
+                        {flagship.metrics?.map((metric, i) => (
+                          <div key={i} className="p-3 rounded-xl bg-neutral-900/90 border border-neutral-800">
+                            <p className="text-[11px] font-mono font-bold text-white leading-tight mb-0.5">
+                              {metric.label}
+                            </p>
+                            <p className="text-[10px] text-neutral-400 leading-tight font-normal">
+                              {metric.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Action Buttons */}
-                  <div className="pt-6 border-t border-neutral-800 flex flex-wrap items-center gap-3">
-                    <a
-                      href="https://arktest-beta.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 text-xs font-semibold tracking-wide hover:bg-neutral-200 transition-all shadow-xs"
-                    >
-                      <Globe size={13} />
-                      <span>Live Platform</span>
-                      <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </a>
+                    {/* Right: Project Details & Action Buttons */}
+                    <div className="lg:col-span-6 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-2">
+                          {flagship.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm font-semibold text-neutral-300 mb-2">
+                          {flagship.tagline}
+                        </p>
+                        <p className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-4">
+                          {flagship.role}
+                        </p>
 
-                    <a
-                      href="https://www.linkedin.com/company/arktest-beta/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 border border-neutral-700 text-white text-xs font-semibold tracking-wide hover:bg-neutral-800 transition-colors"
-                    >
-                      <Linkedin size={13} className="text-blue-400" />
-                      <span>Company LinkedIn</span>
-                    </a>
+                        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal mb-6">
+                          {flagship.desc}
+                        </p>
 
-                    <button
-                      onClick={() => setSelectedProject(flagshipProject)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-200 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
-                    >
-                      <Info size={13} /> Full Specs
-                    </button>
+                        {/* Feature Highlights Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+                          {flagship.features?.slice(0, 4).map((feat, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
+                              <span className="text-xs text-neutral-300 font-medium leading-snug">
+                                {feat.title}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="pt-6 border-t border-neutral-800 flex flex-wrap items-center gap-3">
+                        {flagship.link && (
+                          <a
+                            href={flagship.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 text-xs font-semibold tracking-wide hover:bg-neutral-200 transition-all shadow-xs"
+                          >
+                            <Globe size={13} />
+                            <span>Live Platform</span>
+                            <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          </a>
+                        )}
+
+                        {flagship.linkedin && (
+                          <a
+                            href={flagship.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 border border-neutral-700 text-white text-xs font-semibold tracking-wide hover:bg-neutral-800 transition-colors"
+                          >
+                            <Linkedin size={13} className="text-blue-400" />
+                            <span>Company LinkedIn</span>
+                          </a>
+                        )}
+
+                        {flagship.github && (
+                          <a
+                            href={flagship.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 border border-neutral-700 text-white text-xs font-semibold tracking-wide hover:bg-neutral-800 transition-colors"
+                          >
+                            <Github size={13} />
+                            <span>Source Code</span>
+                          </a>
+                        )}
+
+                        <button
+                          onClick={() => setSelectedProject(flagship)}
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-200 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+                        >
+                          <Info size={13} /> Full Specs
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         )}
 
@@ -1182,6 +1271,23 @@ export default function Projects({ viewMode }: ProjectsProps) {
                     {selectedProject.desc}
                   </p>
                 ) : null}
+
+                {/* Key Metrics */}
+                {selectedProject.metrics && selectedProject.metrics.length > 0 && (
+                  <div className="pt-4 border-t border-neutral-100">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-3 flex items-center gap-1.5">
+                      <Activity size={13} /> Performance & Engineering Metrics
+                    </h4>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {selectedProject.metrics.map((metric, i) => (
+                        <div key={i} className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/80">
+                          <p className="text-xs font-mono font-bold text-neutral-950 mb-0.5">{metric.label}</p>
+                          <p className="text-[11px] text-neutral-500 font-normal leading-relaxed">{metric.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Tech Stack Breakdown */}
                 {selectedProject.techStack && (
