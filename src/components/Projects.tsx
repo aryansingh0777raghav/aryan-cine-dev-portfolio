@@ -308,7 +308,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
     ]
   };
 
-  const flagshipProjects: Project[] = [vnisharProject, flagshipProject];
+  const flagshipProjects: Project[] = [flagshipProject, vnisharProject];
 
   const aiProjects: Project[] = [
     {
@@ -827,7 +827,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
               <div key={flagship.title}>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="swiss-pill-tag-active flex items-center gap-1.5">
-                    <Sparkles size={11} className="text-amber-400" /> Flagship Platform
+                    <Sparkles size={11} className="text-amber-400" /> {flagship === flagshipProject ? 'Primary Flagship Platform' : 'Flagship Platform'}
                   </span>
                   <span className="swiss-pill-tag">
                     {flagship === vnisharProject ? 'Zero-Trace Ephemeral Realtime' : 'Crowd Testing & Escrow'}
