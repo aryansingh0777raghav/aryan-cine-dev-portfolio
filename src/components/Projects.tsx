@@ -532,6 +532,43 @@ export default function Projects({ viewMode }: ProjectsProps) {
   ];
 
   const webProjects: Project[] = [
+    {
+      title: "CarHari",
+      isMajor: true,
+      category: "Automotive E-Commerce & Showroom CMS",
+      tech: "Next.js 14 (App Router), TypeScript, Tailwind CSS, GitHub REST API, PWA, Sharp / WebP, Vercel",
+      image: "/images/carhari.png",
+      desc: "Modern automotive digital showroom and mobile inventory management platform engineered for Hari Govind Singh. Eliminates used-car broker friction through radical transparency, 150-point inspection badges, and 1-tap WhatsApp leads. Built with Next.js 14, an automated GitHub REST API serverless headless CMS with zero database hosting fees, dual bilingual Hindi/English PWA, and client-side WebP image compression.",
+      link: "https://carhari.vercel.app",
+      role: "Full-Stack Platform Architect & Developer (Built for Hari Govind Singh)",
+      tagline: "Car Ki Chinta, Ab Hari. — Modern Automotive E-Commerce & Showroom Management",
+      coreVision: "Conceived and engineered for my father, Hari Govind Singh, a respected automotive entrepreneur. The Indian pre-owned vehicle ecosystem is plagued by aggressive middlemen, opaque pricing, and paper-heavy workflows. CarHari provides a modern, high-trust digital storefront reflecting a 100% transparent approach, paired with an effortless bilingual mobile PWA portal allowing inventory management directly from any smartphone with zero ongoing database costs.",
+      metrics: [
+        { label: "₹0 / mo Database Cost", desc: "Serverless headless CMS utilizing GitHub REST API as a persistent version-controlled database with zero recurring fees." },
+        { label: "< 150 kB WebP Assets", desc: "Automated on-device HTML5 Canvas and Sharp image compression pipeline preserving bandwidth on mobile networks." },
+        { label: "100% Dual Bilingual", desc: "Seamless instant Hindi ↔ English toggle (हिंदी / English) custom-tailored for non-tech-savvy showroom operations." },
+        { label: "1-Tap Lead Conversion", desc: "Pre-filled WhatsApp consultation direct-to-owner integration accelerating buyer trust and inquiry velocity." }
+      ],
+      techStack: [
+        { name: "Next.js 14 (App Router & SSR)", desc: "Server Components, dynamic server-side rendering, and instant edge routing for optimal SEO and sub-second page loads." },
+        { name: "TypeScript & Strict Schemas", desc: "End-to-end type-safe contracts for vehicle catalogs, pricing tiers, specifications, and API payloads." },
+        { name: "GitHub REST API Headless CMS", desc: "Serverless JSON database architecture where inventory additions, edits, and deletions are committed directly to repository storage." },
+        { name: "Bilingual Mobile PWA Portal", desc: "Progressive Web App with separate manifests for public buyers and the showroom manager with real-time Hindi/English localization." },
+        { name: "Sharp & WebP Media Pipeline", desc: "Client-side image processing and serverless optimization keeping vehicle photo uploads lightweight on 4G/5G networks." },
+        { name: "Tailwind CSS Luxury UI", desc: "Monochrome automotive aesthetic with high-contrast typography, 150-point inspection badges, and fluid responsive layouts." }
+      ],
+      features: [
+        { title: "1. Serverless Headless CMS via GitHub API", desc: "Engineered an automated commit-based data pipeline where inventory updates, additions, and deletions are version-controlled directly in a repository—eliminating recurring database hosting costs while ensuring 100% auditability." },
+        { title: "2. Tailored Bilingual PWA Manager Experience", desc: "Mobile-first admin interface specifically built for non-tech-savvy workflows with a real-time Hindi ↔ English toggle (हिंदी / English) and 1-tap camera upload pipeline." },
+        { title: "3. High-Trust Buyer Storefront & 150-Point Check", desc: "Modern consumer storefront highlighting certified vehicle histories, non-accidental guarantees, transparent pricing, and instant vehicle search and filtering." },
+        { title: "4. Direct 1-Tap WhatsApp Lead Generation", desc: "Integrated instant WhatsApp consultation buttons pre-filled with specific car models, specs, and stock IDs for immediate, broker-free negotiations." },
+        { title: "5. On-Device WebP Image Compression Pipeline", desc: "Client-side Canvas & Sharp compression reducing multi-megabyte smartphone camera photos to under 150KB before committing to the repository." },
+        { title: "6. Zero-Layout-Shift 100% Responsive Design", desc: "Meticulously optimized across ultra-compact 320px mobile screens up to 4K widescreen desktop monitors with strict layout stability." }
+      ],
+      links: [
+        { label: "Live Showroom", url: "https://carhari.vercel.app" }
+      ]
+    },
     { 
       title: "Certilink (Credential & Verification Engine)", 
       isMajor: true,
@@ -996,7 +1033,7 @@ export default function Projects({ viewMode }: ProjectsProps) {
             </div>
 
             <h3 className="text-xl sm:text-3xl font-black text-neutral-950 mb-8 tracking-tight">
-              Web Applications & Credential Architecture
+              Production Web Applications & Platforms
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

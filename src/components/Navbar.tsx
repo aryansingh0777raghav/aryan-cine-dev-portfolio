@@ -16,9 +16,10 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     if (viewMode === 'tech') {
       return [
         { name: 'ArKTest Beta (Flagship)', href: '#projects' },
+        { name: 'CarHari (Automotive)', href: '#projects' },
+        { name: 'VnishAr (Realtime)', href: '#projects' },
         { name: 'ArVerse OS', href: '#projects' },
-        { name: 'Certilink (Verification)', href: '#projects' },
-        { name: 'ArType (AI Assistant)', href: '#projects' }
+        { name: 'Certilink (Verification)', href: '#projects' }
       ];
     }
     if (viewMode === 'filmmaking') {
@@ -30,8 +31,8 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     }
     return [
       { name: 'ArKTest Beta (Flagship)', href: '#projects' },
-      { name: 'ArVerse OS', href: '#projects' },
-      { name: 'Certilink (Verification)', href: '#projects' },
+      { name: 'CarHari (Automotive)', href: '#projects' },
+      { name: 'VnishAr (Realtime)', href: '#projects' },
       { name: 'The Night of Life (Film)', href: '#projects' }
     ];
   };
