@@ -312,6 +312,44 @@ export default function Projects({ viewMode }: ProjectsProps) {
 
   const aiProjects: Project[] = [
     {
+      title: "ArCV",
+      isMajor: true,
+      category: "Local-First Systems & Sovereign NLP",
+      tech: "Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Dexie.js (IndexedDB), BYOK Groq AI (Llama 3.3), PWA",
+      image: "/images/arcv.png",
+      desc: "An independent, 100% local-first career intelligence platform and sovereign document craftsmanship engine. Built with Next.js 15 and Dexie.js to dismantle predatory subscription paywalls and candidate telemetry trackers. Features 12 millimeter-accurate vector ATS templates, an in-browser deterministic NLP scoring pipeline (Google XYZ formula), BYOK Groq AI (Llama 3.3 70B/8B), and air-gapped offline PWA capability with $0 recurring cloud costs.",
+      link: "https://ar-cv.vercel.app/",
+      role: "Creator & Lead Platform Architect",
+      year: "2026",
+      tagline: "Local-First Career Architecture & Sovereign Document Intelligence",
+      coreVision: "Born out of frustration with predatory SaaS resume builders that hold career credentials behind recurring paywalls and track candidates across third-party telemetry databases, ArCV re-architects career documentation from first principles: zero cloud database dependencies, 100% on-device privacy, millimeter-accurate A4 vector print fidelity, and deterministic client-side ATS scoring.",
+      metrics: [
+        { label: "0 KB Cloud Telemetry", desc: "100% on-device privacy; zero personal career data or resume logs transmitted to remote backends." },
+        { label: "$0.00 / mo Server Cost", desc: "Pure client-side Dexie.js IndexedDB architecture with reactive hooks eliminating recurring database bills." },
+        { label: "100% Air-Gapped Offline", desc: "Progressive Web App with complete offline writing guide and local natural language scoring." },
+        { label: "12 Editorial ATS Layouts", desc: "Millimeter-accurate 210mm × 297mm vector print fidelity strictly calibrated with @media print CSS rules." }
+      ],
+      techStack: [
+        { name: "Next.js 15 & React 19", desc: "Modern App Router architecture featuring static page pre-rendering, instantaneous routing, and zero runtime layout shifts." },
+        { name: "Dexie.js (Client-Side IndexedDB)", desc: "Enterprise-grade reactive database layer managing multi-resume workspaces, version snapshots, job descriptions, and ATS audit reports on-device." },
+        { name: "Client-Side NLP & ATS Tokenizer", desc: "In-browser natural language processing extracting n-grams, identifying missing domain competencies, and scoring bullet points via the Google XYZ formula." },
+        { name: "BYOK Sovereign Groq AI", desc: "Optional zero-telemetry LLM copilot (Llama 3.3 70B & 8B) with local client-side key storage and offline writing guide fallback." },
+        { name: "Vector Print Media Engine", desc: "Advanced @media print CSS rules enforcing millimeter-precise A4 pagination (210mm × 297mm) with break-inside: avoid typography protection." },
+        { name: "Progressive Web App (PWA)", desc: "Service Worker offline caching, Day & Night monogram icon suites, phone-first bottom thumb action dock, and auto-scaling A4 preview containers." }
+      ],
+      features: [
+        { title: "1. 100% Local-First IndexedDB Persistence ($0 Server Cost)", desc: "Built on Dexie.js and client-side IndexedDB with reactive hooks (dexie-react-hooks). Resumes, version snapshots, job descriptions, and ATS audit reports live entirely on the user's hardware. Enables .arcv structured JSON backups with instant disaster recovery." },
+        { title: "2. 12 Vector-Calibrated Editorial ATS Templates", desc: "Engineered 12 typographical layouts blending Apple Newsroom, Financial Times, and NYT broadsheet standards with Swiss modernist grids. Calibrated with @media print CSS (210mm × 297mm) to guarantee zero awkward page splits and 100% vector-sharp PDFs." },
+        { title: "3. Deterministic Client-Side ATS NLP Engine", desc: "Implemented an in-browser natural language processing pipeline that tokenizes job postings, extracts n-grams, evaluates critical missing competencies, and scores bullet points against the Google XYZ formula (Accomplished [X] as measured by [Y], by doing [Z])." },
+        { title: "4. Bring-Your-Own-Key (BYOK) Sovereign AI Copilot", desc: "Equipped with optional Groq API integration (Llama 3.3 70B & 8B). API keys are stored exclusively in the browser's localStorage and communicated directly over HTTPS, supplemented by an exhaustive offline writing guide." },
+        { title: "5. PWA & Mobile-First Responsive Ergonomics", desc: "Integrated Service Worker offline caching, Web App Manifest with Day & Night monogram icon suites, a phone-first bottom thumb action dock, swipeable section selectors, and auto-scaling A4 preview containers." },
+        { title: "6. Zero-Data-Leak Privacy Architecture", desc: "Eliminates the cloud paywall trap and surveillance databases. High-leverage candidate data (salaries, phone numbers, patents, milestones) remains sovereign on your physical machine." }
+      ],
+      links: [
+        { label: "Live Platform", url: "https://ar-cv.vercel.app/" }
+      ]
+    },
+    {
       title: "SaveAlly.",
       isMajor: true,
       category: "Full-Stack / PWA / AI / Local-First",

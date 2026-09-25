@@ -16,6 +16,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     if (viewMode === 'tech') {
       return [
         { name: 'ArKTest Beta (Flagship)', href: '#projects' },
+        { name: 'ArCV (Resume Intelligence)', href: '#projects' },
         { name: 'CarHari (Automotive)', href: '#projects' },
         { name: 'VnishAr (Realtime)', href: '#projects' },
         { name: 'ArVerse OS', href: '#projects' },
@@ -31,6 +32,7 @@ export default function Navbar({ viewMode, setViewMode }: NavbarProps) {
     }
     return [
       { name: 'ArKTest Beta (Flagship)', href: '#projects' },
+      { name: 'ArCV (Resume Intelligence)', href: '#projects' },
       { name: 'CarHari (Automotive)', href: '#projects' },
       { name: 'VnishAr (Realtime)', href: '#projects' },
       { name: 'The Night of Life (Film)', href: '#projects' }
